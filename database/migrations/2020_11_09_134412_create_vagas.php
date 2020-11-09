@@ -15,17 +15,17 @@ class CreateVagas extends Migration
     {
         Schema::create('vagas', function (Blueprint $table) {
             $table->id('vag_id');
-            $table->timestamp('vag_data_publicacao');
-            $table->timestamp('vag_data_alteracao');
-            $table->integer('vag_status');
-            $table->string('vag_motivo_recusa', 500);
-            $table->integer('vag_carga_horaria');
-            $table->string('vag_habilidades', 250);
+            $table->date('vag_data_publicacao')->nullable(false);
+            $table->date('vag_data_alteracao');
+            $table->integer('vag_status')->nullable(false);
+            $table->string('vag_motivo_recusa', 500)->nullable(false);
+            $table->integer('vag_carga_horaria')->nullable(false);
+            $table->string('vag_habilidades', 250)->nullable(false);
             $table->string('vag_diferenciais', 250);
             $table->float('vag_faixa_salaria');
             $table->string('vag_beneficios', 250);
             $table->string('vag_informacoes_adicionais', 500);
-            $table->integer('vag_numero_de_vagas');
+            $table->integer('vag_numero_de_vagas')->nullable(false);
             $table->unsignedBigInteger('cid_id')->nullable(false);
             $table->unsignedBigInteger('are_id')->nullable(false);
             $table->unsignedBigInteger('div_id')->nullable(false);
