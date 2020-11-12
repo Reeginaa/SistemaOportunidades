@@ -92,13 +92,13 @@ class CidadeController extends Controller
     {
 
         $this->validate($request, [
-            'up-cid_nome' => ['required', 'max:85'],
-            'up-cid_uf' => ['required', 'max:2']
+            'cid_nome' => ['required', 'max:85'],
+            'cid_uf' => ['required', 'max:2']
         ]);
 
         $cidades =  $this->cidade::find($id);
-        $cidades->cid_nome = $request->input('up-cid_nome');
-        $cidades->cid_uf = strtoupper($request->input('up-cid_uf'));
+        $cidades->cid_nome = $request->input('cid_nome');
+        $cidades->cid_uf = strtoupper($request->input('cid_uf'));
 
 
         $cidades->save();

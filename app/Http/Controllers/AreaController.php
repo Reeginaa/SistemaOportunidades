@@ -90,11 +90,11 @@ class AreaController extends Controller
     {
 
         $this->validate($request, [
-            'up-area_nome' => ['required', 'max:85'],
+            'area_nome' => ['required', 'max:85'],
         ]);
 
         $areas =  $this->area::find($id);
-        $areas->area_nome = $request->input('up-area_nome');
+        $areas->area_nome = $request->input('area_nome');
 
 
         $areas->save();

@@ -115,9 +115,9 @@
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
                         <div class="form-group">
-                            <label class="mb-0" for="up-area_nome">Nome</label>
-                            <input type="text" class="form-control" id="up-area_nome" name="up-area_nome" required>
-                            <span class="text-danger" id="up-area_nomeError"></span>
+                            <label class="mb-0" for="area_nome">Nome</label>
+                            <input type="text" class="form-control" id="area_nome" name="area_nome" required>
+                            <span class="text-danger" id="area_nomeError"></span>
                         </div>
                         <div class="form-group col-xs-2">
                     </form>
@@ -146,13 +146,13 @@
                 <div class="modal-body">
                     <form action="" method="POST" id="viewForm">
                         <div class="form-group">
-                            <label class="mb-0" for="v-id">id</label>
-                            <input type="text" class="form-control" id="v-id" name="v-id"
+                            <label class="mb-0" for="id">id</label>
+                            <input type="text" class="form-control" id="id" name="id"
                                 style="text-align: center; width: 90px" readonly>
                         </div>
                         <div class="form-group">
-                            <label class="mb-0" for="v-area_nome">Nome</label>
-                            <input type="text" class="form-control" id="v-area_nome" name="v-area_nome" readonly>
+                            <label class="mb-0" for="area_nome">Nome</label>
+                            <input type="text" class="form-control" id="area_nome" name="area_nome" readonly>
                         </div>
                     </form>
                 </div>
@@ -217,7 +217,7 @@
                 var data = table.row($tr).data();
                 console.log(data);
 
-                $('#up-area_nome').val(data[1]);
+                $('#editModal #area_nome').val(data[1]);
 
                 $('#editForm').attr('action', '/area/' + data[0]);
                 $('#editModal').modal('show');
@@ -234,8 +234,8 @@
                 var data = table.row($tr).data();
                 console.log(data);
 
-                $('#v-id').val(data[0]);
-                $('#v-area_nome').val(data[1]);
+                $('#viewModal #id').val(data[0]);
+                $('#viewModal #area_nome').val(data[1]);
 
                 $('#viewForm').attr('action');
                 $('#viewModal').modal('show');

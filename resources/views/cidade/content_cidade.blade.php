@@ -124,14 +124,14 @@
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
                         <div class="form-group">
-                            <label class="mb-0" for="up-cid_nome">Nome</label>
-                            <input type="text" class="form-control" id="up-cid_nome" name="up-cid_nome" required>
-                            <span class="text-danger" id="up-cid_nomeError"></span>
+                            <label class="mb-0" for="cid_nome">Nome</label>
+                            <input type="text" class="form-control" id="cid_nome" name="cid_nome" required>
+                            <span class="text-danger" id="cid_nomeError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="up-cid_uf">UF</label>
+                            <label class="mb-0" for="cid_uf">UF</label>
                             <input type="text" class="form-control" maxlength="2"
-                                style="text-transform: uppercase; width: 60px" id="up-cid_uf" name="up-cid_uf" required>
+                                style="text-transform: uppercase; width: 60px" id="cid_uf" name="cid_uf" required>
                             <span class="text-danger" id="cid_nomeError"></span>
                         </div>
                     </form>
@@ -160,18 +160,18 @@
                 <div class="modal-body">
                     <form action="" method="POST" id="viewForm">
                         <div class="form-group">
-                            <label class="mb-0" for="v-id">id</label>
-                            <input type="text" class="form-control" id="v-id" name="v-id"
+                            <label class="mb-0" for="id">id</label>
+                            <input type="text" class="form-control" id="id" name="id"
                                 style="text-align: center; width: 90px" readonly>
                         </div>
                         <div class="form-group">
-                            <label class="mb-0" for="v-cid_nome">Nome</label>
-                            <input type="text" class="form-control" id="v-cid_nome" name="v-cid_nome" readonly>
+                            <label class="mb-0" for="cid_nome">Nome</label>
+                            <input type="text" class="form-control" id="cid_nome" name="cid_nome" readonly>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="v-cid_uf">UF</label>
+                            <label class="mb-0" for="cid_uf">UF</label>
                             <input type="text" class="form-control" maxlength="2"
-                                style="text-transform: uppercase; width: 60px" id="v-cid_uf" name="v-cid_uf" readonly>
+                                style="text-transform: uppercase; width: 60px" id="cid_uf" name="cid_uf" readonly>
                         </div>
                     </form>
                 </div>
@@ -236,8 +236,8 @@
                 var data = table.row($tr).data();
                 console.log(data);
 
-                $('#up-cid_nome').val(data[1]);
-                $('#up-cid_uf').val(data[2]);
+                $('#editModal #cid_nome').val(data[1]);
+                $('#editModal #cid_uf').val(data[2]);
 
                 $('#editForm').attr('action', '/cidade/' + data[0]);
                 $('#editModal').modal('show');
@@ -254,9 +254,9 @@
                 var data = table.row($tr).data();
                 console.log(data);
 
-                $('#v-id').val(data[0]);
-                $('#v-cid_nome').val(data[1]);
-                $('#v-cid_uf').val(data[2]);
+                $('#viewModal #id').val(data[0]);
+                $('#viewModal #cid_nome').val(data[1]);
+                $('#viewModal #cid_uf').val(data[2]);
 
                 $('#viewForm').attr('action');
                 $('#viewModal').modal('show');
