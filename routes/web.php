@@ -20,3 +20,7 @@ Route::get('/', function () {
 
 Route::resource('cidade', 'App\Http\Controllers\CidadeController');
 Route::get('cidade/{id}/destroy', 'App\Http\Controllers\CidadeController@destroy');
+
+
+Route::resource('area', 'App\Http\Controllers\AreaController');
+Route::get('area/{id}/destroy', 'App\Http\Controllers\AreaController@destroy');

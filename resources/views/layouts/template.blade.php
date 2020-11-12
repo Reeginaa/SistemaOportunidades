@@ -86,21 +86,23 @@
                         <h6 class="collapse-header">{{ __('Manutenção') }}</h6>
                         <a class="collapse-item" href={{ route('cidade.index') }}><i 
                                 class="fas fa-city mr-1"></i>{{ __('Cidade') }}</a>
+                        <a class="collapse-item" href={{ route('area.index') }}><i 
+                                class="fas fa-laptop-code mr-1"></i>{{ __('Área') }}</a>
                     </div>
                 </div>
             </li>
 
             
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            {{-- <hr class="sidebar-divider"> --}}
 
-            <!-- Heading -->
+            {{-- <!-- Heading -->
             <div class="sidebar-heading">
                 {{ __('Outros') }}
-            </div>
+            </div> --}}
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRelatorio"
                     aria-expanded="true" aria-controls="collapseRelatorio">
                     <i class="fas fa-file-export"></i>
@@ -134,7 +136,7 @@
                         <a class="collapse-item" href="#"><i class="fas fa-calendar mr-1"></i>{{ __('Safras') }}</a>
                     </div>
                 </div>
-            </li>
+            </li> --}}
 
             {{-- 
             <!-- Nav Item - Charts -->
