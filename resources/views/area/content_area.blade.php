@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('titulo', 'Área')
+@section('titulo', 'Áreas')
 
 @section('table-delete', 'area')
 
@@ -16,7 +16,7 @@
                     data-target="#addModal"><i class="fas fa-plus-circle m-1" data-toggle="tooltip" data-placement="top"
                         title="Incluir item"></i>{{ __('Novo') }}</button>
             </div>
-            <h1 id="page-title" class="h3 mb-0 text-gray-800 font-weight-bold">{{ __('Cadastro de Area') }}</h1>
+            <h1 id="page-title" class="h3 mb-0 text-gray-800 font-weight-bold">{{ __('Cadastro de Área') }}</h1>
         </div>
 
         <!-- Content Datatable -->
@@ -80,7 +80,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ action('App\Http\Controllers\AreaController@store') }}" method="POST" id="addForm">
+                    <form action="{{ action('App\Http\Controllers\CidadeController@store') }}" method="POST" id="addForm">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label class="mb-0" for="area_nome">Nome</label>
@@ -119,7 +119,6 @@
                             <input type="text" class="form-control" id="area_nome" name="area_nome" required>
                             <span class="text-danger" id="area_nomeError"></span>
                         </div>
-                        <div class="form-group col-xs-2">
                     </form>
                 </div>
                 <div class="modal-footer bg-light">
