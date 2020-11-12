@@ -33,11 +33,11 @@ class CreateVagas extends Migration
             $table->unsignedBigInteger('fdt_id')->nullable(false);
             $table->timestamps();
 
-            $table->foreign('cid_id')->references('cid_id')->on('cidades')->onDelete('restrict');
-            $table->foreign('are_id')->references('are_id')->on('areas')->onDelete('restrict');
-            $table->foreign('div_id')->references('div_id')->on('divulgadores')->onDelete('restrict');
-            $table->foreign('tip_id')->references('tip_id')->on('tipo_contratacoes')->onDelete('restrict');
-            $table->foreign('fdt_id')->references('fdt_id')->on('formato_trabalhos')->onDelete('restrict');
+            $table->foreign('cid_id')->references('id')->on('cidades')->onDelete('restrict');
+            $table->foreign('are_id')->references('id')->on('areas')->onDelete('restrict');
+            $table->foreign('div_id')->references('id')->on('divulgadores')->onDelete('restrict');
+            $table->foreign('tip_id')->references('id')->on('tipo_contratacoes')->onDelete('restrict');
+            $table->foreign('fdt_id')->references('id')->on('formato_trabalhos')->onDelete('restrict');
         });
     }
 

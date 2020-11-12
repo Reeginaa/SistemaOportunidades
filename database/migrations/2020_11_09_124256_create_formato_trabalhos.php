@@ -14,7 +14,7 @@ class CreateFormatoTrabalhos extends Migration
     public function up()
     {
         Schema::create('formato_trabalhos', function (Blueprint $table) {
-            $table->id('fdt_id');
+            $table->id();
             $table->string('fdt_nome', 100)->nullable(false);
             $table->timestamps();
         });

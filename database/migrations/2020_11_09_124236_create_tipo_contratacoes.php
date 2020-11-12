@@ -14,7 +14,7 @@ class CreateTipoContratacoes extends Migration
     public function up()
     {
         Schema::create('tipo_contratacoes', function (Blueprint $table) {
-            $table->id('tip_id');
+            $table->id();
             $table->string('tip_nome', 100)->nullable(false);
             $table->timestamps();
         });

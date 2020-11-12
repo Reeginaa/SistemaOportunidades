@@ -14,7 +14,7 @@ class CreateDivulgadores extends Migration
     public function up()
     {
         Schema::create('divulgadores', function (Blueprint $table) {
-            $table->id('div_id');
+            $table->id();
             $table->string('div_nome', 100);
             $table->string('div_telefone', 15);
             $table->string('div_email', 100);
@@ -25,7 +25,7 @@ class CreateDivulgadores extends Migration
             $table->unsignedBigInteger('cid_id')->nullable(false);
             $table->timestamps();
 
-            $table->foreign('cid_id')->references('cid_id')->on('cidades')->onDelete('restrict');
+            $table->foreign('cid_id')->references('id')->on('cidades')->onDelete('restrict');
         });
     }
 

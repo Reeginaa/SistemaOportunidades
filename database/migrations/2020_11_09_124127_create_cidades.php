@@ -14,9 +14,9 @@ class CreateCidades extends Migration
     public function up()
     {
         Schema::create('cidades', function (Blueprint $table) {
-            $table->id('cid_id');
+            $table->id();
             $table->string('cid_nome', 35);
-            $table->string('cid_ud', 2)->unique();
+            $table->string('cid_uf', 2);
             $table->timestamps();
         });
     }
