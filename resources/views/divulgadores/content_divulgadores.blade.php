@@ -32,9 +32,12 @@
                             <tr class="text-justify border">
                                 <th class="th-sm border-bottom border-left">id</th>
                                 <th class="th-sm border-bottom border-left">Nome</th>
-                                <th style="display: none;">E-mail</th>
                                 <th class="th-sm border-bottom border-left">Telefone</th>
+                                <th style="display: none;">email</th>
                                 <th class="th-sm border-bottom border-left">Endereço</th>
+                                <th style="display: none;">endereço</th>
+                                <th style="display: none;">numero</th>
+                                <th style="display: none;">complemento</th>
                                 <th class="th-sm border-bottom border-left">Bairro</th>
                                 <th class="th-sm border-bottom border-left">Cidade/UF</th>
                                 <th style="display: none;">id_fk1</th>
@@ -49,9 +52,12 @@
                                 <tr>
                                     <th class="align-middle border-left">{{ $obj->id }}</th>
                                     <td class="align-middle border-left">{{ $obj->div_nome }}</td>
-                                    <td style="display: none;">{{ $obj->div_email }}</td>
                                     <td class="align-middle border-left">{{ $obj->div_telefone }}</td>
+                                    <td style="display: none;">{{ $obj->div_email }}</td>
                                     <td class="align-middle border-left">{{ $obj->div_rua }}, {{ $obj->div_numero }} {{ $obj->div_complemento ?? '' }} </td>
+                                    <td style="display: none;">{{ $obj->div_rua }}</td>
+                                    <td style="display: none;">{{ $obj->div_numero }}</td>
+                                    <td style="display: none;">{{ $obj->div_complemento ?? null }}</td>
                                     <td class="align-middle border-left">{{ $obj->div_bairro }}</td>
                                     <td class="align-middle border-left">{{ $cidade->cid_nome }}/{{ $cidade->cid_uf }}</td>
                                     <td style="display: none;">{{ $cidade->id }}</td>
@@ -63,7 +69,7 @@
                                         <!--<a href="#" class="btn_crud btn btn-danger btn-sm delete" data-toggle="tooltip"
                                                     title="Excluir"><i class="fas fa-trash-alt"></i></a>-->
                                         <a href="#" class="btn_crud btn btn-danger btn-sm" data-toggle="tooltip"
-                                            onclick="return confirmDeletion({{ $obj->id }}, '{{ $obj->cid_nome }}/{{ $obj->cid_uf }}', '{{ strtolower(class_basename($obj)) }}')"
+                                            onclick="return confirmDeletion({{ $obj->id }}, '{{ $obj->div_nome }}-{{ $cidade->cid_nome }}/{{ $cidade->cid_uf }}', '{{ strtolower(class_basename($obj)) }}')"
                                             title="Excluir"><i class="fas fa-trash-alt"></i></a>
                                     </td>
                                 </tr>
@@ -73,10 +79,13 @@
                             <tr>
                                 <th class="th-sm border-bottom border-left">id</th>
                                 <th class="th-sm border-bottom border-left">Nome</th>
-                                <th style="display: none;">E-mail</th>
                                 <th class="th-sm border-bottom border-left">Telefone</th>
+                                <th style="display: none;">email</th>
                                 <th class="th-sm border-bottom border-left">Endereço</th>
-                                <th class="th-sm border-bottom border-left">Bairro</th>s
+                                <th style="display: none;">endereço</th>
+                                <th style="display: none;">numero</th>
+                                <th style="display: none;">complemento</th>
+                                <th class="th-sm border-bottom border-left">Bairro</th>
                                 <th class="th-sm border-bottom border-left">Cidade/UF</th>
                                 <th style="display: none;">id_fk1</th>
                                 <th class="th-sm border-bottom border-left border-right">Ações</th>
@@ -90,31 +99,70 @@
     </div>
     <!-- Begin Page Content -->
 
-    {{--  
+
 
     <!-- Start Add Modal -->
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-success">
-                    <h5 class="modal-title text-white font-weight-bold" id="addModalLabel">{{ __('Novo Cidade') }}</h5>
+                    <h5 class="modal-title text-white font-weight-bold" id="addModalLabel">{{ __('Novo Anunciante') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ action('App\Http\Controllers\CidadeController@store') }}" method="POST" id="addForm">
+                    <form action="{{ action('App\Http\Controllers\DivulgadoresController@store') }}" method="POST" id="addForm">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label class="mb-0" for="cid_nome">Nome</label>
-                            <input type="text" class="form-control" id="cid_nome" name="cid_nome" required>
-                            <span class="text-danger" id="cid_nomeError"></span>
+                            <label class="mb-0" for="div_nome">Nome</label>
+                            <input type="text" class="form-control" maxlength="100" id="div_nome" name="div_nome" required>
+                            <span class="text-danger" id="div_nomeError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="cid_uf">UF</label>
-                            <input type="text" class="form-control" maxlength="2"
-                                style="text-transform: uppercase; width: 60px" id="cid_uf" name="cid_uf" required>
-                            <span class="text-danger" id="cid_ufError"></span>
+                            <label class="mb-0" for="div_telefone">Telefone</label>
+                            <input type="text" class="form-control" maxlength="15"
+                                style="width: 200px" id="div_telefone" name="div_telefone" required>
+                            <span class="text-danger" id="div_telefoneError"></span>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="div_email">E-mail</label>
+                            <input type="text" class="form-control" maxlength="100"
+                                style="width: 280px" id="div_email" name="div_email" required>
+                            <span class="text-danger" id="div_emailError"></span>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="div_rua">Endereço (Rua, Avenida, ...)</label>
+                            <input type="text" class="form-control" maxlength="100" id="div_rua" name="div_rua" required>
+                            <span class="text-danger" id="div_ruaError"></span>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="div_numero">Número</label>
+                            <input type="text" class="form-control" maxlength="10"
+                                style="text-transform: uppercase; width: 180px" id="div_numero" name="div_numero" required>
+                            <span class="text-danger" id="div_numeroError"></span>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="div_complemento">Complemento</label>
+                            <input type="text" class="form-control" maxlength="15"
+                                style="text-transform: uppercase; width: 230px" id="div_complemento" name="div_complemento">
+                            <span class="text-danger" id="div_complemento"></span>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="div_bairro">Bairro</label>
+                            <input type="text" class="form-control" maxlength="30"
+                                style="width: 300px" id="div_bairro" name="div_bairro" required>
+                            <span class="text-danger" id="div_bairroError"></span>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="cid_id">Cidade/UF</label>
+                            <select class="form-control selectpicker" data-live-search="true" name="cid_id" required>
+                                <option value="">Selecione...</option>
+                                @foreach ($cidades as $cidade)
+                                    <option value={{ $cidade->id }}> {{ $cidade->cid_nome }}/{{ $cidade->cid_uf }} </option>
+                                @endforeach
+                            </select>
+                            <span class="text-danger" id="cid_idError"></span>
                         </div>
                     </form>
                 </div>
@@ -134,7 +182,7 @@
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-warning">
-                    <h5 class="modal-title text-dark font-weight-bold" id="editModalTitle">{{ __('Alterar Cidade') }}</h5>
+                    <h5 class="modal-title text-dark font-weight-bold" id="editModalTitle">{{ __('Alterar Anunciante') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -144,15 +192,47 @@
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
                         <div class="form-group">
-                            <label class="mb-0" for="cid_nome">Nome</label>
-                            <input type="text" class="form-control" id="cid_nome" name="cid_nome" required>
-                            <span class="text-danger" id="cid_nomeError"></span>
+                            <label class="mb-0" for="div_nome">Nome</label>
+                            <input type="text" class="form-control" maxlength="100" id="div_nome" name="div_nome" required>
+                            <span class="text-danger" id="div_nomeError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="cid_uf">UF</label>
-                            <input type="text" class="form-control" maxlength="2"
-                                style="text-transform: uppercase; width: 60px" id="cid_uf" name="cid_uf" required>
-                            <span class="text-danger" id="cid_nomeError"></span>
+                            <label class="mb-0" for="div_telefone">Telefone</label>
+                            <input type="text" class="form-control" maxlength="15"
+                                style="width: 200px" id="div_telefone" name="div_telefone" required>
+                            <span class="text-danger" id="div_telefoneError"></span>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="div_email">E-mail</label>
+                            <input type="text" class="form-control" maxlength="100"
+                                style="width: 280px" id="div_email" name="div_email" required>
+                            <span class="text-danger" id="div_emailError"></span>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="div_rua">Endereço (Rua, Avenida, ...)</label>
+                            <input type="text" class="form-control" maxlength="100" id="div_rua" name="div_rua" required>
+                            <span class="text-danger" id="div_ruaError"></span>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="div_numero">Número</label>
+                            <input type="text" class="form-control" maxlength="10"
+                                style="text-transform: uppercase; width: 180px" id="div_numero" name="div_numero" required>
+                            <span class="text-danger" id="div_numeroError"></span>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="div_complemento">Complemento</label>
+                            <input type="text" class="form-control" maxlength="15"
+                                style="text-transform: uppercase; width: 230px" id="div_complemento" name="div_complemento">
+                            <span class="text-danger" id="div_complemento"></span>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="div_bairro">Bairro</label>
+                            <input type="text" class="form-control" maxlength="30"
+                                style="width: 300px" id="div_bairro" name="div_bairro" required>
+                            <span class="text-danger" id="div_bairroError"></span>
+                        </div>
+                        <div id="select-cidade" class="form-group col-xs-2">
+                            <!-- jquery -->
                         </div>
                     </form>
                 </div>
@@ -172,7 +252,7 @@
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-info">
-                    <h5 class="modal-title text-white font-weight-bold" id="viewModalTitle">{{ __('Ver Cidade') }}</h5>
+                    <h5 class="modal-title text-white font-weight-bold" id="viewModalTitle">{{ __('Ver Anunciante') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -185,13 +265,41 @@
                                 style="text-align: center; width: 90px" readonly>
                         </div>
                         <div class="form-group">
-                            <label class="mb-0" for="cid_nome">Nome</label>
-                            <input type="text" class="form-control" id="cid_nome" name="cid_nome" readonly>
+                            <label class="mb-0" for="div_nome">Nome</label>
+                            <input type="text" class="form-control" id="div_nome" name="div_nome" readonly>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="cid_uf">UF</label>
-                            <input type="text" class="form-control" maxlength="2"
-                                style="text-transform: uppercase; width: 60px" id="cid_uf" name="cid_uf" readonly>
+                            <label class="mb-0" for="div_telefone">Telefone</label>
+                            <input type="text" class="form-control" maxlength="15"
+                                style="width: 200px" id="div_telefone" name="div_telefone" readonly>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="div_email">E-mail</label>
+                            <input type="text" class="form-control" maxlength="100"
+                                style="width: 280px" id="div_email" name="div_email" readonly>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="div_rua">Endereço (Rua, Avenida, ...)</label>
+                            <input type="text" class="form-control" maxlength="100" id="div_rua" name="div_rua" readonly>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="div_numero">Número</label>
+                            <input type="text" class="form-control" maxlength="10"
+                                style="text-transform: uppercase; width: 180px" id="div_numero" name="div_numero" readonly>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="div_complemento">Complemento</label>
+                            <input type="text" class="form-control" maxlength="15"
+                                style="text-transform: uppercase; width: 230px" id="div_complemento" name="div_complemento" readonly>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="div_bairro">Bairro</label>
+                            <input type="text" class="form-control" maxlength="30"
+                                style="width: 300px" id="div_bairro" name="div_bairro" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label class="mb-0" for="cid_nome">Cidade/UF</label>
+                            <input type="text" class="form-control" id="cid_nome" name="cid_nome" readonly>
                         </div>
                     </form>
                 </div>
@@ -235,21 +343,17 @@
         </div>
     </div>
     <!-- End DELETE Modal -->
-
-    --}}
-
+ 
 @endsection
 
 @section('script_pages')
 
-{{-- 
-
-    <script type="text/javascript">
-        // Cidade
+        <script type="text/javascript">
+        // Anunciante
         $(document).ready(function() {
 
             var table = $('#datatableDivulgadores').DataTable();
-
+            
             //Start Edit Record
             table.on('click', '.edit', function() {
                 $tr = $(this).closest('tr');
@@ -260,14 +364,29 @@
                 var data = table.row($tr).data();
                 console.log(data);
 
-                $('#editModal #cid_nome').val(data[1]);
-                $('#editModal #cid_uf').val(data[2]);
+                $('#editModal #div_nome').val(data[1]);
+                $('#editModal #div_telefone').val(data[2]);
+                $('#editModal #div_email').val(data[3]);
+                $('#editModal #div_rua').val(data[5]);
+                $('#editModal #div_numero').val(data[6]);
+                $('#editModal #div_complemento').val(data[7]);
+                $('#editModal #div_bairro').val(data[8]);
+               
+                $('#select-cidade').html(
+                    '<label class="mb-0" for="cid_id">Grupo de Clientes</label>' +
+                    '<select class="form-control selectpicker" data-live-search="true" name="cid_id" required>' +
+                    '   @foreach ($cidades as $cidade)' +
+                    '       <option value={{ $cidade->id }}> {{ $cidade->cid_nome }}/{{ $cidade->cid_uf }} </option>' +
+                    '   @endforeach' +
+                    '</select>');
+                $("select[name='cid_id'] option[value='" + data[10] + "']").attr('selected',
+                    'selected');
 
                 $('#editForm').attr('action', '/divulgadores/' + data[0]);
                 $('#editModal').modal('show');
             });
             //End Edit Record
-
+            
             //Start View
             table.on('click', '.view', function() {
                 $tr = $(this).closest('tr');
@@ -279,8 +398,14 @@
                 console.log(data);
 
                 $('#viewModal #id').val(data[0]);
-                $('#viewModal #cid_nome').val(data[1]);
-                $('#viewModal #cid_uf').val(data[2]);
+                $('#viewModal #div_nome').val(data[1]);
+                $('#viewModal #div_telefone').val(data[2]);
+                $('#viewModal #div_email').val(data[3]);
+                $('#viewModal #div_rua').val(data[5]);
+                $('#viewModal #div_numero').val(data[6]);
+                $('#viewModal #div_complemento').val(data[7]);
+                $('#viewModal #div_bairro').val(data[8]);
+                $('#viewModal #cid_nome').val(data[9]);
 
                 $('#viewForm').attr('action');
                 $('#viewModal').modal('show');
@@ -310,7 +435,7 @@
         });
 
     </script>
-     --}}
+
 
     @include('scripts.confirmdeletion')
 

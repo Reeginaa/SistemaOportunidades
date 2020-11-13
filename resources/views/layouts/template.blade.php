@@ -75,19 +75,17 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseParametro"
-                    aria-expanded="true" aria-controls="collapseParametro">
-                    <i class="fas fa-tools"></i>
-                    <span>{{ __('Parâmetros') }}</span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOportunidade"
+                    aria-expanded="true" aria-controls="collapseOportunidade">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>{{ __('Oportunidade') }}</span>
                 </a>
-                <div id="collapseParametro" class="collapse" aria-labelledby="headingParametro"
+                <div id="collapseOportunidade" class="collapse" aria-labelledby="headingOportunidade"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">{{ __('Manutenção') }}</h6>
-                        <a class="collapse-item" href={{ route('cidade.index') }}><i 
-                                class="fas fa-city mr-1"></i>{{ __('Cidade') }}</a>
-                        <a class="collapse-item" href={{ route('area.index') }}><i 
-                                class="fas fa-laptop-code mr-1"></i>{{ __('Área de Atuação') }}</a>
+                        <a class="collapse-item" href="#"><i 
+                            class="fas fa-search-plus mr-1"></i>{{ __('Vagas') }}</a>
                     </div>
                 </div>
             </li>
@@ -112,6 +110,27 @@
                     </div>
                 </div>
             </li>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseParametro"
+                    aria-expanded="true" aria-controls="collapseParametro">
+                    <i class="fas fa-cogs"></i>
+                    <span>{{ __('Parâmetros') }}</span>
+                </a>
+                <div id="collapseParametro" class="collapse" aria-labelledby="headingParametro"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">{{ __('Manutenção') }}</h6>
+                        <a class="collapse-item" href={{ route('cidade.index') }}><i 
+                                class="fas fa-city mr-1"></i>{{ __('Cidade') }}</a>
+                        <a class="collapse-item" href={{ route('area.index') }}><i 
+                                class="fas fa-laptop-code mr-1"></i>{{ __('Área de Atuação') }}</a>
+                    </div>
+                </div>
+            </li>
+
+            
 
             
             <!-- Divider -->

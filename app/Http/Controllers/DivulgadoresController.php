@@ -25,7 +25,7 @@ class DivulgadoresController extends Controller
     public function index()
     {
         $divulgadores = $this->divulgadores::all();
-        $cidades = $this->cidades::all()->sortBy('nome');
+        $cidades = $this->cidades::all()->sortBy('cid_nome');
         return view('divulgadores.content_divulgadores')->with('divulgadores', $divulgadores)->with('cidades', $cidades);
     }
 
@@ -67,6 +67,7 @@ class DivulgadoresController extends Controller
         $divulgadores->div_bairro = $request->input('div_bairro');
         $divulgadores->div_numero = $request->input('div_numero');
         $divulgadores->div_complemento = $request->input('div_complemento');
+        $divulgadores->cid_id = $request->input('cid_id');
 
         $divulgadores->save();
 
@@ -124,6 +125,7 @@ class DivulgadoresController extends Controller
         $divulgadores->div_bairro = $request->input('div_bairro');
         $divulgadores->div_numero = $request->input('div_numero');
         $divulgadores->div_complemento = $request->input('div_complemento');
+        $divulgadores->cid_id = $request->input('cid_id');
 
         $divulgadores->save();
 
