@@ -20,8 +20,8 @@ class CreateDivulgadores extends Migration
             $table->string('div_email', 100);
             $table->string('div_rua', 50);
             $table->string('div_bairro', 50);
-            $table->string('div_numero', 20);
-            $table->string('div_complemento', 50);
+            $table->string('div_numero', 20)->default('SN');
+            $table->string('div_complemento', 50)->nullable(true);
             $table->unsignedBigInteger('cid_id')->nullable(false);
             $table->timestamps();
 

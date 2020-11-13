@@ -60,7 +60,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item collapsed">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href={{ route('home') }}>
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>{{ __('Painel de Controle') }}</span></a>
             </li>
@@ -75,19 +75,40 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCadastro"
-                    aria-expanded="true" aria-controls="collapseCadastro">
-                    <i class="fas fa-edit"></i>
-                    <span>{{ __('Cadastro') }}</span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseParametro"
+                    aria-expanded="true" aria-controls="collapseParametro">
+                    <i class="fas fa-tools"></i>
+                    <span>{{ __('Parâmetros') }}</span>
                 </a>
-                <div id="collapseCadastro" class="collapse" aria-labelledby="headingCadastro"
+                <div id="collapseParametro" class="collapse" aria-labelledby="headingParametro"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">{{ __('Manutenção') }}</h6>
                         <a class="collapse-item" href={{ route('cidade.index') }}><i 
                                 class="fas fa-city mr-1"></i>{{ __('Cidade') }}</a>
                         <a class="collapse-item" href={{ route('area.index') }}><i 
-                                class="fas fa-laptop-code mr-1"></i>{{ __('Área') }}</a>
+                                class="fas fa-laptop-code mr-1"></i>{{ __('Área de Atuação') }}</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAnunciante"
+                    aria-expanded="true" aria-controls="collapseAnunciante">
+                    <i class="fas fa-bullhorn"></i>
+                    <span>{{ __('Anunciante') }}</span>
+                </a>
+                <div id="collapseAnunciante" class="collapse" aria-labelledby="headingAnunciante"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">{{ __('Manutenção') }}</h6>
+                        <a class="collapse-item" href={{ route('divulgadores.index') }}><i 
+                            class="fas fa-bullhorn mr-1"></i>{{ __('Anunciante') }}</a>
+                        <a class="collapse-item" href={{ route('tipocontratacoes.index') }}><i 
+                                class="fas fa-file-signature mr-1"></i>{{ __('Tipo de Contratação') }}</a>
+                        <a class="collapse-item" href={{ route('formatotrabalhos.index') }}><i 
+                                class="fas fa-briefcase mr-1"></i>{{ __('Formato de Trabalho') }}</a>
                     </div>
                 </div>
             </li>

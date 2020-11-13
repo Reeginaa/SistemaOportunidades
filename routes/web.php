@@ -13,14 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');
 
 Route::resource('cidade', 'App\Http\Controllers\CidadeController');
 Route::get('cidade/{id}/destroy', 'App\Http\Controllers\CidadeController@destroy');
 
-
 Route::resource('area', 'App\Http\Controllers\AreaController');
 Route::get('area/{id}/destroy', 'App\Http\Controllers\AreaController@destroy');
+
+Route::resource('tipocontratacoes', 'App\Http\Controllers\TipoContratacoesController');
+Route::get('tipocontratacoes/{id}/destroy', 'App\Http\Controllers\TipoContratacoesController@destroy');
+
+Route::resource('formatotrabalhos', 'App\Http\Controllers\FormatoTrabalhosController');
+Route::get('formatotrabalhos/{id}/destroy', 'App\Http\Controllers\FormatoTrabalhosController@destroy');
+
+Route::resource('divulgadores', 'App\Http\Controllers\DivulgadoresController');
+Route::get('divulgadores/{id}/destroy', 'App\Http\Controllers\DivulgadoresController@destroy');
