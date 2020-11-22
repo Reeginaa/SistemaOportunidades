@@ -83,7 +83,11 @@
                     <form action="{{ action('App\Http\Controllers\FormatoTrabalhosController@store') }}" method="POST" id="addForm">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label class="mb-0" for="fdt_nome">Nome</label>
+                            <label class="text-danger float-right">Campo Obrigatório(*)</label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="mb-0" for="fdt_nome">Nome*</label>
                             <input type="text" class="form-control" id="fdt_nome" name="fdt_nome" required>
                             <span class="text-danger" id="fdt_nomeError"></span>
                         </div>
@@ -115,7 +119,11 @@
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
                         <div class="form-group">
-                            <label class="mb-0" for="fdt_nome">Nome</label>
+                            <label class="text-danger float-right">Campo Obrigatório(*)</label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="mb-0" for="fdt_nome">Nome*</label>
                             <input type="text" class="form-control" id="fdt_nome" name="fdt_nome" required>
                             <span class="text-danger" id="fdt_nomeError"></span>
                         </div>

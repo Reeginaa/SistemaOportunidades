@@ -16,7 +16,7 @@
                     data-target="#addModal"><i class="fas fa-plus-circle m-1" data-toggle="tooltip" data-placement="top"
                         title="Incluir item"></i>{{ __('Novo') }}</button>
             </div>
-            <h1 id="page-title" class="h3 mb-0 text-gray-800 font-weight-bold">{{ __('Cadastro de vagas') }}</h1>
+            <h1 id="page-title" class="h3 mb-0 text-gray-800 font-weight-bold">{{ __('Cadastro de Vagas') }}</h1>
         </div>
 
         <!-- Content Datatable -->
@@ -36,20 +36,22 @@
                                 <th style="display: none;">Carga Horária</th>
                                 <th style="display: none;">Habilidades</th>
                                 <th style="display: none;">Diferenciais</th>
-                                <th style="display: none;">Faixa Salarial</th>
+                                <th class="th-sm border-bottom border-left">Faixa Salarial</th>
                                 <th style="display: none;">Banefícios</th>
                                 <th style="display: none;">Informações adicionais</th>
-                                <th style="display: none;">Número de vagas</th>
+                                <th class="th-sm border-bottom border-left">Vagas</th>
                                 <th class="th-sm border-bottom border-left">Cidade</th>
                                 <th class="th-sm border-bottom border-left">Area</th>
-                                <th class="th-sm border-bottom border-left">Divulgador</th>
+                                <th class="th-sm border-bottom border-left">Anunciante</th>
                                 <th style="display: none;">Tipo de Contratação</th>
                                 <th style="display: none;">Formato de Trabalho</th>
+                                <th style="display: none;">Cidade_id</th>
+                                <th style="display: none;">Status_cod</th>
                                 <th class="th-sm border-bottom border-left">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
-                           @foreach ($vagas as $obj)
+                            @foreach ($vagas as $obj)
                                 @php
                                 $cidade = $obj->cidade->find($obj->cid_id);
                                 $area = $obj->area->find($obj->are_id);
@@ -59,25 +61,32 @@
                                 @endphp
                                 <tr>
                                     <th class="align-middle border-left">{{ $obj->id }}</th>
-                                    <td class="align-middle border-left">{{ $obj->vag_status }}</td>
+                                    <td class="align-middle border-left">
+                                        {{ $obj->vag_status == '1' ? 'ACEITO' : 'RECUSADO' }}</td>
                                     <td style="display: none;">{{ $obj->vag_motivo_recusa }}</td>
                                     <td style="display: none;">{{ $obj->vag_carga_horaria }}</td>
                                     <td style="display: none;">{{ $obj->vag_habilidades }}</td>
                                     <td style="display: none;">{{ $obj->vag_diferenciais }}</td>
-                                    <td style="display: none;">{{ $obj->vag_faixa_salarial }}</td>
+                                    <td class="align-middle border-left">{{ $obj->vag_faixa_salarial ?? '' }}</td>
                                     <td style="display: none;">{{ $obj->vag_beneficios }}</td>
                                     <td style="display: none;">{{ $obj->vag_informacoes_adicionais }}</td>
-                                    <td style="display: none;">{{ $obj->vag_numero_de_vagas }}</td>
+                                    <td class="align-middle border-left">{{ $obj->vag_numero_de_vagas }}</td>
                                     <td class="align-middle border-left">{{ $cidade->cid_nome }}/{{ $cidade->cid_uf }}</td>
                                     <td class="align-middle border-left">{{ $area->area_nome }}</td>
                                     <td class="align-middle border-left">{{ $divulgador->div_nome }}</td>
                                     <td style="display: none;">{{ $tipoContratacao->tip_nome }}</td>
                                     <td style="display: none;">{{ $formatoTrabalho->fdt_nome }}</td>
-                                    
+                                    <td style="display: none;">{{ $cidade->id }}</td>
+                                    <td style="display: none;">{{ $obj->vag_status }}</td>
+
                                     <td class="align-middle th-sm border-left border-right">
-                                        <a href="#" class="btn_crud btn btn-info btn-sm view"><i class="fas fa-eye" data-toggle="tooltip" title="Visualizar"></i></a>
-                                        <a href="#" class="btn_crud btn btn-warning btn-sm edit"><i class="fas fa-pencil-alt" data-toggle="tooltip" title="Editar"></i></a>
-                                        <a href="#" class="btn_crud btn btn-danger btn-sm" data-toggle="tooltip" onclick="return confirmDeletion({{ $obj->id }}, '{{ $area->area_nome }}', 'vagas')" title="Excluir">
+                                        <a href="#" class="btn_crud btn btn-info btn-sm view"><i class="fas fa-eye"
+                                                data-toggle="tooltip" title="Visualizar"></i></a>
+                                        <a href="#" class="btn_crud btn btn-warning btn-sm edit"><i
+                                                class="fas fa-pencil-alt" data-toggle="tooltip" title="Editar"></i></a>
+                                        <a href="#" class="btn_crud btn btn-danger btn-sm" data-toggle="tooltip"
+                                            onclick="return confirmDeletion({{ $obj->id }}, '{{ $obj->vag_numero_de_vagas }} vaga(s) - {{ $area->area_nome }} - {{ $divulgador->div_nome }} ({{ $obj->vag_status == '1' ? 'ACEITO' : 'RECUSADO' }})', '{{ strtolower(class_basename($obj)) }}')"
+                                            title="Excluir">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
                                     </td>
@@ -88,10 +97,22 @@
                             <tr>
                                 <th class="th-sm border-bottom border-left">id</th>
                                 <th class="th-sm border-bottom border-left">Status</th>
+                                <th style="display: none;">Motivo Recusa</th>
+                                <th style="display: none;">Carga Horária</th>
+                                <th style="display: none;">Habilidades</th>
+                                <th style="display: none;">Diferenciais</th>
+                                <th class="th-sm border-bottom border-left">Faixa Salarial</th>
+                                <th style="display: none;">Banefícios</th>
+                                <th style="display: none;">Informações adicionais</th>
+                                <th class="th-sm border-bottom border-left">Vagas</th>
                                 <th class="th-sm border-bottom border-left">Cidade</th>
                                 <th class="th-sm border-bottom border-left">Area</th>
-                                <th class="th-sm border-bottom border-left">Divulgador</th>
-                                <th class="th-sm border-bottom border-left border-right">Ações</th>
+                                <th class="th-sm border-bottom border-left">Anunciante</th>
+                                <th style="display: none;">Tipo de Contratação</th>
+                                <th style="display: none;">Formato de Trabalho</th>
+                                <th style="display: none;">Cidade_id</th>
+                                <th style="display: none;">Status_cod</th>
+                                <th class="th-sm border-bottom border-left">Ações</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -116,66 +137,78 @@
                     <form action="{{ action('App\Http\Controllers\VagaController@store') }}" method="POST" id="addForm">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label class="mb-0" for="vag_status">Status</label>
+                            <label class="text-danger float-right">Campo Obrigatório(*)</label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="mb-0" for="vag_status">Status*</label>
                             <select class="form-control selectpicker" data-live-search="true" name="vag_status" required>
                                 <option value="">Selecione...</option>
-                                <option value="0"> Recusado </option>
-                                <option value="1"> Aceito </option>
+                                <option value="1">ACEITO</option>
+                                <option value="0">RECUSADO</option>
                             </select>
                             <span class="text-danger" id="vag_statusError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_motivo_recusa">Motivo da Recusa</label>
-                            <textarea class="form-control" maxlength="500" id="vag_motivo_recusa" name="vag_motivo_recusa"></textarea>
+                            <textarea class="form-control" maxlength="500" id="vag_motivo_recusa"
+                                name="vag_motivo_recusa"></textarea>
                             <span class="text-danger" id="vag_motivo_recusaError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="vag_carga_horaria">Carga horária</label>
-                            <input class="form-control" type="number" id="vag_carga_horaria" name="vag_carga_horaria" required></input>
+                            <label class="mb-0" for="vag_carga_horaria">Carga horária*</label>
+                            <input class="form-control" type="number" id="vag_carga_horaria" name="vag_carga_horaria"
+                                required>
                             <span class="text-danger" id="vag_carga_horariaError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="vag_habilidades">Habilidades</label>
-                            <input class="form-control" type="text" maxlength="250" id="vag_habilidades" name="vag_habilidades" required></input>
+                            <label class="mb-0" for="vag_habilidades">Habilidades*</label>
+                            <input class="form-control" type="text" maxlength="250" id="vag_habilidades"
+                                name="vag_habilidades" required>
                             <span class="text-danger" id="vag_habilidadesError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_diferenciais">Diferenciais</label>
-                            <input class="form-control" type="text" maxlength="250" id="vag_diferenciais" name="vag_diferenciais" required></input>
+                            <input class="form-control" type="text" maxlength="250" id="vag_diferenciais"
+                                name="vag_diferenciais">
                             <span class="text-danger" id="vag_diferenciaisError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_faixa_salarial">Faixa Salárial</label>
-                            <input class="form-control" type="number" id="vag_faixa_salarial" name="vag_faixa_salarial" required></input>
+                            <input class="form-control" type="number" id="vag_faixa_salarial" name="vag_faixa_salarial"
+                                step="0.01" min="0.01">
                             <span class="text-danger" id="vag_faixa_salarialError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_beneficios">Benificios</label>
-                            <input class="form-control" type="text" maxlength="250" id="vag_beneficios" name="vag_beneficios" required></input>
+                            <input class="form-control" type="text" maxlength="250" id="vag_beneficios"
+                                name="vag_beneficios">
                             <span class="text-danger" id="vag_beneficiosError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_informacoes_adicionais">Informações adicionais</label>
-                            <textarea class="form-control" maxlength="500" id="vag_informacoes_adicionais" name="vag_informacoes_adicionais"></textarea>
+                            <textarea class="form-control" maxlength="500" id="vag_informacoes_adicionais"
+                                name="vag_informacoes_adicionais"></textarea>
                             <span class="text-danger" id="vag_informacoes_adicionaisError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="vag_numero_de_vagas">Numero de Vagas</label>
-                            <input class="form-control" type="number" id="vag_numero_de_vagas" name="vag_numero_de_vagas" required></input>
+                            <label class="mb-0" for="vag_numero_de_vagas">Número de Vagas*</label>
+                            <input class="form-control" type="number" id="vag_numero_de_vagas" name="vag_numero_de_vagas"
+                                required>
                             <span class="text-danger" id="vag_numero_de_vagasError"></span>
                         </div>
 
-                        
+
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="cid_id">Cidade/UF</label>
+                            <label class="mb-0" for="cid_id">Cidade/UF*</label>
                             <select class="form-control selectpicker" data-live-search="true" name="cid_id" required>
                                 <option value="">Selecione...</option>
                                 @foreach ($cidades as $cidade)
@@ -185,7 +218,7 @@
                             <span class="text-danger" id="cid_idError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="are_id">Area de Atuação</label>
+                            <label class="mb-0" for="are_id">Area de Atuação*</label>
                             <select class="form-control selectpicker" data-live-search="true" name="are_id" required>
                                 <option value="">Selecione...</option>
                                 @foreach ($areas as $area)
@@ -195,7 +228,7 @@
                             <span class="text-danger" id="cid_idError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="div_id">Divulgadores</label>
+                            <label class="mb-0" for="div_id">Anunciantes*</label>
                             <select class="form-control selectpicker" data-live-search="true" name="div_id" required>
                                 <option value="">Selecione...</option>
                                 @foreach ($divulgadores as $divulgador)
@@ -205,7 +238,7 @@
                             <span class="text-danger" id="cid_idError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="tip_id">Tipos de Contratação</label>
+                            <label class="mb-0" for="tip_id">Tipos de Contratação*</label>
                             <select class="form-control selectpicker" data-live-search="true" name="tip_id" required>
                                 <option value="">Selecione...</option>
                                 @foreach ($tiposContratacao as $tipo)
@@ -215,7 +248,7 @@
                             <span class="text-danger" id="cid_idError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="fdt_id">Formatos de Trabalho</label>
+                            <label class="mb-0" for="fdt_id">Formatos de Trabalho*</label>
                             <select class="form-control selectpicker" data-live-search="true" name="fdt_id" required>
                                 <option value="">Selecione...</option>
                                 @foreach ($formatosTrabalho as $formatoTrabalho)
@@ -237,7 +270,7 @@
     </div>
     <!-- End Add Modal -->
 
-     <!-- Start EDIT Modal -->
+    <!-- Start EDIT Modal -->
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
@@ -252,60 +285,73 @@
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
                         <div class="form-group">
-                            <label class="mb-0" for="vag_status">Status</label>
-                            <select class="form-control selectpicker" data-live-search="true" name="vag_status" required>
+                            <label class="text-danger float-right">Campo Obrigatório(*)</label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="mb-0" for="vag_status">Status*</label>
+                            <select class="form-control selectpicker" data-live-search="true" id="vag_status"
+                                name="vag_status" required>
                                 <option value="">Selecione...</option>
-                                <option value="0"> Recusado </option>
-                                <option value="1"> Aceito </option>
+                                <option value="1">ACEITO</option>
+                                <option value="0">RECUSADO</option>
                             </select>
                             <span class="text-danger" id="vag_statusError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_motivo_recusa">Motivo da Recusa</label>
-                            <textarea class="form-control" maxlength="500" id="vag_motivo_recusa" name="vag_motivo_recusa"></textarea>
+                            <textarea class="form-control" maxlength="500" id="vag_motivo_recusa"
+                                name="vag_motivo_recusa"></textarea>
                             <span class="text-danger" id="vag_motivo_recusaError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="vag_carga_horaria">Carga horária</label>
-                            <input class="form-control" type="number" id="vag_carga_horaria" name="vag_carga_horaria" required></input>
+                            <label class="mb-0" for="vag_carga_horaria">Carga horária*</label>
+                            <input class="form-control" type="number" id="vag_carga_horaria" name="vag_carga_horaria"
+                                required>
                             <span class="text-danger" id="vag_carga_horariaError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="vag_habilidades">Habilidades</label>
-                            <input class="form-control" type="text" maxlength="250" id="vag_habilidades" name="vag_habilidades" required></input>
+                            <label class="mb-0" for="vag_habilidades">Habilidades*</label>
+                            <input class="form-control" type="text" maxlength="250" id="vag_habilidades"
+                                name="vag_habilidades" required>
                             <span class="text-danger" id="vag_habilidadesError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_diferenciais">Diferenciais</label>
-                            <input class="form-control" type="text" maxlength="250" id="vag_diferenciais" name="vag_diferenciais" required></input>
+                            <input class="form-control" type="text" maxlength="250" id="vag_diferenciais"
+                                name="vag_diferenciais">
                             <span class="text-danger" id="vag_diferenciaisError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_faixa_salarial">Faixa Salárial</label>
-                            <input class="form-control" type="number" id="vag_faixa_salarial" name="vag_faixa_salarial" required></input>
+                            <input class="form-control" type="number" id="vag_faixa_salarial" name="vag_faixa_salarial"
+                                step="0.01" min="0.00">
                             <span class="text-danger" id="vag_faixa_salarialError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_beneficios">Benificios</label>
-                            <input class="form-control" type="text" maxlength="250" id="vag_beneficios" name="vag_beneficios" required></input>
+                            <input class="form-control" type="text" maxlength="250" id="vag_beneficios"
+                                name="vag_beneficios">
                             <span class="text-danger" id="vag_beneficiosError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_informacoes_adicionais">Informações adicionais</label>
-                            <textarea class="form-control" maxlength="500" id="vag_informacoes_adicionais" name="vag_informacoes_adicionais"></textarea>
+                            <textarea class="form-control" maxlength="500" id="vag_informacoes_adicionais"
+                                name="vag_informacoes_adicionais"></textarea>
                             <span class="text-danger" id="vag_informacoes_adicionaisError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="vag_numero_de_vagas">Numero de Vagas</label>
-                            <input class="form-control" type="number" id="vag_numero_de_vagas" name="vag_numero_de_vagas" required></input>
+                            <label class="mb-0" for="vag_numero_de_vagas">Número de Vagas</label>
+                            <input class="form-control" type="number" id="vag_numero_de_vagas" name="vag_numero_de_vagas"
+                                required>
                             <span class="text-danger" id="vag_numero_de_vagasError"></span>
                         </div>
                         <div id="select-cidade" class="form-group col-xs-2">
@@ -359,11 +405,13 @@
                         </div>
                         <div class="form-group">
                             <label class="mb-0" for="vag_motivo_recusa">Motivo Recusa</label>
-                            <input type="text" class="form-control" id="vag_motivo_recusa" name="vag_motivo_recusa" readonly>
+                            <textarea type="text" class="form-control" id="vag_motivo_recusa" name="vag_motivo_recusa"
+                                readonly></textarea>
                         </div>
                         <div class="form-group">
                             <label class="mb-0" for="vag_carga_horaria">Carga Horária</label>
-                            <input type="text" class="form-control" id="vag_carga_horaria" name="vag_carga_horaria" readonly>
+                            <input type="text" class="form-control" id="vag_carga_horaria" name="vag_carga_horaria"
+                                readonly>
                         </div>
                         <div class="form-group">
                             <label class="mb-0" for="vag_habilidades">Habilidades</label>
@@ -375,7 +423,8 @@
                         </div>
                         <div class="form-group">
                             <label class="mb-0" for="vag_faixa_salarial">Faixa Salarial</label>
-                            <input type="text" class="form-control" id="vag_faixa_salarial" name="vag_faixa_salarial" readonly>
+                            <input type="text" class="form-control" id="vag_faixa_salarial" name="vag_faixa_salarial"
+                                readonly>
                         </div>
                         <div class="form-group">
                             <label class="mb-0" for="vag_beneficios">Beneficios</label>
@@ -383,11 +432,13 @@
                         </div>
                         <div class="form-group">
                             <label class="mb-0" for="vag_informacoes_adicionais">Informações adicionais</label>
-                            <input type="text" class="form-control" id="vag_informacoes_adicionais" name="vag_informacoes_adicionais" readonly>
+                            <textarea type="text" class="form-control" id="vag_informacoes_adicionais"
+                                name="vag_informacoes_adicionais" readonly></textarea>
                         </div>
                         <div class="form-group">
                             <label class="mb-0" for="vag_numero_de_vagas">Número de Vagas</label>
-                            <input type="text" class="form-control" id="vag_numero_de_vagas" name="vag_numero_de_vagas" readonly>
+                            <input type="text" class="form-control" id="vag_numero_de_vagas" name="vag_numero_de_vagas"
+                                readonly>
                         </div>
                         <div class="form-group">
                             <label class="mb-0" for="cid_nome">Cidade/UF</label>
@@ -398,7 +449,7 @@
                             <input type="text" class="form-control" id="are_nome" name="are_nome" readonly>
                         </div>
                         <div class="form-group">
-                            <label class="mb-0" for="div_nome">Divulgadores</label>
+                            <label class="mb-0" for="div_nome">Anunciantes</label>
                             <input type="text" class="form-control" id="div_nome" name="div_nome" readonly>
                         </div>
                         <div class="form-group">
@@ -461,7 +512,7 @@
         $(document).ready(function() {
 
             var table = $('#datatableVaga').DataTable();
-            
+
             //Start Edit Record
             table.on('click', '.edit', function() {
                 $tr = $(this).closest('tr');
@@ -472,7 +523,7 @@
                 var data = table.row($tr).data();
                 console.log(data);
 
-                $('#editModal #vag_status').val(data[1]);
+                $('#editModal #vag_status').val(data[16]);
                 $('#editModal #vag_motivo_recusa').val(data[2]);
                 $('#editModal #vag_carga_horaria').val(data[3]);
                 $('#editModal #vag_habilidades').val(data[4]);
@@ -481,20 +532,31 @@
                 $('#editModal #vag_beneficios').val(data[7]);
                 $('#editModal #vag_informacoes_adicionais').val(data[8]);
                 $('#editModal #vag_numero_de_vagas').val(data[9]);
-                
-              
+
+                $('#select-status').html(
+                    '<label class="mb-0" for="vag_status">Status</label>' +
+                    '<select class="form-control selectpicker" data-live-search="true" name="vag_status" required>' +
+                    '    <option value="">Selecione...</option>' +
+                    '    <option value="1">ACEITO</option> ' +
+                    '    <option value="0">RECUSADO</option> ' +
+                    '</select>');
+
+                $("select[name='cid_id'] option[value='" + data[16] + "']").attr('selected',
+                    'selected');
+
                 $('#select-cidade').html(
-                    '<label class="mb-0" for="cid_id">Cidade</label>' +
+                    '<label class="mb-0" for="cid_id">Cidade*</label>' +
                     '<select class="form-control selectpicker" data-live-search="true" name="cid_id" required>' +
                     '   @foreach ($cidades as $cidade)' +
                     '       <option value={{ $cidade->id }}> {{ $cidade->cid_nome }}/{{ $cidade->cid_uf }} </option>' +
                     '   @endforeach' +
                     '</select>');
-                $("select[name='cid_id'] option[value='" + data[10] + "']").attr('selected',
+
+                $("select[name='cid_id'] option[value='" + data[15] + "']").attr('selected',
                     'selected');
 
                 $('#select-area').html(
-                    '<label class="mb-0" for="are_id">Area</label>' +
+                    '<label class="mb-0" for="are_id">Area*</label>' +
                     '<select class="form-control selectpicker" data-live-search="true" name="are_id" required>' +
                     '   @foreach ($areas as $area)' +
                     '       <option value={{ $area->id }}> {{ $area->area_nome }}</option>' +
@@ -504,7 +566,7 @@
                     'selected');
 
                 $('#select-divulgador').html(
-                    '<label class="mb-0" for="cid_id">Divulgador</label>' +
+                    '<label class="mb-0" for="cid_id">Anunciante*</label>' +
                     '<select class="form-control selectpicker" data-live-search="true" name="div_id" required>' +
                     '   @foreach ($divulgadores as $divulgador)' +
                     '       <option value={{ $divulgador->id }}> {{ $divulgador->div_nome }}</option>' +
@@ -514,7 +576,7 @@
                     'selected');
 
                 $('#select-tiposContratacao').html(
-                    '<label class="mb-0" for="cid_id">Tipos de Contratacao</label>' +
+                    '<label class="mb-0" for="cid_id">Tipos de Contratacao*/label>' +
                     '<select class="form-control selectpicker" data-live-search="true" name="tip_id" required>' +
                     '   @foreach ($tiposContratacao as $tipo)' +
                     '       <option value={{ $tipo->id }}> {{ $tipo->tip_nome }}</option>' +
@@ -524,7 +586,7 @@
                     'selected');
 
                 $('#select-formatosTrabalho').html(
-                    '<label class="mb-0" for="fdt_id">Formato de Trabalho</label>' +
+                    '<label class="mb-0" for="fdt_id">Formato de Trabalho*</label>' +
                     '<select class="form-control selectpicker" data-live-search="true" name="fdt_id" required>' +
                     '   @foreach ($formatosTrabalho as $formatoTrabalho)' +
                     '       <option value={{ $formatoTrabalho->id }}> {{ $formatoTrabalho->fdt_nome }}</option>' +
@@ -537,7 +599,7 @@
                 $('#editModal').modal('show');
             });
             //End Edit Record
-            
+
             //Start View
             table.on('click', '.view', function() {
                 $tr = $(this).closest('tr');
@@ -569,26 +631,6 @@
             });
             //End View
 
-            //Start Delete Record
-            // table.on('click', '.delete', function() {
-            //     $tr = $(this).closest('tr');
-            //     if ($($tr).hasClass('child')) {
-            //         $tr = $tr.prev('.parent');
-            //     }
-
-            //     var data = table.row($tr).data();
-            //     console.log(data);
-
-            //     //$('#id').val(data[0]);
-            //     var conteudo = $(".modal-body").html();
-
-            //     $('#delete-modal-body').html(
-            //         '<input type="hidden" name="_method" value="DELETE">' +
-            //         '<p>Deseja excluir a vaga de "<strong>' + data[1] + '</strong>"?</p>');
-            //     $('#deleteForm').attr('action', '/vagas/' + data[0]);
-            //     $('#deleteModal').modal('show');
-            // });
-            //End Delete Record
         });
 
     </script>

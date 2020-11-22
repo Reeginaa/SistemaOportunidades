@@ -83,7 +83,11 @@
                     <form action="{{ action('App\Http\Controllers\TipoContratacoesController@store') }}" method="POST" id="addForm">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label class="mb-0" for="tip_nome">Nome</label>
+                            <label class="text-danger float-right">Campo Obrigatório(*)</label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="mb-0" for="tip_nome">Nome*</label>
                             <input type="text" class="form-control" id="tip_nome" name="tip_nome" required>
                             <span class="text-danger" id="tip_nomeError"></span>
                         </div>
@@ -115,7 +119,11 @@
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
                         <div class="form-group">
-                            <label class="mb-0" for="tip_nome">Nome</label>
+                            <label class="text-danger float-right">Campo Obrigatório(*)</label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="mb-0" for="tip_nome">Nome*</label>
                             <input type="text" class="form-control" id="tip_nome" name="tip_nome" required>
                             <span class="text-danger" id="tip_nomeError"></span>
                         </div>

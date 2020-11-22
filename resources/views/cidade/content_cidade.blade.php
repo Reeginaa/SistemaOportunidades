@@ -86,12 +86,16 @@
                     <form action="{{ action('App\Http\Controllers\CidadeController@store') }}" method="POST" id="addForm">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label class="mb-0" for="cid_nome">Nome</label>
+                            <label class="text-danger float-right">Campo Obrigatório(*)</label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="mb-0" for="cid_nome">Nome*</label>
                             <input type="text" class="form-control" id="cid_nome" name="cid_nome" required>
                             <span class="text-danger" id="cid_nomeError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="cid_uf">UF</label>
+                            <label class="mb-0" for="cid_uf">UF*</label>
                             <input type="text" class="form-control" maxlength="2"
                                 style="text-transform: uppercase; width: 60px" id="cid_uf" name="cid_uf" required>
                             <span class="text-danger" id="cid_ufError"></span>
@@ -124,12 +128,16 @@
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
                         <div class="form-group">
-                            <label class="mb-0" for="cid_nome">Nome</label>
+                            <label class="text-danger float-right">Campo Obrigatório(*)</label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="mb-0" for="cid_nome">Nome*</label>
                             <input type="text" class="form-control" id="cid_nome" name="cid_nome" required>
                             <span class="text-danger" id="cid_nomeError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="cid_uf">UF</label>
+                            <label class="mb-0" for="cid_uf">UF*</label>
                             <input type="text" class="form-control" maxlength="2"
                                 style="text-transform: uppercase; width: 60px" id="cid_uf" name="cid_uf" required>
                             <span class="text-danger" id="cid_nomeError"></span>

@@ -15,7 +15,7 @@ class CreateFormatoTrabalhos extends Migration
     {
         Schema::create('formato_trabalhos', function (Blueprint $table) {
             $table->id();
-            $table->string('fdt_nome', 100)->nullable(false);
+            $table->string('fdt_nome', 100);
             $table->timestamps();
         });
     }

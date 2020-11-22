@@ -22,7 +22,7 @@ class CreateDivulgadores extends Migration
             $table->string('div_numero', 10)->default('SN');
             $table->string('div_complemento', 15)->nullable(true);
             $table->string('div_bairro', 30);
-            $table->unsignedBigInteger('cid_id')->unsigned()->nullable(false);
+            $table->unsignedBigInteger('cid_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('cid_id')->references('id')->on('cidades')->onDelete('restrict');

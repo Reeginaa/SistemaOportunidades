@@ -24,22 +24,27 @@ class Vaga extends Model
         'div_id',
         'tip_id',
         'fdt_id'
-	];
+    ];
 
     // Relação (MUITOS para 1)
-    public function cidade() {
+    public function cidade()
+    {
         return $this->belongsTo(Cidade::class, 'cid_id', 'id');
     }
-	public function area() {
+    public function area()
+    {
         return $this->belongsTo(Area::class, 'are_id', 'id');
     }
-	public function divulgador() {
+    public function divulgador()
+    {
         return $this->belongsTo(Divulgadores::class, 'div_id', 'id');
     }
-    public function tipoContratacao() {
+    public function tipoContratacao()
+    {
         return $this->belongsTo(TipoContratacoes::class, 'tip_id', 'id');
     }
-    public function formatoTrabalho() {
+    public function formatoTrabalho()
+    {
         return $this->belongsTo(FormatoTrabalhos::class, 'fdt_id', 'id');
     }
 }

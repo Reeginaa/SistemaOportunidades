@@ -115,29 +115,33 @@
                     <form action="{{ action('App\Http\Controllers\DivulgadoresController@store') }}" method="POST" id="addForm">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label class="mb-0" for="div_nome">Nome</label>
+                            <label class="text-danger float-right">Campo Obrigatório(*)</label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="mb-0" for="div_nome">Nome*</label>
                             <input type="text" class="form-control" maxlength="100" id="div_nome" name="div_nome" required>
                             <span class="text-danger" id="div_nomeError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="div_telefone">Telefone</label>
+                            <label class="mb-0" for="div_telefone">Telefone*</label>
                             <input type="text" class="form-control" maxlength="15"
                                 style="width: 200px" id="div_telefone" name="div_telefone" required>
                             <span class="text-danger" id="div_telefoneError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="div_email">E-mail</label>
+                            <label class="mb-0" for="div_email">E-mail*</label>
                             <input type="text" class="form-control" maxlength="100"
                                 style="width: 280px" id="div_email" name="div_email" required>
                             <span class="text-danger" id="div_emailError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="div_rua">Endereço (Rua, Avenida, ...)</label>
+                            <label class="mb-0" for="div_rua">Endereço (Rua, Avenida, ...)*</label>
                             <input type="text" class="form-control" maxlength="100" id="div_rua" name="div_rua" required>
                             <span class="text-danger" id="div_ruaError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="div_numero">Número</label>
+                            <label class="mb-0" for="div_numero">Número*</label>
                             <input type="text" class="form-control" maxlength="10"
                                 style="text-transform: uppercase; width: 180px" id="div_numero" name="div_numero" required>
                             <span class="text-danger" id="div_numeroError"></span>
@@ -149,13 +153,13 @@
                             <span class="text-danger" id="div_complemento"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="div_bairro">Bairro</label>
+                            <label class="mb-0" for="div_bairro">Bairro*</label>
                             <input type="text" class="form-control" maxlength="30"
                                 style="width: 300px" id="div_bairro" name="div_bairro" required>
                             <span class="text-danger" id="div_bairroError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="cid_id">Cidade/UF</label>
+                            <label class="mb-0" for="cid_id">Cidade/UF*</label>
                             <select class="form-control selectpicker" data-live-search="true" name="cid_id" required>
                                 <option value="">Selecione...</option>
                                 @foreach ($cidades as $cidade)
@@ -192,29 +196,33 @@
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
                         <div class="form-group">
-                            <label class="mb-0" for="div_nome">Nome</label>
+                            <label class="text-danger float-right">Campo Obrigatório(*)</label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="mb-0" for="div_nome">Nome*</label>
                             <input type="text" class="form-control" maxlength="100" id="div_nome" name="div_nome" required>
                             <span class="text-danger" id="div_nomeError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="div_telefone">Telefone</label>
+                            <label class="mb-0" for="div_telefone">Telefone*</label>
                             <input type="text" class="form-control" maxlength="15"
                                 style="width: 200px" id="div_telefone" name="div_telefone" required>
                             <span class="text-danger" id="div_telefoneError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="div_email">E-mail</label>
+                            <label class="mb-0" for="div_email">E-mail*</label>
                             <input type="text" class="form-control" maxlength="100"
                                 style="width: 280px" id="div_email" name="div_email" required>
                             <span class="text-danger" id="div_emailError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="div_rua">Endereço (Rua, Avenida, ...)</label>
+                            <label class="mb-0" for="div_rua">Endereço (Rua, Avenida, ...)*</label>
                             <input type="text" class="form-control" maxlength="100" id="div_rua" name="div_rua" required>
                             <span class="text-danger" id="div_ruaError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="div_numero">Número</label>
+                            <label class="mb-0" for="div_numero">Número*</label>
                             <input type="text" class="form-control" maxlength="10"
                                 style="text-transform: uppercase; width: 180px" id="div_numero" name="div_numero" required>
                             <span class="text-danger" id="div_numeroError"></span>
@@ -226,7 +234,7 @@
                             <span class="text-danger" id="div_complemento"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="div_bairro">Bairro</label>
+                            <label class="mb-0" for="div_bairro">Bairro*</label>
                             <input type="text" class="form-control" maxlength="30"
                                 style="width: 300px" id="div_bairro" name="div_bairro" required>
                             <span class="text-danger" id="div_bairroError"></span>
@@ -373,7 +381,7 @@
                 $('#editModal #div_bairro').val(data[8]);
                
                 $('#select-cidade').html(
-                    '<label class="mb-0" for="cid_id">Grupo de Clientes</label>' +
+                    '<label class="mb-0" for="cid_id">Cidade/UF*</label>' +
                     '<select class="form-control selectpicker" data-live-search="true" name="cid_id" required>' +
                     '   @foreach ($cidades as $cidade)' +
                     '       <option value={{ $cidade->id }}> {{ $cidade->cid_nome }}/{{ $cidade->cid_uf }} </option>' +
