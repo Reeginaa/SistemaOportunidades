@@ -14,7 +14,7 @@ class CreateVagas extends Migration
     public function up()
     {
         Schema::create('vagas', function (Blueprint $table) {
-            $table->id('vag_id');
+            $table->id();
             $table->date('vag_data_publicacao')->nullable(false);
             $table->date('vag_data_alteracao');
             $table->integer('vag_status')->nullable(false);

@@ -29,3 +29,6 @@ Route::get('formatotrabalhos/{id}/destroy', 'App\Http\Controllers\FormatoTrabalh
 
 Route::resource('divulgadores', 'App\Http\Controllers\DivulgadoresController');
 Route::get('divulgadores/{id}/destroy', 'App\Http\Controllers\DivulgadoresController@destroy');
+
+Route::resource('vagas', 'App\Http\Controllers\VagaController');
+Route::get('vagas/{id}/destroy', 'App\Http\Controllers\VagaController@destroy');

@@ -84,7 +84,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">{{ __('Manutenção') }}</h6>
-                        <a class="collapse-item" href="#"><i 
+                        <a class="collapse-item" href={{ route('vagas.index') }}><i
                             class="fas fa-search-plus mr-1"></i>{{ __('Vagas') }}</a>
                     </div>
                 </div>
