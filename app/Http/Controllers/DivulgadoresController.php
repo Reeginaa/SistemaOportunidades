@@ -26,7 +26,9 @@ class DivulgadoresController extends Controller
     {
         $divulgadores = $this->divulgadores::all();
         $cidades = $this->cidades::all()->sortBy('cid_nome');
-        return view('divulgadores.content_divulgadores')->with('divulgadores', $divulgadores)->with('cidades', $cidades);
+        return view('divulgadores.content_divulgadores')
+            ->with('divulgadores', $divulgadores)
+            ->with('cidades', $cidades);
     }
 
     /**
@@ -71,7 +73,8 @@ class DivulgadoresController extends Controller
 
         $divulgadores->save();
 
-        return redirect('divulgadores')->with('success', 'Anunciante salvo com sucesso!');
+        return redirect('divulgadores')
+            ->with('success', 'Anunciante salvo com sucesso!');
     }
 
     /**
@@ -129,7 +132,8 @@ class DivulgadoresController extends Controller
 
         $divulgadores->save();
 
-        return redirect('divulgadores')->with('success', 'Anunciante alterado com sucesso!');
+        return redirect('divulgadores')
+            ->with('success', 'Anunciante alterado com sucesso!');
     }
 
     /**

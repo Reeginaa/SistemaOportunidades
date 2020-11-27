@@ -22,7 +22,8 @@ class TipoContratacoesController extends Controller
     public function index()
     {
         $tipocontratacoes = $this->tipocontratacoes::all();
-        return view('tipocontratacoes.content_tipocontratacoes')->with('tipocontratacoes', $tipocontratacoes);
+        return view('tipocontratacoes.content_tipocontratacoes')
+            ->with('tipocontratacoes', $tipocontratacoes);
     }
 
     /**
@@ -53,7 +54,8 @@ class TipoContratacoesController extends Controller
 
         $tipocontratacoes->save();
 
-        return redirect('tipocontratacoes')->with('success', 'Tipo de Contratação salvo com sucesso!');
+        return redirect('tipocontratacoes')
+            ->with('success', 'Tipo de Contratação salvo com sucesso!');
     }
 
     /**
@@ -99,7 +101,8 @@ class TipoContratacoesController extends Controller
         $tipocontratacoes->save();
 
 
-        return redirect('tipocontratacoes')->with('success', 'Tipo de Contratação alterado com sucesso!');
+        return redirect('tipocontratacoes')
+            ->with('success', 'Tipo de Contratação alterado com sucesso!');
     }
 
     /**

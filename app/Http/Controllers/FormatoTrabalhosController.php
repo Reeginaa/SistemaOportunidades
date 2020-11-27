@@ -22,7 +22,8 @@ class FormatoTrabalhosController extends Controller
     public function index()
     {
         $formatotrabalhos = $this->formatotrabalhos::all();
-        return view('formatotrabalhos.content_formatotrabalhos')->with('formatotrabalhos', $formatotrabalhos);
+        return view('formatotrabalhos.content_formatotrabalhos')
+            ->with('formatotrabalhos', $formatotrabalhos);
     }
 
     /**
@@ -53,7 +54,8 @@ class FormatoTrabalhosController extends Controller
 
         $formatotrabalhos->save();
 
-        return redirect('formatotrabalhos')->with('success', 'Formato de Trabalho salvo com sucesso!');
+        return redirect('formatotrabalhos')
+            ->with('success', 'Formato de Trabalho salvo com sucesso!');
     }
 
     /**
@@ -99,7 +101,8 @@ class FormatoTrabalhosController extends Controller
         $formatotrabalhos->save();
 
 
-        return redirect('formatotrabalhos')->with('success', 'Formato de Trabalho alterado com sucesso!');
+        return redirect('formatotrabalhos')
+            ->with('success', 'Formato de Trabalho alterado com sucesso!');
     }
 
     /**

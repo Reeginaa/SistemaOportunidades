@@ -13,7 +13,7 @@ use Carbon\Carbon;
 
 class VagaController extends Controller
 {
-	private $vaga;
+    private $vaga;
 
     public function __construct()
     {
@@ -25,32 +25,52 @@ class VagaController extends Controller
         $this->formatoTrabalho = new FormatoTrabalhos();
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-    	$vagas = $this->vaga::all();
+        $vagas = $this->vaga::all();
         $cidades = $this->cidade::all()->sortBy('cid_nome');
         $areas = $this->area::all()->sortBy('area_nome');
         $divulgadores = $this->divulgador::all()->sortBy('div_nome');
         $tiposContratacao = $this->tipoContratacao::all()->sortBy('tip_nome');
         $formatosTrabalho = $this->formatoTrabalho::all()->sortBy('fdt_nome');
-        
+
         return view('vaga.content_vaga')
             ->with('vagas', $vagas)
             ->with('cidades', $cidades)
             ->with('areas', $areas)
             ->with('divulgadores', $divulgadores)
             ->with('tiposContratacao', $tiposContratacao)
-            ->with('formatosTrabalho', $formatosTrabalho
-        );
+            ->with('formatosTrabalho', $formatosTrabalho);
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
 
         $this->validate($request, [
             'vag_status' => 'required|numeric',
             'vag_motivo_recusa' => 'max:500',
-            'vag_faixa_salarial' => 'nullable|numeric', 
+            'vag_faixa_salarial' => 'nullable|numeric',
             'vag_carga_horaria' => 'required|numeric',
             'vag_habilidades' => 'required|max:250',
             'vag_diferenciais' => 'max:250',
@@ -87,12 +107,41 @@ class VagaController extends Controller
         return redirect('vagas')->with('success', 'Vaga criada com sucesso!');
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
             'vag_status' => 'required|numeric',
             'vag_motivo_recusa' => 'max:500',
-            'vag_faixa_salarial' => 'nullable|numeric',  
+            'vag_faixa_salarial' => 'nullable|numeric',
             'vag_carga_horaria' => 'required|numeric',
             'vag_habilidades' => 'required|max:250',
             'vag_diferenciais' => 'max:250',
@@ -126,15 +175,23 @@ class VagaController extends Controller
 
         $vaga->save();
 
-        return redirect('vagas')->with('success', 'Vaga alterada com sucesso!');
+        return redirect('vagas')
+            ->with('success', 'Vaga alterada com sucesso!');
     }
+
+     /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
 
     public function destroy($id)
     {
         try {
             $vaga = $this->vaga::find($id);
             $vaga->delete();
-            
+
             return ['status' => 'success'];
         } catch (\Illuminate\Database\QueryException $qe) {
             return ['status' => 'errorQuery', 'message' => $qe->getMessage()];

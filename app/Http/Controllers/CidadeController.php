@@ -23,7 +23,8 @@ class CidadeController extends Controller
     public function index()
     {
         $cidades = $this->cidade::all();
-        return view('cidade.content_cidade')->with('cidades', $cidades);
+        return view('cidade.content_cidade')
+            ->with('cidades', $cidades);
     }
 
     /**
@@ -56,7 +57,8 @@ class CidadeController extends Controller
 
         $cidades->save();
 
-        return redirect('cidade')->with('success', 'Cidade salva com sucesso!');
+        return redirect('cidade')
+            ->with('success', 'Cidade salva com sucesso!');
     }
 
     /**
@@ -104,7 +106,8 @@ class CidadeController extends Controller
         $cidades->save();
 
 
-        return redirect('cidade')->with('success', 'Cidade alterada com sucesso!');
+        return redirect('cidade')
+            ->with('success', 'Cidade alterada com sucesso!');
     }
 
     /**

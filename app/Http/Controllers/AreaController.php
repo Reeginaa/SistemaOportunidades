@@ -23,7 +23,8 @@ class AreaController extends Controller
     public function index()
     {
         $areas = $this->area::all();
-        return view('area.content_area')->with('areas', $areas);
+        return view('area.content_area')
+            ->with('areas', $areas);
     }
 
     /**
@@ -54,7 +55,8 @@ class AreaController extends Controller
 
         $areas->save();
 
-        return redirect('area')->with('success', 'Area salva com sucesso!');
+        return redirect('area')
+            ->with('success', 'Area salva com sucesso!');
     }
 
     /**
@@ -100,7 +102,8 @@ class AreaController extends Controller
         $areas->save();
 
 
-        return redirect('area')->with('success', 'Area alterada com sucesso!');
+        return redirect('area')
+            ->with('success', 'Area alterada com sucesso!');
     }
 
     /**
