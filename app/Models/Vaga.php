@@ -19,6 +19,7 @@ class Vaga extends Model
         'vag_beneficios',
         'vag_informacoes_adicionais',
         'vag_numero_de_vagas',
+        'vag_cep',
         'cid_id',
         'are_id',
         'div_id',

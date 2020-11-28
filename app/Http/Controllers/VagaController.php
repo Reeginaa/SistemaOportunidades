@@ -77,6 +77,7 @@ class VagaController extends Controller
             'vag_beneficios' => 'max:250',
             'vag_informacoes_adicionais' => 'max:500',
             'vag_numero_de_vagas' => 'required',
+            'vag_cep' => 'required',
             'cid_id' => 'required|numeric|min:1',
             'are_id' => 'required|numeric|min:1',
             'div_id' => 'required|numeric|min:1',
@@ -96,6 +97,7 @@ class VagaController extends Controller
         $vaga->vag_beneficios = $request->input('vag_beneficios');
         $vaga->vag_informacoes_adicionais = $request->input('vag_informacoes_adicionais');
         $vaga->vag_numero_de_vagas = $request->input('vag_numero_de_vagas');
+        $vaga->vag_cep = $request->input('vag_cep');
         $vaga->cid_id = $request->input('cid_id');
         $vaga->are_id = $request->input('are_id');
         $vaga->div_id = $request->input('div_id');
@@ -148,6 +150,7 @@ class VagaController extends Controller
             'vag_beneficios' => 'max:250',
             'vag_informacoes_adicionais' => 'max:500',
             'vag_numero_de_vagas' => 'required',
+            'vag_cep' => 'required',
             'cid_id' => 'required|numeric|min:1',
             'are_id' => 'required|numeric|min:1',
             'div_id' => 'required|numeric|min:1',
@@ -167,6 +170,7 @@ class VagaController extends Controller
         $vaga->vag_beneficios = $request->input('vag_beneficios');
         $vaga->vag_informacoes_adicionais = $request->input('vag_informacoes_adicionais');
         $vaga->vag_numero_de_vagas = $request->input('vag_numero_de_vagas');
+        $vaga->vag_cep = $request->input('vag_cep');
         $vaga->cid_id = $request->input('cid_id');
         $vaga->are_id = $request->input('are_id');
         $vaga->div_id = $request->input('div_id');

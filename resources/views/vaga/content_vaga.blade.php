@@ -40,13 +40,18 @@
                                 <th style="display: none;">Banefícios</th>
                                 <th style="display: none;">Informações adicionais</th>
                                 <th class="th-sm border-bottom border-left">Vagas</th>
+                                <th style="display: none;">CEP</th>
                                 <th class="th-sm border-bottom border-left">Cidade</th>
                                 <th class="th-sm border-bottom border-left">Area</th>
                                 <th class="th-sm border-bottom border-left">Anunciante</th>
                                 <th style="display: none;">Tipo de Contratação</th>
                                 <th style="display: none;">Formato de Trabalho</th>
-                                <th style="display: none;">Cidade_id</th>
                                 <th style="display: none;">Status_cod</th>
+                                <th style="display: none;">cid_id</th>
+                                <th style="display: none;">are_id</th>
+                                <th style="display: none;">div_id</th>
+                                <th style="display: none;">tip_id</th>
+                                <th style="display: none;">fdt_id</th>
                                 <th class="th-sm border-bottom border-left">Ações</th>
                             </tr>
                         </thead>
@@ -71,13 +76,18 @@
                                     <td style="display: none;">{{ $obj->vag_beneficios }}</td>
                                     <td style="display: none;">{{ $obj->vag_informacoes_adicionais }}</td>
                                     <td class="align-middle border-left">{{ $obj->vag_numero_de_vagas }}</td>
+                                    <td style="display: none;">{{ $obj->vag_cep }}</td>
                                     <td class="align-middle border-left">{{ $cidade->cid_nome }}/{{ $cidade->cid_uf }}</td>
                                     <td class="align-middle border-left">{{ $area->area_nome }}</td>
                                     <td class="align-middle border-left">{{ $divulgador->div_nome }}</td>
                                     <td style="display: none;">{{ $tipoContratacao->tip_nome }}</td>
                                     <td style="display: none;">{{ $formatoTrabalho->fdt_nome }}</td>
-                                    <td style="display: none;">{{ $cidade->id }}</td>
                                     <td style="display: none;">{{ $obj->vag_status }}</td>
+                                    <td style="display: none;">{{ $cidade->id }}</td>
+                                    <td style="display: none;">{{ $area->id }}</td>
+                                    <td style="display: none;">{{ $divulgador->id }}</td>
+                                    <td style="display: none;">{{ $tipoContratacao->id }}</td>
+                                    <td style="display: none;">{{ $formatoTrabalho->id }}</td>
 
                                     <td class="align-middle th-sm border-left border-right">
                                         <a href="#" class="btn_crud btn btn-info btn-sm view"><i class="fas fa-eye"
@@ -105,13 +115,18 @@
                                 <th style="display: none;">Banefícios</th>
                                 <th style="display: none;">Informações adicionais</th>
                                 <th class="th-sm border-bottom border-left">Vagas</th>
+                                <th style="display: none;">CEP</th>
                                 <th class="th-sm border-bottom border-left">Cidade</th>
                                 <th class="th-sm border-bottom border-left">Area</th>
                                 <th class="th-sm border-bottom border-left">Anunciante</th>
                                 <th style="display: none;">Tipo de Contratação</th>
                                 <th style="display: none;">Formato de Trabalho</th>
-                                <th style="display: none;">Cidade_id</th>
                                 <th style="display: none;">Status_cod</th>
+                                <th style="display: none;">cid_id</th>
+                                <th style="display: none;">are_id</th>
+                                <th style="display: none;">div_id</th>
+                                <th style="display: none;">tip_id</th>
+                                <th style="display: none;">fdt_id</th>
                                 <th class="th-sm border-bottom border-left">Ações</th>
                             </tr>
                         </tfoot>
@@ -206,6 +221,11 @@
                             <span class="text-danger" id="vag_numero_de_vagasError"></span>
                         </div>
 
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="vag_cep">CEP*</label>
+                            <input class="form-control" type="number" id="vag_cep" name="vag_cep" required>
+                            <span class="text-danger" id="vag_cepError"></span>
+                        </div>
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="cid_id">Cidade/UF*</label>
@@ -354,6 +374,13 @@
                                 required>
                             <span class="text-danger" id="vag_numero_de_vagasError"></span>
                         </div>
+
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="vag_cep">CEP</label>
+                            <input class="form-control" type="number" id="vag_cep" name="vag_cep" required>
+                            <span class="text-danger" id="vag_cepError"></span>
+                        </div>
+
                         <div id="select-cidade" class="form-group col-xs-2">
                             <!-- jquery -->
                         </div>
@@ -441,6 +468,11 @@
                                 readonly>
                         </div>
                         <div class="form-group">
+                            <label class="mb-0" for="vag_cep">CEP</label>
+                            <input type="text" class="form-control" id="vag_cep" name="vag_cep"
+                                readonly>
+                        </div>
+                        <div class="form-group">
                             <label class="mb-0" for="cid_nome">Cidade/UF</label>
                             <input type="text" class="form-control" id="cid_nome" name="cid_nome" readonly>
                         </div>
@@ -521,17 +553,8 @@
                 }
 
                 var data = table.row($tr).data();
+                console.log(table);
                 console.log(data);
-
-                $('#editModal #vag_status').val(data[16]);
-                $('#editModal #vag_motivo_recusa').val(data[2]);
-                $('#editModal #vag_carga_horaria').val(data[3]);
-                $('#editModal #vag_habilidades').val(data[4]);
-                $('#editModal #vag_diferenciais').val(data[5]);
-                $('#editModal #vag_faixa_salarial').val(data[6]);
-                $('#editModal #vag_beneficios').val(data[7]);
-                $('#editModal #vag_informacoes_adicionais').val(data[8]);
-                $('#editModal #vag_numero_de_vagas').val(data[9]);
 
                 $('#select-status').html(
                     '<label class="mb-0" for="vag_status">Status</label>' +
@@ -540,9 +563,19 @@
                     '    <option value="1">ACEITO</option> ' +
                     '    <option value="0">RECUSADO</option> ' +
                     '</select>');
-
-                $("select[name='cid_id'] option[value='" + data[16] + "']").attr('selected',
+                $("select[name='vag_status'] option[value='" + data[16] + "']").attr('selected',
                     'selected');
+                
+                $('#editModal #vag_motivo_recusa').val(data[2]);
+                $('#editModal #vag_carga_horaria').val(data[3]);
+                $('#editModal #vag_habilidades').val(data[4]);
+                $('#editModal #vag_diferenciais').val(data[5]);
+                $('#editModal #vag_faixa_salarial').val(data[6]);
+                $('#editModal #vag_beneficios').val(data[7]);
+                $('#editModal #vag_informacoes_adicionais').val(data[8]);
+                $('#editModal #vag_numero_de_vagas').val(data[9]);
+                $('#editModal #vag_cep').val(data[10]);
+
 
                 $('#select-cidade').html(
                     '<label class="mb-0" for="cid_id">Cidade*</label>' +
@@ -551,8 +584,7 @@
                     '       <option value={{ $cidade->id }}> {{ $cidade->cid_nome }}/{{ $cidade->cid_uf }} </option>' +
                     '   @endforeach' +
                     '</select>');
-
-                $("select[name='cid_id'] option[value='" + data[15] + "']").attr('selected',
+                $("select[name='cid_id'] option[value='" + data[17] + "']").attr('selected',
                     'selected');
 
                 $('#select-area').html(
@@ -562,27 +594,27 @@
                     '       <option value={{ $area->id }}> {{ $area->area_nome }}</option>' +
                     '   @endforeach' +
                     '</select>');
-                $("select[name='are_id'] option[value='" + data[11] + "']").attr('selected',
+                $("select[name='are_id'] option[value='" + data[18] + "']").attr('selected',
                     'selected');
 
                 $('#select-divulgador').html(
-                    '<label class="mb-0" for="cid_id">Anunciante*</label>' +
+                    '<label class="mb-0" for="div_id">Anunciante*</label>' +
                     '<select class="form-control selectpicker" data-live-search="true" name="div_id" required>' +
                     '   @foreach ($divulgadores as $divulgador)' +
                     '       <option value={{ $divulgador->id }}> {{ $divulgador->div_nome }}</option>' +
                     '   @endforeach' +
                     '</select>');
-                $("select[name='div_id'] option[value='" + data[12] + "']").attr('selected',
+                $("select[name='div_id'] option[value='" + data[19] + "']").attr('selected',
                     'selected');
 
                 $('#select-tiposContratacao').html(
-                    '<label class="mb-0" for="cid_id">Tipos de Contratacao*/label>' +
+                    '<label class="mb-0" for="tip_id">Tipos de Contratacao*/label>' +
                     '<select class="form-control selectpicker" data-live-search="true" name="tip_id" required>' +
                     '   @foreach ($tiposContratacao as $tipo)' +
                     '       <option value={{ $tipo->id }}> {{ $tipo->tip_nome }}</option>' +
                     '   @endforeach' +
                     '</select>');
-                $("select[name='tip_id'] option[value='" + data[13] + "']").attr('selected',
+                $("select[name='tip_id'] option[value='" + data[20] + "']").attr('selected',
                     'selected');
 
                 $('#select-formatosTrabalho').html(
@@ -592,7 +624,7 @@
                     '       <option value={{ $formatoTrabalho->id }}> {{ $formatoTrabalho->fdt_nome }}</option>' +
                     '   @endforeach' +
                     '</select>');
-                $("select[name='fdt_id'] option[value='" + data[14] + "']").attr('selected',
+                $("select[name='fdt_id'] option[value='" + data[21] + "']").attr('selected',
                     'selected');
 
                 $('#editForm').attr('action', '/vagas/' + data[0]);
@@ -620,11 +652,12 @@
                 $('#viewModal #vag_beneficios').val(data[7]);
                 $('#viewModal #vag_informacoes_adicionais').val(data[8]);
                 $('#viewModal #vag_numero_de_vagas').val(data[9]);
-                $('#viewModal #cid_nome').val(data[10]);
-                $('#viewModal #are_nome').val(data[11]);
-                $('#viewModal #div_nome').val(data[12]);
-                $('#viewModal #tip_nome').val(data[13]);
-                $('#viewModal #fdt_nome').val(data[14]);
+                $('#viewModal #vag_cep').val(data[10]);
+                $('#viewModal #cid_nome').val(data[11]);
+                $('#viewModal #are_nome').val(data[12]);
+                $('#viewModal #div_nome').val(data[13]);
+                $('#viewModal #tip_nome').val(data[14]);
+                $('#viewModal #fdt_nome').val(data[15]);
 
                 $('#viewForm').attr('action');
                 $('#viewModal').modal('show');

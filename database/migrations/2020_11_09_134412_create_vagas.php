@@ -26,6 +26,7 @@ class CreateVagas extends Migration
             $table->string('vag_beneficios', 250)->nullable(true);
             $table->string('vag_informacoes_adicionais', 500)->nullable(true);
             $table->integer('vag_numero_de_vagas');
+            $table->integer('vag_cep');
             $table->unsignedBigInteger('cid_id');
             $table->unsignedBigInteger('are_id');
             $table->unsignedBigInteger('div_id');
