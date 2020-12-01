@@ -380,6 +380,7 @@
     <!-- DataTables JS -->
 
     <script src={{ URL::to('js/addons/datatables2.min.js') }} type="text/javascript"></script>
+    <script src={{ URL::to('js/mask.min.js') }} type="text/javascript"></script>
 
     <!-- DataTables Select JS -->
     <script src={{ URL::to('js/addons/datatables-select2.min.js') }} type="text/javascript"></script>
@@ -395,6 +396,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     --}}
+
+
+    
 
     <script type="text/javascript">
         $(function() {

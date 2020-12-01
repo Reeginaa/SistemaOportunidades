@@ -223,13 +223,13 @@
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_cep">CEP*</label>
-                            <input class="form-control" type="number" id="vag_cep" name="vag_cep" required>
+                            <input class="form-control" id="vag_cep" maxlength="10" name="vag_cep" required>
                             <span class="text-danger" id="vag_cepError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="cid_id">Cidade/UF*</label>
-                            <select class="form-control selectpicker" data-live-search="true" name="cid_id" required>
+                            <select class="form-control selectpicker" data-live-search="true" id="cid_id" name="cid_id" required>
                                 <option value="">Selecione...</option>
                                 @foreach ($cidades as $cidade)
                                     <option value={{ $cidade->id }}> {{ $cidade->cid_nome }}/{{ $cidade->cid_uf }} </option>
@@ -377,7 +377,7 @@
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_cep">CEP</label>
-                            <input class="form-control" type="number" id="vag_cep" name="vag_cep" required>
+                            <input class="form-control" id="vag_cep" maxlength="10"  name="vag_cep" required>
                             <span class="text-danger" id="vag_cepError"></span>
                         </div>
 
@@ -539,10 +539,91 @@
 
 @section('script_pages')
 
-    <script type="text/javascript">
+
+
+<script type="text/javascript">
         // Vagas
         $(document).ready(function() {
 
+            $("#addModal #vag_cep").keyup(function() {
+
+            //Nova variável "cep" somente com dígitos.
+            var cep = $(this).val().replace(/\D/g, '');
+
+            //Verifica se campo cep possui valor informado.
+            if (cep != "") {
+
+                //Expressão regular para validar o CEP.
+                var validacep = /^[0-9]{8}$/;
+
+                //Valida o formato do CEP.
+                if(validacep.test(cep)) {
+
+
+                    //Consulta o webservice viacep.com.br/
+                    $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                        if (!("erro" in dados)) {
+                            //Atualiza os campos com os valores da consulta.
+                            $("#addModal #cid_id option").each(function() {
+
+                                if($(this).text().toUpperCase().includes(dados.localidade.toUpperCase())){
+                                $("#addModal #cid_id").val($(this).val());
+                            }
+
+                            });
+                        } 
+                        else {
+                            //CEP pesquisado não foi encontrado.
+                            alert("CEP não encontrado.");
+                        }
+                    });
+                } 
+               
+            }
+        });
+
+        $("#editModal #vag_cep").keyup(function() {
+
+            //Nova variável "cep" somente com dígitos.
+            var cep = $(this).val().replace(/\D/g, '');
+
+            //Verifica se campo cep possui valor informado.
+            if (cep != "") {
+
+                //Expressão regular para validar o CEP.
+                var validacep = /^[0-9]{8}$/;
+
+                //Valida o formato do CEP.
+                if(validacep.test(cep)) {
+
+
+                    //Consulta o webservice viacep.com.br/
+                    $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                        if (!("erro" in dados)) {
+                            //Atualiza os campos com os valores da consulta.
+                            $("#editModal #cid_id option").each(function() {
+
+                                if($(this).text().toUpperCase().includes(dados.localidade.toUpperCase())){
+                                $("#editModal #cid_id").val($(this).val());
+                            }
+
+                            });
+                        } 
+                        else {
+                            //CEP pesquisado não foi encontrado.
+                            alert("CEP não encontrado.");
+                        }
+                    });
+                } 
+               
+            }
+        });
+
+            $("#editModal #vag_cep").mask("99.999-999");
+            $("#addModal #vag_cep").mask("99.999-999");
+            $("#viewModal #vag_cep").mask("99.999-999");
             var table = $('#datatableVaga').DataTable();
 
             //Start Edit Record
@@ -579,7 +660,7 @@
 
                 $('#select-cidade').html(
                     '<label class="mb-0" for="cid_id">Cidade*</label>' +
-                    '<select class="form-control selectpicker" data-live-search="true" name="cid_id" required>' +
+                    '<select class="form-control selectpicker" data-live-search="true" id="cid_id" name="cid_id" required>' +
                     '   @foreach ($cidades as $cidade)' +
                     '       <option value={{ $cidade->id }}> {{ $cidade->cid_nome }}/{{ $cidade->cid_uf }} </option>' +
                     '   @endforeach' +

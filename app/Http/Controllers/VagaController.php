@@ -97,7 +97,7 @@ class VagaController extends Controller
         $vaga->vag_beneficios = $request->input('vag_beneficios');
         $vaga->vag_informacoes_adicionais = $request->input('vag_informacoes_adicionais');
         $vaga->vag_numero_de_vagas = $request->input('vag_numero_de_vagas');
-        $vaga->vag_cep = $request->input('vag_cep');
+        $vaga->vag_cep = str_replace(".", "", str_replace("-", "", $request->input('vag_cep')));
         $vaga->cid_id = $request->input('cid_id');
         $vaga->are_id = $request->input('are_id');
         $vaga->div_id = $request->input('div_id');
@@ -170,7 +170,7 @@ class VagaController extends Controller
         $vaga->vag_beneficios = $request->input('vag_beneficios');
         $vaga->vag_informacoes_adicionais = $request->input('vag_informacoes_adicionais');
         $vaga->vag_numero_de_vagas = $request->input('vag_numero_de_vagas');
-        $vaga->vag_cep = $request->input('vag_cep');
+        $vaga->vag_cep = str_replace(".", "", str_replace("-", "", $request->input('vag_cep')));
         $vaga->cid_id = $request->input('cid_id');
         $vaga->are_id = $request->input('are_id');
         $vaga->div_id = $request->input('div_id');
@@ -183,7 +183,7 @@ class VagaController extends Controller
             ->with('success', 'Vaga alterada com sucesso!');
     }
 
-     /**
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
