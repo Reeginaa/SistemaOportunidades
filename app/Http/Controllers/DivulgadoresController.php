@@ -51,17 +51,19 @@ class DivulgadoresController extends Controller
     {
 
         $this->validate($request, [
+            'div_cnpj' => 'required|min:18|max:18',
             'div_nome' => 'required|max:100',
             'div_telefone' => 'required|max:15',
             'div_email' => 'required|max:100',
             'div_rua' => 'required|max:50',
             'div_bairro' => 'required|max:50',
             'div_numero' => 'required|max:20',
-            'div_complemento' => 'required|max:50',
+            'div_complemento' => 'max:50',
             'cid_id' => 'required|numeric|min:1',
         ]);
 
         $divulgadores =  $this->divulgadores;
+        $divulgadores->div_cnpj = $request->input('div_cnpj');
         $divulgadores->div_nome = $request->input('div_nome');
         $divulgadores->div_telefone = $request->input('div_telefone');
         $divulgadores->div_email = $request->input('div_email');
@@ -110,17 +112,19 @@ class DivulgadoresController extends Controller
     {
 
         $this->validate($request, [
+            'div_cnpj' => 'required|min:18|max:18',
             'div_nome' => 'required|max:100',
             'div_telefone' => 'required|max:15',
             'div_email' => 'required|max:100',
             'div_rua' => 'required|max:50',
             'div_bairro' => 'required|max:50',
             'div_numero' => 'required|max:20',
-            'div_complemento' => 'required|max:50',
+            'div_complemento' => 'max:50',
             'cid_id' => 'required|numeric|min:1',
         ]);
 
         $divulgadores =  $this->divulgadores::find($id);
+        $divulgadores->div_cnpj = $request->input('div_cnpj');
         $divulgadores->div_nome = $request->input('div_nome');
         $divulgadores->div_telefone = $request->input('div_telefone');
         $divulgadores->div_email = $request->input('div_email');
@@ -147,7 +151,6 @@ class DivulgadoresController extends Controller
         try {
             $divulgadores = $this->divulgadores::find($id);
             $divulgadores->delete();
-            //return redirect('divulgadores')->with('success', 'Anunciante excluído com sucesso!');
             return ['status' => 'success'];
         } catch (\Illuminate\Database\QueryException $qe) {
             return ['status' => 'errorQuery', 'message' => $qe->getMessage()];

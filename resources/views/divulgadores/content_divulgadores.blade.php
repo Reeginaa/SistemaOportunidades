@@ -41,6 +41,7 @@
                                 <th class="th-sm border-bottom border-left">Bairro</th>
                                 <th class="th-sm border-bottom border-left">Cidade/UF</th>
                                 <th style="display: none;">id_fk1</th>
+                                <th style="display: none;">cnpj</th>
                                 <th class="th-sm border-bottom border-left">Ações</th>
                             </tr>
                         </thead>
@@ -54,20 +55,23 @@
                                     <td class="align-middle border-left">{{ $obj->div_nome }}</td>
                                     <td class="align-middle border-left">{{ $obj->div_telefone }}</td>
                                     <td style="display: none;">{{ $obj->div_email }}</td>
-                                    <td class="align-middle border-left">{{ $obj->div_rua }}, {{ $obj->div_numero }} {{ $obj->div_complemento ?? '' }} </td>
+                                    <td class="align-middle border-left">{{ $obj->div_rua }}, {{ $obj->div_numero }}
+                                        {{ $obj->div_complemento ?? '' }}
+                                    </td>
                                     <td style="display: none;">{{ $obj->div_rua }}</td>
                                     <td style="display: none;">{{ $obj->div_numero }}</td>
                                     <td style="display: none;">{{ $obj->div_complemento ?? null }}</td>
                                     <td class="align-middle border-left">{{ $obj->div_bairro }}</td>
                                     <td class="align-middle border-left">{{ $cidade->cid_nome }}/{{ $cidade->cid_uf }}</td>
                                     <td style="display: none;">{{ $cidade->id }}</td>
+                                    <td style="display: none;">{{ $obj->div_cnpj }}</td>
                                     <td class="align-middle th-sm border-left border-right">
                                         <a href="#" class="btn_crud btn btn-info btn-sm view"><i class="fas fa-eye"
                                                 data-toggle="tooltip" title="Visualizar"></i></a>
                                         <a href="#" class="btn_crud btn btn-warning btn-sm edit"><i
                                                 class="fas fa-pencil-alt" data-toggle="tooltip" title="Editar"></i></a>
                                         <!--<a href="#" class="btn_crud btn btn-danger btn-sm delete" data-toggle="tooltip"
-                                                    title="Excluir"><i class="fas fa-trash-alt"></i></a>-->
+                                                                                                                                        title="Excluir"><i class="fas fa-trash-alt"></i></a>-->
                                         <a href="#" class="btn_crud btn btn-danger btn-sm" data-toggle="tooltip"
                                             onclick="return confirmDeletion({{ $obj->id }}, '{{ $obj->div_nome }}-{{ $cidade->cid_nome }}/{{ $cidade->cid_uf }}', '{{ strtolower(class_basename($obj)) }}')"
                                             title="Excluir"><i class="fas fa-trash-alt"></i></a>
@@ -88,6 +92,7 @@
                                 <th class="th-sm border-bottom border-left">Bairro</th>
                                 <th class="th-sm border-bottom border-left">Cidade/UF</th>
                                 <th style="display: none;">id_fk1</th>
+                                <th style="display: none;">cnpj</th>
                                 <th class="th-sm border-bottom border-left border-right">Ações</th>
                             </tr>
                         </tfoot>
@@ -98,8 +103,6 @@
         <!-- End Content Datatable -->
     </div>
     <!-- Begin Page Content -->
-
-
 
     <!-- Start Add Modal -->
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
@@ -112,12 +115,19 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ action('App\Http\Controllers\DivulgadoresController@store') }}" method="POST" id="addForm">
+                    <form action="{{ action('App\Http\Controllers\DivulgadoresController@store') }}" method="POST"
+                        id="addForm">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label class="text-danger float-right">Campo Obrigatório(*)</label>
                         </div>
                         <br>
+                        <div id="div_cnpj" class="form-group">
+                            <label class="mb-0" for="div_cnpj">CNPJ*</label>
+                            <input type="text" name="div_cnpj" value="" id="div_cnpj" class="form-control"
+                                style="width: 185px;" maxlength="18" vk_1bc56="subscribed">
+                            <span class="text-danger" id="div_cnpjError"></span>
+                        </div>
                         <div class="form-group">
                             <label class="mb-0" for="div_nome">Nome*</label>
                             <input type="text" class="form-control" maxlength="100" id="div_nome" name="div_nome" required>
@@ -125,14 +135,14 @@
                         </div>
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="div_telefone">Telefone*</label>
-                            <input type="text" class="form-control" maxlength="15"
-                                style="width: 200px" id="div_telefone" name="div_telefone" required>
+                            <input type="text" class="form-control" maxlength="15" style="width: 200px" id="div_telefone"
+                                name="div_telefone" required>
                             <span class="text-danger" id="div_telefoneError"></span>
                         </div>
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="div_email">E-mail*</label>
-                            <input type="text" class="form-control" maxlength="100"
-                                style="width: 280px" id="div_email" name="div_email" required>
+                            <input type="text" class="form-control" maxlength="100" style="width: 280px" id="div_email"
+                                name="div_email" required>
                             <span class="text-danger" id="div_emailError"></span>
                         </div>
                         <div class="form-group col-xs-2">
@@ -154,8 +164,8 @@
                         </div>
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="div_bairro">Bairro*</label>
-                            <input type="text" class="form-control" maxlength="30"
-                                style="width: 300px" id="div_bairro" name="div_bairro" required>
+                            <input type="text" class="form-control" maxlength="30" style="width: 300px" id="div_bairro"
+                                name="div_bairro" required>
                             <span class="text-danger" id="div_bairroError"></span>
                         </div>
                         <div class="form-group col-xs-2">
@@ -186,7 +196,8 @@
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-warning">
-                    <h5 class="modal-title text-dark font-weight-bold" id="editModalTitle">{{ __('Alterar Anunciante') }}</h5>
+                    <h5 class="modal-title text-dark font-weight-bold" id="editModalTitle">{{ __('Alterar Anunciante') }}
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -200,20 +211,25 @@
                         </div>
                         <br>
                         <div class="form-group">
+                            <label class="mb-0" name="div_cnpj" for="div_cnpj">CNPJ</label>
+                            <input type="text" class="form-control" id="div_cnpj" name="div_cnpj"
+                                style="text-align: right; width: 155px;" maxlength="14" readonly>
+                        </div>
+                        <div class="form-group">
                             <label class="mb-0" for="div_nome">Nome*</label>
                             <input type="text" class="form-control" maxlength="100" id="div_nome" name="div_nome" required>
                             <span class="text-danger" id="div_nomeError"></span>
                         </div>
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="div_telefone">Telefone*</label>
-                            <input type="text" class="form-control" maxlength="15"
-                                style="width: 200px" id="div_telefone" name="div_telefone" required>
+                            <input type="text" class="form-control" maxlength="15" style="width: 200px" id="div_telefone"
+                                name="div_telefone" required>
                             <span class="text-danger" id="div_telefoneError"></span>
                         </div>
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="div_email">E-mail*</label>
-                            <input type="text" class="form-control" maxlength="100"
-                                style="width: 280px" id="div_email" name="div_email" required>
+                            <input type="text" class="form-control" maxlength="100" style="width: 280px" id="div_email"
+                                name="div_email" required>
                             <span class="text-danger" id="div_emailError"></span>
                         </div>
                         <div class="form-group col-xs-2">
@@ -235,8 +251,8 @@
                         </div>
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="div_bairro">Bairro*</label>
-                            <input type="text" class="form-control" maxlength="30"
-                                style="width: 300px" id="div_bairro" name="div_bairro" required>
+                            <input type="text" class="form-control" maxlength="30" style="width: 300px" id="div_bairro"
+                                name="div_bairro" required>
                             <span class="text-danger" id="div_bairroError"></span>
                         </div>
                         <div id="select-cidade" class="form-group col-xs-2">
@@ -272,19 +288,24 @@
                             <input type="text" class="form-control" id="id" name="id"
                                 style="text-align: center; width: 90px" readonly>
                         </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" name="div_cnpj" for="div_cnpj">CNPJ</label>
+                            <input type="text" class="form-control" id="div_cnpj" name="div_cnpj" style="width: 190px;"
+                                readonly>
+                        </div>
                         <div class="form-group">
                             <label class="mb-0" for="div_nome">Nome</label>
                             <input type="text" class="form-control" id="div_nome" name="div_nome" readonly>
                         </div>
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="div_telefone">Telefone</label>
-                            <input type="text" class="form-control" maxlength="15"
-                                style="width: 200px" id="div_telefone" name="div_telefone" readonly>
+                            <input type="text" class="form-control" maxlength="15" style="width: 200px" id="div_telefone"
+                                name="div_telefone" readonly>
                         </div>
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="div_email">E-mail</label>
-                            <input type="text" class="form-control" maxlength="100"
-                                style="width: 280px" id="div_email" name="div_email" readonly>
+                            <input type="text" class="form-control" maxlength="100" style="width: 280px" id="div_email"
+                                name="div_email" readonly>
                         </div>
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="div_rua">Endereço (Rua, Avenida, ...)</label>
@@ -298,12 +319,13 @@
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="div_complemento">Complemento</label>
                             <input type="text" class="form-control" maxlength="15"
-                                style="text-transform: uppercase; width: 230px" id="div_complemento" name="div_complemento" readonly>
+                                style="text-transform: uppercase; width: 230px" id="div_complemento" name="div_complemento"
+                                readonly>
                         </div>
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="div_bairro">Bairro</label>
-                            <input type="text" class="form-control" maxlength="30"
-                                style="width: 300px" id="div_bairro" name="div_bairro" readonly>
+                            <input type="text" class="form-control" maxlength="30" style="width: 300px" id="div_bairro"
+                                name="div_bairro" readonly>
                         </div>
                         <div class="form-group">
                             <label class="mb-0" for="cid_nome">Cidade/UF</label>
@@ -351,17 +373,17 @@
         </div>
     </div>
     <!-- End DELETE Modal -->
- 
+
 @endsection
 
 @section('script_pages')
 
-        <script type="text/javascript">
+    <script type="text/javascript">
         // Anunciante
         $(document).ready(function() {
 
             var table = $('#datatableDivulgadores').DataTable();
-            
+
             //Start Edit Record
             table.on('click', '.edit', function() {
                 $tr = $(this).closest('tr');
@@ -372,6 +394,7 @@
                 var data = table.row($tr).data();
                 console.log(data);
 
+                $('#editModal #div_cnpj').val(data[11]);
                 $('#editModal #div_nome').val(data[1]);
                 $('#editModal #div_telefone').val(data[2]);
                 $('#editModal #div_email').val(data[3]);
@@ -379,7 +402,7 @@
                 $('#editModal #div_numero').val(data[6]);
                 $('#editModal #div_complemento').val(data[7]);
                 $('#editModal #div_bairro').val(data[8]);
-               
+
                 $('#select-cidade').html(
                     '<label class="mb-0" for="cid_id">Cidade/UF*</label>' +
                     '<select class="form-control selectpicker" data-live-search="true" name="cid_id" required>' +
@@ -394,7 +417,7 @@
                 $('#editModal').modal('show');
             });
             //End Edit Record
-            
+
             //Start View
             table.on('click', '.view', function() {
                 $tr = $(this).closest('tr');
@@ -406,6 +429,7 @@
                 console.log(data);
 
                 $('#viewModal #id').val(data[0]);
+                $('#viewModal #div_cnpj').val(data[11]);
                 $('#viewModal #div_nome').val(data[1]);
                 $('#viewModal #div_telefone').val(data[2]);
                 $('#viewModal #div_email').val(data[3]);
@@ -440,6 +464,27 @@
                 $('#deleteModal').modal('show');
             });
             //End Delete Record
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $('#addModal #div_cnpj').mask('00.000.000/0000-00', options);
+
+            var PhoneMaskBehavior = function(val) {
+                    let len = val.replace(/\D/g, '').length;
+                    return len === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+                },
+                phoneOptions = {
+                    onKeyPress: function(val, e, field, options) {
+                        field.mask(PhoneMaskBehavior.apply({}, arguments), options);
+                    }
+                };
+
+            $('#addModal #div_telefone').mask(PhoneMaskBehavior, phoneOptions);
+            $('#editModal #div_telefone').mask(PhoneMaskBehavior, phoneOptions);
         });
 
     </script>

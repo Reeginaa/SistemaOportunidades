@@ -85,7 +85,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">{{ __('Manutenção') }}</h6>
                         <a class="collapse-item" href={{ route('vagas.index') }}><i
-                            class="fas fa-search-plus mr-1"></i>{{ __('Vagas') }}</a>
+                                class="fas fa-search-plus mr-1"></i>{{ __('Vagas') }}</a>
                     </div>
                 </div>
             </li>
@@ -101,11 +101,11 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">{{ __('Manutenção') }}</h6>
-                        <a class="collapse-item" href={{ route('divulgadores.index') }}><i 
-                            class="fas fa-bullhorn mr-1"></i>{{ __('Anunciante') }}</a>
-                        <a class="collapse-item" href={{ route('tipocontratacoes.index') }}><i 
+                        <a class="collapse-item" href={{ route('divulgadores.index') }}><i
+                                class="fas fa-bullhorn mr-1"></i>{{ __('Anunciante') }}</a>
+                        <a class="collapse-item" href={{ route('tipocontratacoes.index') }}><i
                                 class="fas fa-file-signature mr-1"></i>{{ __('Tipo de Contratação') }}</a>
-                        <a class="collapse-item" href={{ route('formatotrabalhos.index') }}><i 
+                        <a class="collapse-item" href={{ route('formatotrabalhos.index') }}><i
                                 class="fas fa-briefcase mr-1"></i>{{ __('Formato de Trabalho') }}</a>
                     </div>
                 </div>
@@ -122,21 +122,23 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">{{ __('Manutenção') }}</h6>
-                        <a class="collapse-item" href={{ route('cidade.index') }}><i 
+                        <a class="collapse-item" href={{ route('cidade.index') }}><i
                                 class="fas fa-city mr-1"></i>{{ __('Cidade') }}</a>
-                        <a class="collapse-item" href={{ route('area.index') }}><i 
+                        <a class="collapse-item" href={{ route('area.index') }}><i
                                 class="fas fa-laptop-code mr-1"></i>{{ __('Área de Atuação') }}</a>
                     </div>
                 </div>
             </li>
 
-            
 
-            
+
+
             <!-- Divider -->
-            {{-- <hr class="sidebar-divider"> --}}
+            {{--
+            <hr class="sidebar-divider"> --}}
 
-            {{-- <!-- Heading -->
+            {{--
+            <!-- Heading -->
             <div class="sidebar-heading">
                 {{ __('Outros') }}
             </div> --}}
@@ -178,7 +180,7 @@
                 </div>
             </li> --}}
 
-            {{-- 
+            {{--
             <!-- Nav Item - Charts -->
             {{--
             <li class="nav-item">
@@ -213,7 +215,9 @@
                     </button>
 
                     <div>
-                        <h1 id="system-title" class="h3 mb-0 text-gray-800 font-weight-bold font-italic">{{ __('Sistema de Oportunidades') }}</h1>
+                        <h1 id="system-title" class="h3 mb-0 text-gray-800 font-weight-bold font-italic">
+                            {{ __('Sistema de Oportunidades') }}
+                        </h1>
 
                     </div>
 
@@ -225,7 +229,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600">Roger</span>
-                                
+
                             </a>
 
                             <!-- Dropdown - User Information -->
@@ -243,7 +247,7 @@
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     {{ __('Registro de Atividades') }}--}}
-                                {{-- </a>
+                                    {{-- </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -256,7 +260,8 @@
 
                 <!-- Alert Start  -->
 
-                @if ($errors->any()) <!-- ou (count($errors) > 0)-->
+                @if ($errors->any())
+                    <!-- ou (count($errors) > 0)-->
                     <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->all() as $error)
@@ -330,8 +335,8 @@
     </a>
 
     <!-- Logout Modal-->
-    {{-- <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    {{-- <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -398,7 +403,7 @@
     --}}
 
 
-    
+
 
     <script type="text/javascript">
         $(function() {

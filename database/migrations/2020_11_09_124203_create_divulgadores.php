@@ -15,6 +15,7 @@ class CreateDivulgadores extends Migration
     {
         Schema::create('divulgadores', function (Blueprint $table) {
             $table->id();
+            $table->string('div_cnpj', 18)->nullable(false)->unique();
             $table->string('div_nome', 100);
             $table->string('div_telefone', 15);
             $table->string('div_email', 100);
