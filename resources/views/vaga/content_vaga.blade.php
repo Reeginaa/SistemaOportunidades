@@ -67,7 +67,8 @@
                                 <tr>
                                     <th class="align-middle border-left">{{ $obj->id }}</th>
                                     <td class="align-middle border-left">
-                                        {{ $obj->vag_status == '1' ? 'ACEITO' : 'RECUSADO' }}</td>
+                                        {{ $obj->vag_status == '1' ? 'ACEITO' : 'RECUSADO' }}
+                                    </td>
                                     <td style="display: none;">{{ $obj->vag_motivo_recusa }}</td>
                                     <td style="display: none;">{{ $obj->vag_carga_horaria }}</td>
                                     <td style="display: none;">{{ $obj->vag_habilidades }}</td>
@@ -216,20 +217,22 @@
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_numero_de_vagas">Número de Vagas*</label>
-                            <input class="form-control" type="number" id="vag_numero_de_vagas" name="vag_numero_de_vagas"
-                                required>
+                            <input class="form-control" style="width: 100px" type="number" id="vag_numero_de_vagas"
+                                name="vag_numero_de_vagas" required>
                             <span class="text-danger" id="vag_numero_de_vagasError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_cep">CEP*</label>
-                            <input class="form-control" id="vag_cep" maxlength="10" name="vag_cep" required>
+                            <input class="form-control" style="width: 120px" id="vag_cep" maxlength="10" name="vag_cep"
+                                required>
                             <span class="text-danger" id="vag_cepError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="cid_id">Cidade/UF*</label>
-                            <select class="form-control selectpicker" data-live-search="true" id="cid_id" name="cid_id" required>
+                            <select class="form-control selectpicker" data-live-search="true" id="cid_id" name="cid_id"
+                                required>
                                 <option value="">Selecione...</option>
                                 @foreach ($cidades as $cidade)
                                     <option value={{ $cidade->id }}> {{ $cidade->cid_nome }}/{{ $cidade->cid_uf }} </option>
@@ -370,14 +373,15 @@
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_numero_de_vagas">Número de Vagas</label>
-                            <input class="form-control" type="number" id="vag_numero_de_vagas" name="vag_numero_de_vagas"
-                                required>
+                            <input class="form-control" type="number" style="width: 100px" id="vag_numero_de_vagas"
+                                name="vag_numero_de_vagas" required>
                             <span class="text-danger" id="vag_numero_de_vagasError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="vag_cep">CEP</label>
-                            <input class="form-control" id="vag_cep" maxlength="10"  name="vag_cep" required>
+                            <label class="mb-0" for="vag_cep">CEP*</label>
+                            <input class="form-control" style="width: 120px" id="vag_cep" maxlength="10" name="vag_cep"
+                                required>
                             <span class="text-danger" id="vag_cepError"></span>
                         </div>
 
@@ -464,12 +468,12 @@
                         </div>
                         <div class="form-group">
                             <label class="mb-0" for="vag_numero_de_vagas">Número de Vagas</label>
-                            <input type="text" class="form-control" id="vag_numero_de_vagas" name="vag_numero_de_vagas"
-                                readonly>
+                            <input type="text" class="form-control" style="width: 100px" id="vag_numero_de_vagas"
+                                name="vag_numero_de_vagas" readonly>
                         </div>
                         <div class="form-group">
                             <label class="mb-0" for="vag_cep">CEP</label>
-                            <input type="text" class="form-control" id="vag_cep" name="vag_cep"
+                            <input type="text" style="width: 120px" class="form-control" id="vag_cep" name="vag_cep"
                                 readonly>
                         </div>
                         <div class="form-group">
@@ -541,85 +545,85 @@
 
 
 
-<script type="text/javascript">
+    <script type="text/javascript">
         // Vagas
         $(document).ready(function() {
 
             $("#addModal #vag_cep").keyup(function() {
 
-            //Nova variável "cep" somente com dígitos.
-            var cep = $(this).val().replace(/\D/g, '');
+                //Nova variável "cep" somente com dígitos.
+                var cep = $(this).val().replace(/\D/g, '');
 
-            //Verifica se campo cep possui valor informado.
-            if (cep != "") {
+                //Verifica se campo cep possui valor informado.
+                if (cep != "") {
 
-                //Expressão regular para validar o CEP.
-                var validacep = /^[0-9]{8}$/;
+                    //Expressão regular para validar o CEP.
+                    var validacep = /^[0-9]{8}$/;
 
-                //Valida o formato do CEP.
-                if(validacep.test(cep)) {
+                    //Valida o formato do CEP.
+                    if (validacep.test(cep)) {
 
 
-                    //Consulta o webservice viacep.com.br/
-                    $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+                        //Consulta o webservice viacep.com.br/
+                        $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function(dados) {
 
-                        if (!("erro" in dados)) {
-                            //Atualiza os campos com os valores da consulta.
-                            $("#addModal #cid_id option").each(function() {
+                            if (!("erro" in dados)) {
+                                //Atualiza os campos com os valores da consulta.
+                                $("#addModal #cid_id option").each(function() {
 
-                                if($(this).text().toUpperCase().includes(dados.localidade.toUpperCase())){
-                                $("#addModal #cid_id").val($(this).val());
+                                    if ($(this).text().toUpperCase().includes(dados
+                                            .localidade.toUpperCase())) {
+                                        $("#addModal #cid_id").val($(this).val());
+                                    }
+
+                                });
+                            } else {
+                                //CEP pesquisado não foi encontrado.
+                                alert("CEP não encontrado.");
                             }
+                        });
+                    }
 
-                            });
-                        } 
-                        else {
-                            //CEP pesquisado não foi encontrado.
-                            alert("CEP não encontrado.");
-                        }
-                    });
-                } 
-               
-            }
-        });
+                }
+            });
 
-        $("#editModal #vag_cep").keyup(function() {
+            $("#editModal #vag_cep").keyup(function() {
 
-            //Nova variável "cep" somente com dígitos.
-            var cep = $(this).val().replace(/\D/g, '');
+                //Nova variável "cep" somente com dígitos.
+                var cep = $(this).val().replace(/\D/g, '');
 
-            //Verifica se campo cep possui valor informado.
-            if (cep != "") {
+                //Verifica se campo cep possui valor informado.
+                if (cep != "") {
 
-                //Expressão regular para validar o CEP.
-                var validacep = /^[0-9]{8}$/;
+                    //Expressão regular para validar o CEP.
+                    var validacep = /^[0-9]{8}$/;
 
-                //Valida o formato do CEP.
-                if(validacep.test(cep)) {
+                    //Valida o formato do CEP.
+                    if (validacep.test(cep)) {
 
 
-                    //Consulta o webservice viacep.com.br/
-                    $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+                        //Consulta o webservice viacep.com.br/
+                        $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function(dados) {
 
-                        if (!("erro" in dados)) {
-                            //Atualiza os campos com os valores da consulta.
-                            $("#editModal #cid_id option").each(function() {
+                            if (!("erro" in dados)) {
+                                //Atualiza os campos com os valores da consulta.
+                                $("#editModal #cid_id option").each(function() {
 
-                                if($(this).text().toUpperCase().includes(dados.localidade.toUpperCase())){
-                                $("#editModal #cid_id").val($(this).val());
+                                    if ($(this).text().toUpperCase().includes(dados
+                                            .localidade.toUpperCase())) {
+                                        $("#editModal #cid_id").val($(this).val());
+                                    }
+
+                                });
+                            } else {
+                                //CEP pesquisado não foi encontrado.
+                                alert("CEP não encontrado.");
                             }
+                        });
+                    }
 
-                            });
-                        } 
-                        else {
-                            //CEP pesquisado não foi encontrado.
-                            alert("CEP não encontrado.");
-                        }
-                    });
-                } 
-               
-            }
-        });
+                }
+            });
 
             $("#editModal #vag_cep").mask("99.999-999");
             $("#addModal #vag_cep").mask("99.999-999");
@@ -646,7 +650,7 @@
                     '</select>');
                 $("select[name='vag_status'] option[value='" + data[16] + "']").attr('selected',
                     'selected');
-                
+
                 $('#editModal #vag_motivo_recusa').val(data[2]);
                 $('#editModal #vag_carga_horaria').val(data[3]);
                 $('#editModal #vag_habilidades').val(data[4]);
