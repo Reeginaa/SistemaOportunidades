@@ -18,7 +18,6 @@ class CreateVagas extends Migration
             $table->date('vag_data_publicacao');
             $table->date('vag_data_alteracao');
             $table->integer('vag_status');
-            $table->string('vag_motivo_recusa', 500)->nullable(true);
             $table->integer('vag_carga_horaria');
             $table->string('vag_habilidades', 250);
             $table->string('vag_diferenciais', 250)->nullable(true);

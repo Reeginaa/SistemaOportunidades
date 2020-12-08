@@ -69,7 +69,6 @@ class VagaController extends Controller
 
         $this->validate($request, [
             'vag_status' => 'required|numeric',
-            'vag_motivo_recusa' => 'max:500',
             'vag_faixa_salarial' => 'nullable|max:250',
             'vag_carga_horaria' => 'required|numeric',
             'vag_habilidades' => 'required|max:250',
@@ -89,7 +88,6 @@ class VagaController extends Controller
         $vaga->vag_data_publicacao = Carbon::now()->toDateTimeString();
         $vaga->vag_data_alteracao = Carbon::now()->toDateTimeString();
         $vaga->vag_status = $request->input('vag_status');
-        $vaga->vag_motivo_recusa = $request->input('vag_motivo_recusa') ? $request->input('vag_motivo_recusa') : '';
         $vaga->vag_carga_horaria = $request->input('vag_carga_horaria');
         $vaga->vag_habilidades = $request->input('vag_habilidades');
         $vaga->vag_diferenciais = $request->input('vag_diferenciais');
@@ -142,7 +140,6 @@ class VagaController extends Controller
     {
         $this->validate($request, [
             'vag_status' => 'required|numeric',
-            'vag_motivo_recusa' => 'max:500',
             'vag_faixa_salarial' => 'nullable|max:250',
             'vag_carga_horaria' => 'required|numeric',
             'vag_habilidades' => 'required|max:250',
@@ -162,7 +159,6 @@ class VagaController extends Controller
         $vaga->vag_data_publicacao = Carbon::now()->toDateTimeString();
         $vaga->vag_data_alteracao = Carbon::now()->toDateTimeString();
         $vaga->vag_status = $request->input('vag_status');
-        $vaga->vag_motivo_recusa = $request->input('vag_motivo_recusa') ? $request->input('vag_motivo_recusa') : '';
         $vaga->vag_carga_horaria = $request->input('vag_carga_horaria');
         $vaga->vag_habilidades = $request->input('vag_habilidades');
         $vaga->vag_diferenciais = $request->input('vag_diferenciais');

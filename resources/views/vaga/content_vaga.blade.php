@@ -32,7 +32,6 @@
                             <tr class="text-justify border">
                                 <th class="th-sm border-bottom border-left">id</th>
                                 <th class="th-sm border-bottom border-left">Status</th>
-                                <th style="display: none;">Motivo Recusa</th>
                                 <th style="display: none;">Carga Horária</th>
                                 <th style="display: none;">Habilidades</th>
                                 <th style="display: none;">Diferenciais</th>
@@ -69,7 +68,6 @@
                                     <td class="align-middle border-left">
                                         {{ $obj->vag_status == '1' ? 'ACEITO' : 'RECUSADO' }}
                                     </td>
-                                    <td style="display: none;">{{ $obj->vag_motivo_recusa }}</td>
                                     <td style="display: none;">{{ $obj->vag_carga_horaria }}</td>
                                     <td style="display: none;">{{ $obj->vag_habilidades }}</td>
                                     <td style="display: none;">{{ $obj->vag_diferenciais }}</td>
@@ -108,7 +106,6 @@
                             <tr>
                                 <th class="th-sm border-bottom border-left">id</th>
                                 <th class="th-sm border-bottom border-left">Status</th>
-                                <th style="display: none;">Motivo Recusa</th>
                                 <th style="display: none;">Carga Horária</th>
                                 <th style="display: none;">Habilidades</th>
                                 <th style="display: none;">Diferenciais</th>
@@ -164,13 +161,6 @@
                                 <option value="0">RECUSADO</option>
                             </select>
                             <span class="text-danger" id="vag_statusError"></span>
-                        </div>
-
-                        <div class="form-group col-xs-2">
-                            <label class="mb-0" for="vag_motivo_recusa">Motivo da Recusa</label>
-                            <textarea class="form-control" maxlength="500" id="vag_motivo_recusa"
-                                name="vag_motivo_recusa"></textarea>
-                            <span class="text-danger" id="vag_motivo_recusaError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
@@ -322,13 +312,6 @@
                         </div>
 
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="vag_motivo_recusa">Motivo da Recusa</label>
-                            <textarea class="form-control" maxlength="500" id="vag_motivo_recusa"
-                                name="vag_motivo_recusa"></textarea>
-                            <span class="text-danger" id="vag_motivo_recusaError"></span>
-                        </div>
-
-                        <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_carga_horaria">Carga horária*</label>
                             <input class="form-control" type="number" id="vag_carga_horaria" name="vag_carga_horaria"
                                 required>
@@ -431,11 +414,6 @@
                         <div class="form-group">
                             <label class="mb-0" for="vag_status">Status</label>
                             <input type="text" class="form-control" id="vag_status" name="vag_status" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label class="mb-0" for="vag_motivo_recusa">Motivo Recusa</label>
-                            <textarea type="text" class="form-control" id="vag_motivo_recusa" name="vag_motivo_recusa"
-                                readonly></textarea>
                         </div>
                         <div class="form-group">
                             <label class="mb-0" for="vag_carga_horaria">Carga Horária</label>
@@ -646,18 +624,17 @@
                     '    <option value="1">ACEITO</option> ' +
                     '    <option value="0">RECUSADO</option> ' +
                     '</select>');
-                $("select[name='vag_status'] option[value='" + data[16] + "']").attr('selected',
+                $("select[name='vag_status'] option[value='" + data[15] + "']").attr('selected',
                     'selected');
 
-                $('#editModal #vag_motivo_recusa').val(data[2]);
-                $('#editModal #vag_carga_horaria').val(data[3]);
-                $('#editModal #vag_habilidades').val(data[4]);
-                $('#editModal #vag_diferenciais').val(data[5]);
-                $('#editModal #vag_faixa_salarial').val(data[6]);
-                $('#editModal #vag_beneficios').val(data[7]);
-                $('#editModal #vag_informacoes_adicionais').val(data[8]);
-                $('#editModal #vag_numero_de_vagas').val(data[9]);
-                $('#editModal #vag_cep').val(data[10]);
+                $('#editModal #vag_carga_horaria').val(data[2]);
+                $('#editModal #vag_habilidades').val(data[3]);
+                $('#editModal #vag_diferenciais').val(data[4]);
+                $('#editModal #vag_faixa_salarial').val(data[5]);
+                $('#editModal #vag_beneficios').val(data[6]);
+                $('#editModal #vag_informacoes_adicionais').val(data[7]);
+                $('#editModal #vag_numero_de_vagas').val(data[8]);
+                $('#editModal #vag_cep').val(data[9]);
 
 
                 $('#select-cidade').html(
@@ -667,7 +644,7 @@
                     '       <option value={{ $cidade->id }}> {{ $cidade->cid_nome }}/{{ $cidade->cid_uf }} </option>' +
                     '   @endforeach' +
                     '</select>');
-                $("select[name='cid_id'] option[value='" + data[17] + "']").attr('selected',
+                $("select[name='cid_id'] option[value='" + data[16] + "']").attr('selected',
                     'selected');
 
                 $('#select-area').html(
@@ -677,7 +654,7 @@
                     '       <option value={{ $area->id }}> {{ $area->area_nome }}</option>' +
                     '   @endforeach' +
                     '</select>');
-                $("select[name='are_id'] option[value='" + data[18] + "']").attr('selected',
+                $("select[name='are_id'] option[value='" + data[17] + "']").attr('selected',
                     'selected');
 
                 $('#select-divulgador').html(
@@ -687,7 +664,7 @@
                     '       <option value={{ $divulgador->id }}> {{ $divulgador->div_nome }}</option>' +
                     '   @endforeach' +
                     '</select>');
-                $("select[name='div_id'] option[value='" + data[19] + "']").attr('selected',
+                $("select[name='div_id'] option[value='" + data[18] + "']").attr('selected',
                     'selected');
 
                 $('#select-tiposContratacao').html(
@@ -697,7 +674,7 @@
                     '       <option value={{ $tipo->id }}> {{ $tipo->tip_nome }}</option>' +
                     '   @endforeach' +
                     '</select>');
-                $("select[name='tip_id'] option[value='" + data[20] + "']").attr('selected',
+                $("select[name='tip_id'] option[value='" + data[19] + "']").attr('selected',
                     'selected');
 
                 $('#select-formatosTrabalho').html(
@@ -707,7 +684,7 @@
                     '       <option value={{ $formatoTrabalho->id }}> {{ $formatoTrabalho->fdt_nome }}</option>' +
                     '   @endforeach' +
                     '</select>');
-                $("select[name='fdt_id'] option[value='" + data[21] + "']").attr('selected',
+                $("select[name='fdt_id'] option[value='" + data[20] + "']").attr('selected',
                     'selected');
 
                 $('#editForm').attr('action', '/vagas/' + data[0]);
@@ -727,20 +704,19 @@
 
                 $('#viewModal #id').val(data[0]);
                 $('#viewModal #vag_status').val(data[1]);
-                $('#viewModal #vag_motivo_recusa').val(data[2]);
-                $('#viewModal #vag_carga_horaria').val(data[3]);
-                $('#viewModal #vag_habilidades').val(data[4]);
-                $('#viewModal #vag_diferenciais').val(data[5]);
-                $('#viewModal #vag_faixa_salarial').val(data[6]);
-                $('#viewModal #vag_beneficios').val(data[7]);
-                $('#viewModal #vag_informacoes_adicionais').val(data[8]);
-                $('#viewModal #vag_numero_de_vagas').val(data[9]);
-                $('#viewModal #vag_cep').val(data[10]);
-                $('#viewModal #cid_nome').val(data[11]);
-                $('#viewModal #are_nome').val(data[12]);
-                $('#viewModal #div_nome').val(data[13]);
-                $('#viewModal #tip_nome').val(data[14]);
-                $('#viewModal #fdt_nome').val(data[15]);
+                $('#viewModal #vag_carga_horaria').val(data[2]);
+                $('#viewModal #vag_habilidades').val(data[3]);
+                $('#viewModal #vag_diferenciais').val(data[4]);
+                $('#viewModal #vag_faixa_salarial').val(data[5]);
+                $('#viewModal #vag_beneficios').val(data[6]);
+                $('#viewModal #vag_informacoes_adicionais').val(data[7]);
+                $('#viewModal #vag_numero_de_vagas').val(data[8]);
+                $('#viewModal #vag_cep').val(data[9]);
+                $('#viewModal #cid_nome').val(data[10]);
+                $('#viewModal #are_nome').val(data[11]);
+                $('#viewModal #div_nome').val(data[12]);
+                $('#viewModal #tip_nome').val(data[13]);
+                $('#viewModal #fdt_nome').val(data[14]);
 
                 $('#viewForm').attr('action');
                 $('#viewModal').modal('show');

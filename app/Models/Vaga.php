@@ -11,7 +11,6 @@ class Vaga extends Model
 
     protected $fillable = [
         'vag_status',
-        'vag_motivo_recusa',
         'vag_carga_horaria',
         'vag_habilidades',
         'vag_diferenciais',
