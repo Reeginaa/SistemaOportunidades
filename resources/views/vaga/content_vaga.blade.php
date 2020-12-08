@@ -196,8 +196,7 @@
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_faixa_salarial">Faixa Salárial</label>
-                            <input class="form-control" type="number" id="vag_faixa_salarial" name="vag_faixa_salarial"
-                                step="0.01" min="0.01">
+                            <input class="form-control" type="text" id="vag_faixa_salarial" name="vag_faixa_salarial">
                             <span class="text-danger" id="vag_faixa_salarialError"></span>
                         </div>
 
@@ -352,8 +351,7 @@
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_faixa_salarial">Faixa Salárial</label>
-                            <input class="form-control" type="number" id="vag_faixa_salarial" name="vag_faixa_salarial"
-                                step="0.01" min="0.00">
+                            <input class="form-control" type="text" id="vag_faixa_salarial" name="vag_faixa_salarial">
                             <span class="text-danger" id="vag_faixa_salarialError"></span>
                         </div>
 

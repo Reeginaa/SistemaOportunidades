@@ -70,7 +70,7 @@ class VagaController extends Controller
         $this->validate($request, [
             'vag_status' => 'required|numeric',
             'vag_motivo_recusa' => 'max:500',
-            'vag_faixa_salarial' => 'nullable|numeric',
+            'vag_faixa_salarial' => 'nullable|max:250',
             'vag_carga_horaria' => 'required|numeric',
             'vag_habilidades' => 'required|max:250',
             'vag_diferenciais' => 'max:250',
@@ -143,7 +143,7 @@ class VagaController extends Controller
         $this->validate($request, [
             'vag_status' => 'required|numeric',
             'vag_motivo_recusa' => 'max:500',
-            'vag_faixa_salarial' => 'nullable|numeric',
+            'vag_faixa_salarial' => 'nullable|max:250',
             'vag_carga_horaria' => 'required|numeric',
             'vag_habilidades' => 'required|max:250',
             'vag_diferenciais' => 'max:250',

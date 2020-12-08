@@ -22,7 +22,7 @@ class CreateVagas extends Migration
             $table->integer('vag_carga_horaria');
             $table->string('vag_habilidades', 250);
             $table->string('vag_diferenciais', 250)->nullable(true);
-            $table->decimal('vag_faixa_salarial')->nullable(true);
+            $table->string('vag_faixa_salarial', 250)->nullable(true);
             $table->string('vag_beneficios', 250)->nullable(true);
             $table->string('vag_informacoes_adicionais', 500)->nullable(true);
             $table->integer('vag_numero_de_vagas');
