@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,22 +14,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');
+Route::get('/', function () {
+    return view('publico');
+});
+//Route::get('/', 'App\Http\Controllers\PublicoController@index')->name('publico');
 
-Route::resource('cidade', 'App\Http\Controllers\CidadeController');
-Route::get('cidade/{id}/destroy', 'App\Http\Controllers\CidadeController@destroy');
+Auth::routes();
 
-Route::resource('area', 'App\Http\Controllers\AreaController');
-Route::get('area/{id}/destroy', 'App\Http\Controllers\AreaController@destroy');
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('cidade', 'App\Http\Controllers\CidadeController');
+    Route::get('cidade/{id}/destroy', 'App\Http\Controllers\CidadeController@destroy');
 
-Route::resource('tipocontratacoes', 'App\Http\Controllers\TipoContratacoesController');
-Route::get('tipocontratacoes/{id}/destroy', 'App\Http\Controllers\TipoContratacoesController@destroy');
+    Route::resource('area', 'App\Http\Controllers\AreaController');
+    Route::get('area/{id}/destroy', 'App\Http\Controllers\AreaController@destroy');
 
-Route::resource('formatotrabalhos', 'App\Http\Controllers\FormatoTrabalhosController');
-Route::get('formatotrabalhos/{id}/destroy', 'App\Http\Controllers\FormatoTrabalhosController@destroy');
+    Route::resource('tipocontratacoes', 'App\Http\Controllers\TipoContratacoesController');
+    Route::get('tipocontratacoes/{id}/destroy', 'App\Http\Controllers\TipoContratacoesController@destroy');
 
-Route::resource('divulgadores', 'App\Http\Controllers\DivulgadoresController');
-Route::get('divulgadores/{id}/destroy', 'App\Http\Controllers\DivulgadoresController@destroy');
+    Route::resource('formatotrabalhos', 'App\Http\Controllers\FormatoTrabalhosController');
+    Route::get('formatotrabalhos/{id}/destroy', 'App\Http\Controllers\FormatoTrabalhosController@destroy');
 
-Route::resource('vagas', 'App\Http\Controllers\VagaController');
-Route::get('vaga/{id}/destroy', 'App\Http\Controllers\VagaController@destroy');
+    Route::resource('divulgadores', 'App\Http\Controllers\DivulgadoresController');
+    Route::get('divulgadores/{id}/destroy', 'App\Http\Controllers\DivulgadoresController@destroy');
+
+    Route::resource('vagas', 'App\Http\Controllers\VagaController');
+    Route::get('vaga/{id}/destroy', 'App\Http\Controllers\VagaController@destroy');
+});
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
