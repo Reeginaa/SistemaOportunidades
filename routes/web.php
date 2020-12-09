@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('publico');
-});
-//Route::get('/', 'App\Http\Controllers\PublicoController@index')->name('publico');
+// Route::get('/', function () {
+//     return view('publico');
+// });
+Route::get('/', [App\Http\Controllers\PublicoController::class, 'index'])->name('publico');
 
 Auth::routes();
 
