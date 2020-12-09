@@ -31,7 +31,6 @@
                         <thead class="thead-dark">
                             <tr class="text-justify border">
                                 <th class="th-sm border-bottom border-left">id</th>
-                                <th class="th-sm border-bottom border-left">Status</th>
                                 <th style="display: none;">Carga Horária</th>
                                 <th style="display: none;">Habilidades</th>
                                 <th style="display: none;">Diferenciais</th>
@@ -45,7 +44,6 @@
                                 <th class="th-sm border-bottom border-left">Anunciante</th>
                                 <th style="display: none;">Tipo de Contratação</th>
                                 <th style="display: none;">Formato de Trabalho</th>
-                                <th style="display: none;">Status_cod</th>
                                 <th style="display: none;">cid_id</th>
                                 <th style="display: none;">are_id</th>
                                 <th style="display: none;">div_id</th>
@@ -65,9 +63,6 @@
                                 @endphp
                                 <tr>
                                     <th class="align-middle border-left">{{ $obj->id }}</th>
-                                    <td class="align-middle border-left">
-                                        {{ $obj->vag_status == '1' ? 'ACEITO' : 'RECUSADO' }}
-                                    </td>
                                     <td style="display: none;">{{ $obj->vag_carga_horaria }}</td>
                                     <td style="display: none;">{{ $obj->vag_habilidades }}</td>
                                     <td style="display: none;">{{ $obj->vag_diferenciais }}</td>
@@ -81,7 +76,6 @@
                                     <td class="align-middle border-left">{{ $divulgador->div_nome }}</td>
                                     <td style="display: none;">{{ $tipoContratacao->tip_nome }}</td>
                                     <td style="display: none;">{{ $formatoTrabalho->fdt_nome }}</td>
-                                    <td style="display: none;">{{ $obj->vag_status }}</td>
                                     <td style="display: none;">{{ $cidade->id }}</td>
                                     <td style="display: none;">{{ $area->id }}</td>
                                     <td style="display: none;">{{ $divulgador->id }}</td>
@@ -94,7 +88,7 @@
                                         <a href="#" class="btn_crud btn btn-warning btn-sm edit"><i
                                                 class="fas fa-pencil-alt" data-toggle="tooltip" title="Editar"></i></a>
                                         <a href="#" class="btn_crud btn btn-danger btn-sm" data-toggle="tooltip"
-                                            onclick="return confirmDeletion({{ $obj->id }}, '{{ $obj->vag_numero_de_vagas }} vaga(s) - {{ $area->area_nome }} - {{ $divulgador->div_nome }} ({{ $obj->vag_status == '1' ? 'ACEITO' : 'RECUSADO' }})', '{{ strtolower(class_basename($obj)) }}')"
+                                            onclick="return confirmDeletion('{{ $obj->id }}', '{{ $obj->vag_numero_de_vagas }} vaga(s) - {{ $area->area_nome }} - {{ $divulgador->div_nome }}', '{{ strtolower(class_basename($obj)) }}')"
                                             title="Excluir">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
@@ -105,7 +99,6 @@
                         <tfoot class="bg-light">
                             <tr>
                                 <th class="th-sm border-bottom border-left">id</th>
-                                <th class="th-sm border-bottom border-left">Status</th>
                                 <th style="display: none;">Carga Horária</th>
                                 <th style="display: none;">Habilidades</th>
                                 <th style="display: none;">Diferenciais</th>
@@ -119,7 +112,6 @@
                                 <th class="th-sm border-bottom border-left">Anunciante</th>
                                 <th style="display: none;">Tipo de Contratação</th>
                                 <th style="display: none;">Formato de Trabalho</th>
-                                <th style="display: none;">Status_cod</th>
                                 <th style="display: none;">cid_id</th>
                                 <th style="display: none;">are_id</th>
                                 <th style="display: none;">div_id</th>
@@ -153,16 +145,7 @@
                             <label class="text-danger float-right">Campo Obrigatório(*)</label>
                         </div>
                         <br>
-                        <div class="form-group">
-                            <label class="mb-0" for="vag_status">Status*</label>
-                            <select class="form-control selectpicker" data-live-search="true" name="vag_status" required>
-                                <option value="">Selecione...</option>
-                                <option value="1">ACEITO</option>
-                                <option value="0">RECUSADO</option>
-                            </select>
-                            <span class="text-danger" id="vag_statusError"></span>
-                        </div>
-
+                        
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_carga_horaria">Carga horária*</label>
                             <input class="form-control" type="number" id="vag_carga_horaria" name="vag_carga_horaria"
@@ -311,17 +294,7 @@
                             <label class="text-danger float-right">Campo Obrigatório(*)</label>
                         </div>
                         <br>
-                        <div class="form-group">
-                            <label class="mb-0" for="vag_status">Status*</label>
-                            <select class="form-control selectpicker" data-live-search="true" id="vag_status"
-                                name="vag_status" required>
-                                <option value="">Selecione...</option>
-                                <option value="1">ACEITO</option>
-                                <option value="0">RECUSADO</option>
-                            </select>
-                            <span class="text-danger" id="vag_statusError"></span>
-                        </div>
-
+                    
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_carga_horaria">Carga horária*</label>
                             <input class="form-control" type="number" id="vag_carga_horaria" name="vag_carga_horaria"
@@ -421,10 +394,6 @@
                             <label class="mb-0" for="id">id</label>
                             <input type="text" class="form-control" id="id" name="id"
                                 style="text-align: center; width: 90px" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label class="mb-0" for="vag_status">Status</label>
-                            <input type="text" class="form-control" id="vag_status" name="vag_status" readonly>
                         </div>
                         <div class="form-group">
                             <label class="mb-0" for="vag_carga_horaria">Carga Horária</label>
@@ -885,24 +854,14 @@
                 console.log(table);
                 console.log(data);
 
-                $('#select-status').html(
-                    '<label class="mb-0" for="vag_status">Status</label>' +
-                    '<select class="form-control selectpicker" data-live-search="true" name="vag_status" required>' +
-                    '    <option value="">Selecione...</option>' +
-                    '    <option value="1">ACEITO</option> ' +
-                    '    <option value="0">RECUSADO</option> ' +
-                    '</select>');
-                $("select[name='vag_status'] option[value='" + data[15] + "']").attr('selected',
-                    'selected');
-
-                $('#editModal #vag_carga_horaria').val(data[2]);
-                $('#editModal #vag_habilidades').val(data[3]);
-                $('#editModal #vag_diferenciais').val(data[4]);
-                $('#editModal #vag_faixa_salarial').val(data[5]);
-                $('#editModal #vag_beneficios').val(data[6]);
-                $('#editModal #vag_informacoes_adicionais').val(data[7]);
-                $('#editModal #vag_numero_de_vagas').val(data[8]);
-                $('#editModal #vag_cep').val(data[9]);
+                $('#editModal #vag_carga_horaria').val(data[1]);
+                $('#editModal #vag_habilidades').val(data[2]);
+                $('#editModal #vag_diferenciais').val(data[3]);
+                $('#editModal #vag_faixa_salarial').val(data[4]);
+                $('#editModal #vag_beneficios').val(data[5]);
+                $('#editModal #vag_informacoes_adicionais').val(data[6]);
+                $('#editModal #vag_numero_de_vagas').val(data[7]);
+                $('#editModal #vag_cep').val(data[8]);
 
 
                 $('#select-cidade').html(
@@ -914,7 +873,7 @@
                     '       <option value={{ $cidade->id }}> {{ $cidade->cid_nome }}/{{ $cidade->cid_uf }} </option>' +
                     '   @endforeach' +
                     '</select>');
-                $("select[name='cid_id'] option[value='" + data[16] + "']").attr('selected',
+                $("select[name='cid_id'] option[value='" + data[14] + "']").attr('selected',
                     'selected');
 
                 $('#select-area').html(
@@ -926,7 +885,7 @@
                     '       <option value={{ $area->id }}> {{ $area->area_nome }}</option>' +
                     '   @endforeach' +
                     '</select>');
-                $("select[name='are_id'] option[value='" + data[17] + "']").attr('selected',
+                $("select[name='are_id'] option[value='" + data[15] + "']").attr('selected',
                     'selected');
 
                 $('#select-divulgador').html(
@@ -938,7 +897,7 @@
                     '       <option value={{ $divulgador->id }}> {{ $divulgador->div_nome }}</option>' +
                     '   @endforeach' +
                     '</select>');
-                $("select[name='div_id'] option[value='" + data[18] + "']").attr('selected',
+                $("select[name='div_id'] option[value='" + data[16] + "']").attr('selected',
                     'selected');
 
                 $('#select-tiposContratacao').html(
@@ -950,7 +909,7 @@
                     '       <option value={{ $tipo->id }}> {{ $tipo->tip_nome }}</option>' +
                     '   @endforeach' +
                     '</select>');
-                $("select[name='tip_id'] option[value='" + data[19] + "']").attr('selected',
+                $("select[name='tip_id'] option[value='" + data[17] + "']").attr('selected',
                     'selected');
 
                 $('#select-formatosTrabalho').html(
@@ -962,7 +921,7 @@
                     '       <option value={{ $formatoTrabalho->id }}> {{ $formatoTrabalho->fdt_nome }}</option>' +
                     '   @endforeach' +
                     '</select>');
-                $("select[name='fdt_id'] option[value='" + data[20] + "']").attr('selected',
+                $("select[name='fdt_id'] option[value='" + data[18] + "']").attr('selected',
                     'selected');
 
                 $('#editForm').attr('action', '/vagas/' + data[0]);
@@ -981,20 +940,19 @@
                 console.log(data);
 
                 $('#viewModal #id').val(data[0]);
-                $('#viewModal #vag_status').val(data[1]);
-                $('#viewModal #vag_carga_horaria').val(data[2]);
-                $('#viewModal #vag_habilidades').val(data[3]);
-                $('#viewModal #vag_diferenciais').val(data[4]);
-                $('#viewModal #vag_faixa_salarial').val(data[5]);
-                $('#viewModal #vag_beneficios').val(data[6]);
-                $('#viewModal #vag_informacoes_adicionais').val(data[7]);
-                $('#viewModal #vag_numero_de_vagas').val(data[8]);
-                $('#viewModal #vag_cep').val(data[9]);
-                $('#viewModal #cid_nome').val(data[10]);
-                $('#viewModal #are_nome').val(data[11]);
-                $('#viewModal #div_nome').val(data[12]);
-                $('#viewModal #tip_nome').val(data[13]);
-                $('#viewModal #fdt_nome').val(data[14]);
+                $('#viewModal #vag_carga_horaria').val(data[1]);
+                $('#viewModal #vag_habilidades').val(data[2]);
+                $('#viewModal #vag_diferenciais').val(data[3]);
+                $('#viewModal #vag_faixa_salarial').val(data[4]);
+                $('#viewModal #vag_beneficios').val(data[5]);
+                $('#viewModal #vag_informacoes_adicionais').val(data[6]);
+                $('#viewModal #vag_numero_de_vagas').val(data[7]);
+                $('#viewModal #vag_cep').val(data[8]);
+                $('#viewModal #cid_nome').val(data[9]);
+                $('#viewModal #are_nome').val(data[10]);
+                $('#viewModal #div_nome').val(data[11]);
+                $('#viewModal #tip_nome').val(data[12]);
+                $('#viewModal #fdt_nome').val(data[13]);
 
                 $('#viewForm').attr('action');
                 $('#viewModal').modal('show');

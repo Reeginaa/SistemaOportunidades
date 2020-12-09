@@ -32,7 +32,7 @@ class VagaController extends Controller
      */
     public function index()
     {
-        $vagas = $this->vaga::all();
+        $vagas = $this->vaga::all()->where('vag_status', '=', 1);
         $cidades = $this->cidade::all()->sortBy('cid_nome');
         $areas = $this->area::all()->sortBy('area_nome');
         $divulgadores = $this->divulgador::all()->sortBy('div_nome');
@@ -68,7 +68,6 @@ class VagaController extends Controller
     {
 
         $this->validate($request, [
-            'vag_status' => 'required|numeric',
             'vag_faixa_salarial' => 'nullable|max:250',
             'vag_carga_horaria' => 'required|numeric',
             'vag_habilidades' => 'required|max:250',
@@ -87,7 +86,6 @@ class VagaController extends Controller
         $vaga =  $this->vaga;
         $vaga->vag_data_publicacao = Carbon::now()->toDateTimeString();
         $vaga->vag_data_alteracao = Carbon::now()->toDateTimeString();
-        $vaga->vag_status = $request->input('vag_status');
         $vaga->vag_carga_horaria = $request->input('vag_carga_horaria');
         $vaga->vag_habilidades = $request->input('vag_habilidades');
         $vaga->vag_diferenciais = $request->input('vag_diferenciais');
@@ -139,7 +137,6 @@ class VagaController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'vag_status' => 'required|numeric',
             'vag_faixa_salarial' => 'nullable|max:250',
             'vag_carga_horaria' => 'required|numeric',
             'vag_habilidades' => 'required|max:250',
@@ -158,7 +155,6 @@ class VagaController extends Controller
         $vaga = $this->vaga::find($id);
         $vaga->vag_data_publicacao = Carbon::now()->toDateTimeString();
         $vaga->vag_data_alteracao = Carbon::now()->toDateTimeString();
-        $vaga->vag_status = $request->input('vag_status');
         $vaga->vag_carga_horaria = $request->input('vag_carga_horaria');
         $vaga->vag_habilidades = $request->input('vag_habilidades');
         $vaga->vag_diferenciais = $request->input('vag_diferenciais');
@@ -190,7 +186,9 @@ class VagaController extends Controller
     {
         try {
             $vaga = $this->vaga::find($id);
-            $vaga->delete();
+            $vaga->vag_status = 0;
+
+            $vaga->save();
 
             return ['status' => 'success'];
         } catch (\Illuminate\Database\QueryException $qe) {
