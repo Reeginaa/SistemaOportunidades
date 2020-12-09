@@ -170,6 +170,9 @@
                         </div>
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="cid_id">Cidade/UF*</label>
+                            <a href="#" class="btn_crud btn btn-sm text-success cidade"><i class="fas fa-plus"
+                                data-toggle="modal" data-target="#addCidade" data-toggle="tooltip"
+                                title="Nova Cidade"></i></a>
                             <select class="form-control selectpicker" data-live-search="true" name="cid_id" required>
                                 <option value="">Selecione...</option>
                                 @foreach ($cidades as $cidade)
@@ -374,6 +377,49 @@
     </div>
     <!-- End DELETE Modal -->
 
+    <!-- MODAL CIDADE -->
+
+    <!-- Start Add Modal -->
+    <div class="modal fade" id="addCidade" tabindex="-1" role="dialog" aria-labelledby="addCidadeLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-info">
+                    <h5 class="modal-title text-white font-weight-bold" id="addCidadeLabel">{{ __('Nova Cidade') }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ action('App\Http\Controllers\CidadeController@store') }}" method="POST" id="addForm">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label class="text-danger float-right">Campo Obrigatório(*)</label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="mb-0" for="cid_nome">Nome*</label>
+                            <input type="text" class="form-control" id="cid_nome" name="cid_nome" required>
+                            <span class="text-danger" id="cid_nomeError"></span>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="cid_uf">UF*</label>
+                            <input type="text" class="form-control" maxlength="2"
+                                style="text-transform: uppercase; width: 60px" id="cid_uf" name="cid_uf" required>
+                            <span class="text-danger" id="cid_ufError"></span>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer bg-light">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="tooltip"
+                        title="Cancelar"><i class="fas fa-undo-alt mr-1"></i>{{ __('Cancelar') }}</button>
+                    <button type="submit" form="addForm" class="btn btn-success" data-toggle="tooltip" title="Salvar"><i
+                            class="fas fa-save mr-1"></i>{{ __('Salvar') }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Add Modal -->
+
 @endsection
 
 @section('script_pages')
@@ -405,6 +451,8 @@
 
                 $('#select-cidade').html(
                     '<label class="mb-0" for="cid_id">Cidade/UF*</label>' +
+                    '<a href="#" class="btn_crud btn btn-sm text-success cidade"><i class="fas fa-plus" data-toggle="modal" data-target="#addCidade" ' +
+                    '    data-toggle="tooltip" title="Nova Cidade"></i></a>' +
                     '<select class="form-control selectpicker" data-live-search="true" name="cid_id" required>' +
                     '   @foreach ($cidades as $cidade)' +
                     '       <option value={{ $cidade->id }}> {{ $cidade->cid_nome }}/{{ $cidade->cid_uf }} </option>' +

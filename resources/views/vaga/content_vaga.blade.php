@@ -220,6 +220,9 @@
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="cid_id">Cidade/UF*</label>
+                            <a href="#" class="btn_crud btn btn-sm text-success cidade"><i class="fas fa-plus"
+                                    data-toggle="modal" data-target="#addCidade" data-toggle="tooltip"
+                                    title="Nova Cidade"></i></a>
                             <select class="form-control selectpicker" data-live-search="true" id="cid_id" name="cid_id"
                                 required>
                                 <option value="">Selecione...</option>
@@ -231,6 +234,8 @@
                         </div>
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="are_id">Area de Atuação*</label>
+                            <a href="#" class="btn_crud btn btn-sm text-success area"><i class="fas fa-plus" data-toggle="modal" data-target="#addArea" 
+                                    data-toggle="tooltip" title="Nova Área de Atuação"></i></a>
                             <select class="form-control selectpicker" data-live-search="true" name="are_id" required>
                                 <option value="">Selecione...</option>
                                 @foreach ($areas as $area)
@@ -241,6 +246,8 @@
                         </div>
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="div_id">Anunciantes*</label>
+                            <a href="#" class="btn_crud btn btn-sm text-success divulgador"><i class="fas fa-plus" data-toggle="modal" data-target="#addDivulgador" 
+                                    data-toggle="tooltip" title="Novo Anunciante"></i></a>
                             <select class="form-control selectpicker" data-live-search="true" name="div_id" required>
                                 <option value="">Selecione...</option>
                                 @foreach ($divulgadores as $divulgador)
@@ -251,6 +258,8 @@
                         </div>
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="tip_id">Tipos de Contratação*</label>
+                            <a href="#" class="btn_crud btn btn-sm text-success tipocontratacao"><i class="fas fa-plus" data-toggle="modal" data-target="#addTipoContratacao" 
+                                    data-toggle="tooltip" title="Novo Tipo de Contratação"></i></a>
                             <select class="form-control selectpicker" data-live-search="true" name="tip_id" required>
                                 <option value="">Selecione...</option>
                                 @foreach ($tiposContratacao as $tipo)
@@ -261,6 +270,8 @@
                         </div>
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="fdt_id">Formatos de Trabalho*</label>
+                            <a href="#" class="btn_crud btn btn-sm text-success formatotrabalho"><i class="fas fa-plus" data-toggle="modal" data-target="#addFormatoTrabalho" 
+                                    data-toggle="tooltip" title="Novo Formato de Trabalho"></i></a>
                             <select class="form-control selectpicker" data-live-search="true" name="fdt_id" required>
                                 <option value="">Selecione...</option>
                                 @foreach ($formatosTrabalho as $formatoTrabalho)
@@ -515,6 +526,263 @@
     </div>
     <!-- End DELETE Modal -->
 
+
+    <!-- MODAIS AUXILIARES INICIO -->
+
+    <!-- MODAL CIDADE -->
+
+    <!-- Start Add Modal -->
+    <div class="modal fade" id="addCidade" tabindex="-1" role="dialog" aria-labelledby="addCidadeLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-info">
+                    <h5 class="modal-title text-white font-weight-bold" id="addCidadeLabel">{{ __('Nova Cidade') }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ action('App\Http\Controllers\CidadeController@store') }}" method="POST" id="addForm">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label class="text-danger float-right">Campo Obrigatório(*)</label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="mb-0" for="cid_nome">Nome*</label>
+                            <input type="text" class="form-control" id="cid_nome" name="cid_nome" required>
+                            <span class="text-danger" id="cid_nomeError"></span>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="cid_uf">UF*</label>
+                            <input type="text" class="form-control" maxlength="2"
+                                style="text-transform: uppercase; width: 60px" id="cid_uf" name="cid_uf" required>
+                            <span class="text-danger" id="cid_ufError"></span>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer bg-light">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="tooltip"
+                        title="Cancelar"><i class="fas fa-undo-alt mr-1"></i>{{ __('Cancelar') }}</button>
+                    <button type="submit" form="addForm" class="btn btn-success" data-toggle="tooltip" title="Salvar"><i
+                            class="fas fa-save mr-1"></i>{{ __('Salvar') }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Add Modal -->
+
+    <!-- MODAL ÁREA DE ATUAÇÃO -->
+
+    <!-- Start Add Modal -->
+    <div class="modal fade" id="addArea" tabindex="-1" role="dialog" aria-labelledby="addAreaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-info">
+                    <h5 class="modal-title text-white font-weight-bold" id="addAreaLabel">{{ __('Nova Área') }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ action('App\Http\Controllers\AreaController@store') }}" method="POST" id="addForm">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label class="text-danger float-right">Campo Obrigatório(*)</label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="mb-0" for="area_nome">Nome*</label>
+                            <input type="text" class="form-control" id="area_nome" name="area_nome" required>
+                            <span class="text-danger" id="area_nomeError"></span>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer bg-light">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="tooltip"
+                        title="Cancelar"><i class="fas fa-undo-alt mr-1"></i>{{ __('Cancelar') }}</button>
+                    <button type="submit" form="addForm" class="btn btn-success" data-toggle="tooltip" title="Salvar"><i
+                            class="fas fa-save mr-1"></i>{{ __('Salvar') }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Add Modal -->
+
+    <!-- MODAL ANUNCIANTES -->
+
+    <!-- Start Add Modal -->
+    <div class="modal fade" id="addDivulgador" tabindex="-1" role="dialog" aria-labelledby="addDivulgadorLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-info">
+                    <h5 class="modal-title text-white font-weight-bold" id="addDivulgadorLabel">{{ __('Novo Anunciante') }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ action('App\Http\Controllers\DivulgadoresController@store') }}" method="POST"
+                        id="addForm">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label class="text-danger float-right">Campo Obrigatório(*)</label>
+                        </div>
+                        <br>
+                        <div id="div_cnpj" class="form-group">
+                            <label class="mb-0" for="div_cnpj">CNPJ*</label>
+                            <input type="text" name="div_cnpj" value="" id="div_cnpj" class="form-control"
+                                style="width: 185px;" maxlength="18" vk_1bc56="subscribed">
+                            <span class="text-danger" id="div_cnpjError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="mb-0" for="div_nome">Nome*</label>
+                            <input type="text" class="form-control" maxlength="100" id="div_nome" name="div_nome" required>
+                            <span class="text-danger" id="div_nomeError"></span>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="div_telefone">Telefone*</label>
+                            <input type="text" class="form-control" maxlength="15" style="width: 200px" id="div_telefone"
+                                name="div_telefone" required>
+                            <span class="text-danger" id="div_telefoneError"></span>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="div_email">E-mail*</label>
+                            <input type="text" class="form-control" maxlength="100" style="width: 280px" id="div_email"
+                                name="div_email" required>
+                            <span class="text-danger" id="div_emailError"></span>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="div_rua">Endereço (Rua, Avenida, ...)*</label>
+                            <input type="text" class="form-control" maxlength="100" id="div_rua" name="div_rua" required>
+                            <span class="text-danger" id="div_ruaError"></span>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="div_numero">Número*</label>
+                            <input type="text" class="form-control" maxlength="10"
+                                style="text-transform: uppercase; width: 180px" id="div_numero" name="div_numero" required>
+                            <span class="text-danger" id="div_numeroError"></span>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="div_complemento">Complemento</label>
+                            <input type="text" class="form-control" maxlength="15"
+                                style="text-transform: uppercase; width: 230px" id="div_complemento" name="div_complemento">
+                            <span class="text-danger" id="div_complemento"></span>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="div_bairro">Bairro*</label>
+                            <input type="text" class="form-control" maxlength="30" style="width: 300px" id="div_bairro"
+                                name="div_bairro" required>
+                            <span class="text-danger" id="div_bairroError"></span>
+                        </div>
+                        <div class="form-group col-xs-2">
+                            <label class="mb-0" for="cid_id">Cidade/UF*</label>
+                            <a href="#" class="btn_crud btn btn-sm text-success cidade"><i class="fas fa-plus"
+                                    data-toggle="modal" data-target="#addCidade" data-toggle="tooltip"
+                                    title="Nova Cidade"></i></a>
+                            <select class="form-control selectpicker" data-live-search="true" name="cid_id" required>
+                                <option value="">Selecione...</option>
+                                @foreach ($cidades as $cidade)
+                                    <option value={{ $cidade->id }}> {{ $cidade->cid_nome }}/{{ $cidade->cid_uf }} </option>
+                                @endforeach
+                            </select>
+                            <span class="text-danger" id="cid_idError"></span>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer bg-light">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="tooltip"
+                        title="Cancelar"><i class="fas fa-undo-alt mr-1"></i>{{ __('Cancelar') }}</button>
+                    <button type="submit" form="addForm" class="btn btn-success" data-toggle="tooltip" title="Salvar"><i
+                            class="fas fa-save mr-1"></i>{{ __('Salvar') }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Add Modal -->
+
+    <!-- MODAL TIPO DE CONTRATAÇÃO -->
+
+    <!-- Start Add Modal -->
+    <div class="modal fade" id="addTipoContratacao" tabindex="-1" role="dialog" aria-labelledby="addTipoContratacaoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-info">
+                    <h5 class="modal-title text-white font-weight-bold" id="addTipoContratacaoLabel">
+                        {{ __('Novo Tipo de Contratação') }}
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ action('App\Http\Controllers\TipoContratacoesController@store') }}" method="POST"
+                        id="addForm">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label class="text-danger float-right">Campo Obrigatório(*)</label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="mb-0" for="tip_nome">Nome*</label>
+                            <input type="text" class="form-control" id="tip_nome" name="tip_nome" required>
+                            <span class="text-danger" id="tip_nomeError"></span>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer bg-light">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="tooltip"
+                        title="Cancelar"><i class="fas fa-undo-alt mr-1"></i>{{ __('Cancelar') }}</button>
+                    <button type="submit" form="addForm" class="btn btn-success" data-toggle="tooltip" title="Salvar"><i
+                            class="fas fa-save mr-1"></i>{{ __('Salvar') }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Add Modal -->
+
+    <!-- MODAL FORMATOS DE TRABALHO -->
+
+    <!-- Start Add Modal -->
+    <div class="modal fade" id="addFormatoTrabalho" tabindex="-1" role="dialog" aria-labelledby="addFormatoTrabalhoLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-info">
+                    <h5 class="modal-title text-white font-weight-bold" id="addFormatoTrabalhoLabel">
+                        {{ __('Novo Formato de Trabalho') }}
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ action('App\Http\Controllers\FormatoTrabalhosController@store') }}" method="POST"
+                        id="addForm">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label class="text-danger float-right">Campo Obrigatório(*)</label>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label class="mb-0" for="fdt_nome">Nome*</label>
+                            <input type="text" class="form-control" id="fdt_nome" name="fdt_nome" required>
+                            <span class="text-danger" id="fdt_nomeError"></span>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer bg-light">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="tooltip"
+                        title="Cancelar"><i class="fas fa-undo-alt mr-1"></i>{{ __('Cancelar') }}</button>
+                    <button type="submit" form="addForm" class="btn btn-success" data-toggle="tooltip" title="Salvar"><i
+                            class="fas fa-save mr-1"></i>{{ __('Salvar') }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Add Modal -->
+
+    <!-- MODAIS AUXILIARES FIM -->
+
 @endsection
 
 @section('script_pages')
@@ -638,7 +906,9 @@
 
 
                 $('#select-cidade').html(
-                    '<label class="mb-0" for="cid_id">Cidade*</label>' +
+                    '<label class="mb-0" for="cid_id">Cidade/UF*</label>' +
+                    '<a href="#" class="btn_crud btn btn-sm text-success cidade"><i class="fas fa-plus" data-toggle="modal" data-target="#addCidade" ' +
+                    '    data-toggle="tooltip" title="Nova Cidade"></i></a>' +
                     '<select class="form-control selectpicker" data-live-search="true" id="cid_id" name="cid_id" required>' +
                     '   @foreach ($cidades as $cidade)' +
                     '       <option value={{ $cidade->id }}> {{ $cidade->cid_nome }}/{{ $cidade->cid_uf }} </option>' +
@@ -649,6 +919,8 @@
 
                 $('#select-area').html(
                     '<label class="mb-0" for="are_id">Area*</label>' +
+                    '<a href="#" class="btn_crud btn btn-sm text-success area"><i class="fas fa-plus" data-toggle="modal" data-target="#addArea" ' +
+                    '    data-toggle="tooltip" title="Nova Área de Atuação"></i></a>' +
                     '<select class="form-control selectpicker" data-live-search="true" name="are_id" required>' +
                     '   @foreach ($areas as $area)' +
                     '       <option value={{ $area->id }}> {{ $area->area_nome }}</option>' +
@@ -659,6 +931,8 @@
 
                 $('#select-divulgador').html(
                     '<label class="mb-0" for="div_id">Anunciante*</label>' +
+                    '<a href="#" class="btn_crud btn btn-sm text-success divulgador"><i class="fas fa-plus" data-toggle="modal" data-target="#addDivulgador" ' +
+                    '    data-toggle="tooltip" title="Novo Anunciante"></i></a>' +
                     '<select class="form-control selectpicker" data-live-search="true" name="div_id" required>' +
                     '   @foreach ($divulgadores as $divulgador)' +
                     '       <option value={{ $divulgador->id }}> {{ $divulgador->div_nome }}</option>' +
@@ -668,7 +942,9 @@
                     'selected');
 
                 $('#select-tiposContratacao').html(
-                    '<label class="mb-0" for="tip_id">Tipos de Contratacao*/label>' +
+                    '<label class="mb-0" for="tip_id">Tipos de Contratacao*</label>' +
+                    '<a href="#" class="btn_crud btn btn-sm text-success tipocontratacao"><i class="fas fa-plus" data-toggle="modal" data-target="#addTipoContratacao" ' +
+                    '    data-toggle="tooltip" title="Novo Tipo de Contratação"></i></a>' +
                     '<select class="form-control selectpicker" data-live-search="true" name="tip_id" required>' +
                     '   @foreach ($tiposContratacao as $tipo)' +
                     '       <option value={{ $tipo->id }}> {{ $tipo->tip_nome }}</option>' +
@@ -679,6 +955,8 @@
 
                 $('#select-formatosTrabalho').html(
                     '<label class="mb-0" for="fdt_id">Formato de Trabalho*</label>' +
+                    '<a href="#" class="btn_crud btn btn-sm text-success formatotrabalho"><i class="fas fa-plus" data-toggle="modal" data-target="#addFormatoTrabalho" ' +
+                    '    data-toggle="tooltip" title="Novo Formato de Trabalho"></i></a>' +
                     '<select class="form-control selectpicker" data-live-search="true" name="fdt_id" required>' +
                     '   @foreach ($formatosTrabalho as $formatoTrabalho)' +
                     '       <option value={{ $formatoTrabalho->id }}> {{ $formatoTrabalho->fdt_nome }}</option>' +

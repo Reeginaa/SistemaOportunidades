@@ -64,6 +64,9 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>{{ __('Painel de Controle') }}</span></a>
             </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+            
             <li class="nav-item collapsed">
                 @guest
                     @if (Route::has('login'))
@@ -252,6 +255,7 @@
                         </h1>
 
                     </div>
+                    
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">

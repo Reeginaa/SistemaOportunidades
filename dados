@@ -1,5 +1,7 @@
 php artisan tinker
 
+App\Models\User::create(['name' => 'Usuário', 'email' => 'usuario@usuario.com.br', 'email_verified_at' => new DateTime, 'password' => Hash::make('12345678')]);
+
 App\Models\Cidade::create(['cid_nome' => 'ACEGUÁ', 'cid_uf' => 'RS']);
 App\Models\Cidade::create(['cid_nome' => 'ÁGUA SANTA', 'cid_uf' => 'RS']);
 App\Models\Cidade::create(['cid_nome' => 'AGUDO', 'cid_uf' => 'RS']);
@@ -527,3 +529,4 @@ App\Models\Divulgadores::create(['div_nome' => 'CONSULTORIA RH', 'div_cnpj' => '
 App\Models\Divulgadores::create(['div_nome' => 'SUPERMERCADO MERCADO', 'div_cnpj' => '53.274.441/0001-48', 'div_telefone' => '(54) 4444-5555', 'div_email' => 'compras@supermercado.com', 'div_rua' => 'RUA FLORIDA', 'div_bairro' => 'SÃO CARLOS', 'div_numero' => '65', 'div_complemento' => 'ANDAR 1', 'cid_id' => 93]);
 App\Models\Divulgadores::create(['div_nome' => 'LOJA VESTE BEM', 'div_cnpj' => '06.690.103/0001-07', 'div_telefone' => '(55) 3512-6666', 'div_email' => 'loja@vestem.com.br', 'div_rua' => 'RUA DEZENOVE', 'div_bairro' => 'CENTRO', 'div_numero' => '45', 'div_complemento' => 'ANDAR 2', 'cid_id' => 368]);
 App\Models\Divulgadores::create(['div_nome' => 'SUPERMERCADO PREÇO BOM', 'div_cnpj' => '07.416.709/0001-11', 'div_telefone' => '(54) 3333-5555', 'div_email' => 'super@mercado.com.br', 'div_rua' => 'RUA CENTRAL', 'div_bairro' => 'CENTRO', 'div_numero' => '5554', 'cid_id' => 428]);
+
