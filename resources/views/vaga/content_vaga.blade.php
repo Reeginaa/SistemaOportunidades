@@ -148,22 +148,22 @@
                         
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_carga_horaria">Carga horária*</label>
-                            <input class="form-control" type="number" id="vag_carga_horaria" name="vag_carga_horaria"
+                            <input class="form-control" type="number" id="vag_carga_horaria" name="vag_carga_horaria" style="width: 100px"
                                 required>
                             <span class="text-danger" id="vag_carga_horariaError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_habilidades">Habilidades*</label>
-                            <input class="form-control" type="text" maxlength="250" id="vag_habilidades"
-                                name="vag_habilidades" required>
+                            <textarea class="form-control" type="text" maxlength="250" id="vag_habilidades"
+                                name="vag_habilidades" required></textarea>
                             <span class="text-danger" id="vag_habilidadesError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_diferenciais">Diferenciais</label>
-                            <input class="form-control" type="text" maxlength="250" id="vag_diferenciais"
-                                name="vag_diferenciais">
+                            <textarea class="form-control" type="text" maxlength="250" id="vag_diferenciais"
+                                name="vag_diferenciais"></textarea>
                             <span class="text-danger" id="vag_diferenciaisError"></span>
                         </div>
 
@@ -175,8 +175,8 @@
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_beneficios">Benificios</label>
-                            <input class="form-control" type="text" maxlength="250" id="vag_beneficios"
-                                name="vag_beneficios">
+                            <textarea class="form-control" type="text" maxlength="250" id="vag_beneficios"
+                                name="vag_beneficios"></textarea>
                             <span class="text-danger" id="vag_beneficiosError"></span>
                         </div>
 
@@ -217,7 +217,7 @@
                         </div>
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="are_id">Area de Atuação*</label>
-                            <a href="#" class="btn_crud btn btn-sm text-success area"><i class="fas fa-plus" data-toggle="modal" data-target="#addArea" 
+                            <a href="#" class="btn_crud btn btn-sm text-success area"><i class="fas fa-plus" data-toggle="modal" data-target="#addArea"
                                     data-toggle="tooltip" title="Nova Área de Atuação"></i></a>
                             <select class="form-control selectpicker" data-live-search="true" name="are_id" required>
                                 <option value="">Selecione...</option>
@@ -229,7 +229,7 @@
                         </div>
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="div_id">Anunciantes*</label>
-                            <a href="#" class="btn_crud btn btn-sm text-success divulgador"><i class="fas fa-plus" data-toggle="modal" data-target="#addDivulgador" 
+                            <a href="#" class="btn_crud btn btn-sm text-success divulgador"><i class="fas fa-plus" data-toggle="modal" data-target="#addDivulgador"
                                     data-toggle="tooltip" title="Novo Anunciante"></i></a>
                             <select class="form-control selectpicker" data-live-search="true" name="div_id" required>
                                 <option value="">Selecione...</option>
@@ -241,7 +241,7 @@
                         </div>
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="tip_id">Tipos de Contratação*</label>
-                            <a href="#" class="btn_crud btn btn-sm text-success tipocontratacao"><i class="fas fa-plus" data-toggle="modal" data-target="#addTipoContratacao" 
+                            <a href="#" class="btn_crud btn btn-sm text-success tipocontratacao"><i class="fas fa-plus" data-toggle="modal" data-target="#addTipoContratacao"
                                     data-toggle="tooltip" title="Novo Tipo de Contratação"></i></a>
                             <select class="form-control selectpicker" data-live-search="true" name="tip_id" required>
                                 <option value="">Selecione...</option>
@@ -253,7 +253,7 @@
                         </div>
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="fdt_id">Formatos de Trabalho*</label>
-                            <a href="#" class="btn_crud btn btn-sm text-success formatotrabalho"><i class="fas fa-plus" data-toggle="modal" data-target="#addFormatoTrabalho" 
+                            <a href="#" class="btn_crud btn btn-sm text-success formatotrabalho"><i class="fas fa-plus" data-toggle="modal" data-target="#addFormatoTrabalho"
                                     data-toggle="tooltip" title="Novo Formato de Trabalho"></i></a>
                             <select class="form-control selectpicker" data-live-search="true" name="fdt_id" required>
                                 <option value="">Selecione...</option>
@@ -297,22 +297,22 @@
                     
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_carga_horaria">Carga horária*</label>
-                            <input class="form-control" type="number" id="vag_carga_horaria" name="vag_carga_horaria"
+                            <input class="form-control" type="number" id="vag_carga_horaria" name="vag_carga_horaria" style="width: 100px"
                                 required>
                             <span class="text-danger" id="vag_carga_horariaError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_habilidades">Habilidades*</label>
-                            <input class="form-control" type="text" maxlength="250" id="vag_habilidades"
-                                name="vag_habilidades" required>
+                            <textarea class="form-control" type="text" maxlength="250" id="vag_habilidades"
+                                name="vag_habilidades" required></textarea>
                             <span class="text-danger" id="vag_habilidadesError"></span>
                         </div>
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_diferenciais">Diferenciais</label>
-                            <input class="form-control" type="text" maxlength="250" id="vag_diferenciais"
-                                name="vag_diferenciais">
+                            <textarea class="form-control" type="text" maxlength="250" id="vag_diferenciais"
+                                name="vag_diferenciais"></textarea>
                             <span class="text-danger" id="vag_diferenciaisError"></span>
                         </div>
 
@@ -323,9 +323,9 @@
                         </div>
 
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="vag_beneficios">Benificios</label>
-                            <input class="form-control" type="text" maxlength="250" id="vag_beneficios"
-                                name="vag_beneficios">
+                            <label class="mb-0" for="vag_beneficios">Benifícios</label>
+                            <textarea class="form-control" type="text" maxlength="250" id="vag_beneficios"
+                                name="vag_beneficios"></textarea>
                             <span class="text-danger" id="vag_beneficiosError"></span>
                         </div>
 
@@ -397,16 +397,16 @@
                         </div>
                         <div class="form-group">
                             <label class="mb-0" for="vag_carga_horaria">Carga Horária</label>
-                            <input type="text" class="form-control" id="vag_carga_horaria" name="vag_carga_horaria"
+                            <input type="text" class="form-control" id="vag_carga_horaria" name="vag_carga_horaria" style="width: 100px"
                                 readonly>
                         </div>
                         <div class="form-group">
                             <label class="mb-0" for="vag_habilidades">Habilidades</label>
-                            <input type="text" class="form-control" id="vag_habilidades" name="vag_habilidades" readonly>
+                            <textarea type="text" class="form-control" id="vag_habilidades" name="vag_habilidades" readonly></textarea>
                         </div>
                         <div class="form-group">
                             <label class="mb-0" for="vag_diferenciais">Diferenciais</label>
-                            <input type="text" class="form-control" id="vag_diferenciais" name="vag_diferenciais" readonly>
+                            <textarea type="text" class="form-control" id="vag_diferenciais" name="vag_diferenciais" readonly></textarea>
                         </div>
                         <div class="form-group">
                             <label class="mb-0" for="vag_faixa_salarial">Faixa Salarial</label>
@@ -415,7 +415,7 @@
                         </div>
                         <div class="form-group">
                             <label class="mb-0" for="vag_beneficios">Beneficios</label>
-                            <input type="text" class="form-control" id="vag_beneficios" name="vag_beneficios" readonly>
+                            <textarea type="text" class="form-control" id="vag_beneficios" name="vag_beneficios" readonly></textarea>
                         </div>
                         <div class="form-group">
                             <label class="mb-0" for="vag_informacoes_adicionais">Informações adicionais</label>

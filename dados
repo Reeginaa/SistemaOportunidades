@@ -1,11 +1,7 @@
 php artisan tinker
-  
 
-echo "Iniciando migrate!"
-    
-    
 App\Models\User::create(['name' => 'Usuário', 'email' => 'usuario@usuario.com.br', 'email_verified_at' => new DateTime, 'password' => Hash::make('12345678')]);
-   
+
 App\Models\Cidade::create(['cid_nome' => 'ACEGUÁ', 'cid_uf' => 'RS']);
 App\Models\Cidade::create(['cid_nome' => 'ÁGUA SANTA', 'cid_uf' => 'RS']);
 App\Models\Cidade::create(['cid_nome' => 'AGUDO', 'cid_uf' => 'RS']);
@@ -504,6 +500,7 @@ App\Models\Cidade::create(['cid_nome' => 'VITÓRIA DAS MISSÕES', 'cid_uf' => 'R
 App\Models\Cidade::create(['cid_nome' => 'WESTFÁLIA', 'cid_uf' => 'RS']);
 App\Models\Cidade::create(['cid_nome' => 'XANGRI-LÁ', 'cid_uf' => 'RS']);
 
+App\Models\Area::create(['area_nome' => 'ATENDIMENTO']);
 App\Models\Area::create(['area_nome' => 'COMERCIAL']);
 App\Models\Area::create(['area_nome' => 'LIMPEZA']);
 App\Models\Area::create(['area_nome' => 'MANUTENÇÃO']);
@@ -529,8 +526,16 @@ App\Models\TipoContratacoes::create(['tip_nome' => 'TRABALHO TERCEIRIZADO']);
 App\Models\TipoContratacoes::create(['tip_nome' => 'TRABALHO TRAINEE']);
 App\Models\TipoContratacoes::create(['tip_nome' => 'TRABALHO VOLUNTÁRIO']);
 
-App\Models\Divulgadores::create(['div_nome' => 'CONSULTORIA RH', 'div_cnpj' => '70.551.831/0001-37', 'div_telefone' => '(54) 3242-1856', 'div_email' => 'rh@rhconsultoria.com.br', 'div_rua' => 'AVENIDA 1', 'div_bairro' => 'CENTRO', 'div_numero' => '1235', 'cid_id' => 282]);
+App\Models\Divulgadores::create(['div_nome' => 'CONSULTORIA RH', 'div_cnpj' => '70.551.831/0001-37', 'div_telefone' => '(54) 3242-1856', 'div_email' => 'rh@rhconsultoria.com.br', 'div_rua' => 'AVENIDA 1', 'div_bairro' => 'CENTRO', 'div_numero' => '1235', 'cid_id' => 305]);
 App\Models\Divulgadores::create(['div_nome' => 'SUPERMERCADO MERCADO', 'div_cnpj' => '53.274.441/0001-48', 'div_telefone' => '(54) 4444-5555', 'div_email' => 'compras@supermercado.com', 'div_rua' => 'RUA FLORIDA', 'div_bairro' => 'SÃO CARLOS', 'div_numero' => '65', 'div_complemento' => 'ANDAR 1', 'cid_id' => 93]);
-App\Models\Divulgadores::create(['div_nome' => 'LOJA VESTE BEM', 'div_cnpj' => '06.690.103/0001-07', 'div_telefone' => '(55) 3512-6666', 'div_email' => 'loja@vestem.com.br', 'div_rua' => 'RUA DEZENOVE', 'div_bairro' => 'CENTRO', 'div_numero' => '45', 'div_complemento' => 'ANDAR 2', 'cid_id' => 368]);
+App\Models\Divulgadores::create(['div_nome' => 'LOJA VESTE BEM', 'div_cnpj' => '06.690.103/0001-07', 'div_telefone' => '(55) 3512-6666', 'div_email' => 'loja@vestebem.com.br', 'div_rua' => 'RUA DEZENOVE', 'div_bairro' => 'CENTRO', 'div_numero' => '45', 'div_complemento' => 'ANDAR 2', 'cid_id' => 368]);
 App\Models\Divulgadores::create(['div_nome' => 'SUPERMERCADO PREÇO BOM', 'div_cnpj' => '07.416.709/0001-11', 'div_telefone' => '(54) 3333-5555', 'div_email' => 'super@mercado.com.br', 'div_rua' => 'RUA CENTRAL', 'div_bairro' => 'CENTRO', 'div_numero' => '5554', 'cid_id' => 428]);
+App\Models\Divulgadores::create(['div_nome' => 'ATACADO VENDE MUITO', 'div_cnpj' => '81.463.202/0001-71', 'div_telefone' => '(54) 4444-4444', 'div_email' => 'atacado@atacado.com.br', 'div_rua' => 'AVENIDA X', 'div_bairro' => 'CENTRO', 'div_numero' => '1234', 'cid_id' => 305]);
+App\Models\Divulgadores::create(['div_nome' => 'CASA DOS IDOSOS', 'div_cnpj' => '19.227.064/0001-58', 'div_telefone' => '(54) 5555-5555', 'div_email' => 'casa@casadosidosos.com.br', 'div_rua' => 'RUA MIL', 'div_bairro' => 'SÃO JOAQUIM', 'div_numero' => '3214', 'div_complemento' => 'ANDAR 1', 'cid_id' => 490]);
 
+App\Models\Vaga::create(['vag_data_publicacao' => '2020-10-30', 'vag_data_alteracao' => '2020-11-19', 'vag_status' => 1, 'vag_carga_horaria' => 20, 'vag_habilidades' => 'SER CORTÊS, DEMONSTRAR PACIÊNCIA, TER HONESTIDADE', 'vag_diferenciais' => 'CONHECIMENTO PRÁTICO SISTEMA X E PACOTE OFFICE', 'vag_faixa_salarial' => 1200.65, 'vag_beneficios' => 'VALE-ALIMENTAÇÃO E VALE-TRANSPORTE E PLANO DE SAÚDE', 'vag_numero_de_vagas' => 1, 'vag_cep' => '99260000', 'cid_id' => 93, 'are_id' => 1, 'div_id' => 2, 'tip_id' => 2, 'fdt_id' => 3]);
+App\Models\Vaga::create(['vag_data_publicacao' => '2020-11-06', 'vag_data_alteracao' => '2020-11-06', 'vag_status' => 1, 'vag_carga_horaria' => 20, 'vag_habilidades' => 'NEGOCIAÇÃO, PRO-ATIVIDADE', 'vag_diferenciais' => 'CARTEIRA DE CLIENTES', 'vag_faixa_salarial' => 2000, 'vag_beneficios' => 'COMISSÃO E AJUDA DE CUSTO COM COMBUSTÍVEL E ALIMENTAÇÃO', 'vag_informacoes_adicionais' => 'HABILITAÇÃO CATEGORIA B', 'vag_numero_de_vagas' => 3, 'vag_cep' => '99260000', 'cid_id' => 93, 'are_id' => 2, 'div_id' => 5, 'tip_id' => 10, 'fdt_id' => 1]);
+App\Models\Vaga::create(['vag_data_publicacao' => '2020-11-24', 'vag_data_alteracao' => '2020-11-27', 'vag_status' => 1, 'vag_carga_horaria' => 44, 'vag_habilidades' => 'NEGOCIAÇÃO, PRO-ATIVIDADE', 'vag_faixa_salarial' => 1500, 'vag_beneficios' => 'COMISSÃO ', 'vag_numero_de_vagas' => 1, 'vag_cep' => '98780010', 'cid_id' => 368, 'are_id' => 2, 'div_id' => 3, 'tip_id' => 9, 'fdt_id' => 3]);
+App\Models\Vaga::create(['vag_data_publicacao' => '2020-12-06', 'vag_data_alteracao' => '2020-12-09', 'vag_status' => 1, 'vag_carga_horaria' => 20, 'vag_habilidades' => 'EXPERIÊNCIA COM LIMPEZA', 'vag_faixa_salarial' => 1300, 'vag_beneficios' => 'VALE-ALIMENTAÇÃO E VALE-TRANSPORTE E PLANO DE SAÚDE', 'vag_numero_de_vagas' => 2, 'vag_cep' => '99250000', 'cid_id' => 428, 'are_id' => 3, 'div_id' => 4, 'tip_id' => 2, 'fdt_id' => 3]);
+App\Models\Vaga::create(['vag_data_publicacao' => '2020-12-08', 'vag_data_alteracao' => '2020-12-08', 'vag_status' => 0, 'vag_carga_horaria' => 30, 'vag_habilidades' => 'CONHECIMENTO AVANÇADO EM C, C#, C++, JAVA, PHYTON, JS, ASSEMBLY, PHP,HTML, CSS, MYSQL, POSTGRESQL, MONGODB, RED E MARIADB', 'vag_diferenciais' => 'CONHECIMENTO BÁSICO EM GOOGLE GO, RUBY E XAMARIM E FRAMEWORKS DAS LINGUAGENS CITADAS', 'vag_faixa_salarial' => 1200, 'vag_beneficios' => 'VALE-ALIMENTAÇÃO E VALE-TRANSPORTE E PLANO DE SAÚDE', 'vag_informacoes_adicionais' => 'DISPONIBILIDADE PARA HORAS EXTRAS', 'vag_numero_de_vagas' => 3, 'vag_cep' => '97050800', 'cid_id' => 305, 'are_id' => 8, 'div_id' => 1, 'tip_id' => 9, 'fdt_id' => 2]);
+App\Models\Vaga::create(['vag_data_publicacao' => '2020-12-09', 'vag_data_alteracao' => '2020-12-09', 'vag_status' => 1, 'vag_carga_horaria' => 20, 'vag_habilidades' => 'TOLERÂNCIA E PACIÊNCIA, OTIMISMO, SABER OBSERVAR E ESCUTAR, QUALIDADES FÍSICAS, INTELECTUAIS E EMOCIONAIS, TER VALORES ÉTICOS E MORAIS, CAPACITAÇÃO PROFISSIONAL', 'vag_diferenciais' => 'EXPERIÊNCIA COMO CUIDADOR(A)', 'vag_faixa_salarial' => 0, 'vag_numero_de_vagas' => 1, 'vag_cep' => '97050800', 'cid_id' => 305, 'are_id' => 1, 'div_id' => 6, 'tip_id' => 12, 'fdt_id' => 3]);

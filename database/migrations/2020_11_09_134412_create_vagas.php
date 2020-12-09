@@ -15,8 +15,8 @@ class CreateVagas extends Migration
     {
         Schema::create('vagas', function (Blueprint $table) {
             $table->id();
-            $table->date('vag_data_publicacao');
-            $table->date('vag_data_alteracao');
+            $table->dateTime('vag_data_publicacao');
+            $table->dateTime('vag_data_alteracao');
             $table->integer('vag_status')->nullable(true)->default(1);
             $table->integer('vag_carga_horaria');
             $table->string('vag_habilidades', 250);
