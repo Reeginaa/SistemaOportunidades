@@ -1,7 +1,11 @@
 php artisan tinker
+  
 
+echo "Iniciando migrate!"
+    
+    
 App\Models\User::create(['name' => 'Usuário', 'email' => 'usuario@usuario.com.br', 'email_verified_at' => new DateTime, 'password' => Hash::make('12345678')]);
-
+   
 App\Models\Cidade::create(['cid_nome' => 'ACEGUÁ', 'cid_uf' => 'RS']);
 App\Models\Cidade::create(['cid_nome' => 'ÁGUA SANTA', 'cid_uf' => 'RS']);
 App\Models\Cidade::create(['cid_nome' => 'AGUDO', 'cid_uf' => 'RS']);
