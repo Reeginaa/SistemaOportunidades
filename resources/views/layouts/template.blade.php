@@ -329,6 +329,17 @@
                 </nav>
 
                 <!-- Alert Start  -->
+                
+                @if (\Session::has('error'))
+                @php
+                    dd("entrou aqui");
+                @endphp
+                    <div class="toast-body">
+                        <div class="alert alert-danger">
+                            <p>{{ \Session::get('error') }}</p>
+                        </div>
+                    </div>
+                @endif
 
                 @if ($errors->any())
                     <!-- ou (count($errors) > 0)-->
@@ -340,7 +351,7 @@
                         </ul>
                     </div>
                 @endif
-
+               
                 @if (\Session::has('success'))
                     <div class="toast-body">
                         <div class="alert alert-success">

@@ -42,7 +42,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <a href="detalhes/{{$obj->id}}" class="btn_crud btn btn-primary btn-sm details">Ver detalhes da vaga</a>
+                                    <a href="detalhes/{{ hash("sha256", md5($obj->id + 2.42)) }}" class="btn_crud btn btn-primary btn-sm details">Ver detalhes da vaga</a>
                                     <!--<button class="btn btn-sm btn-primary">Ver detalhes da vaga</button>-->
                                 </div>
                                 <div class="col-md-6">
