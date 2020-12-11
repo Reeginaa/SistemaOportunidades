@@ -57,6 +57,10 @@ class CidadeController extends Controller
 
         $cidades->save();
 
+        if ($request->input('ajax')) {
+            return json_encode($cidades);
+        }
+
         return redirect('cidade')
             ->with('success', 'Cidade salva com sucesso!');
     }
