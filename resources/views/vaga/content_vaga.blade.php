@@ -132,7 +132,7 @@
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
-            
+
                 <div class="modal-header bg-success">
                     <h5 class="modal-title text-white font-weight-bold" id="addModalLabel">{{ __('Nova Vaga') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -143,12 +143,12 @@
                 <div class="modal-body">
                     <form action="{{ action('App\Http\Controllers\VagaController@store') }}" method="POST" id="addForm">
                         {{ csrf_field() }}
-                       
+
                         <div class="form-group">
                             <label class="text-danger float-right">Campo Obrigatório(*)</label>
                         </div>
                         <br>
-                        
+
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_carga_horaria">Carga horária*</label>
                             <input class="form-control" type="number" id="vag_carga_horaria" name="vag_carga_horaria" style="width: 100px"
@@ -309,7 +309,7 @@
                             <label class="text-danger float-right">Campo Obrigatório(*)</label>
                         </div>
                         <br>
-                    
+
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="vag_carga_horaria">Carga horária*</label>
                             <input class="form-control" type="number" id="vag_carga_horaria" name="vag_carga_horaria" style="width: 100px"
@@ -771,15 +771,13 @@
 
 @section('script_pages')
 
-
-
     <script type="text/javascript">
 
         // Vagas
         $(document).ready(function() {
 
             $("#formAddCidade").submit(function() {
-                    
+
                 // Pegando os dados do formulário e pegando o token que válida o request.
                 var cid_nome = $("#cid_nome_modal").val();
                 var cid_uf = $("#cid_uf_modal").val();
@@ -799,7 +797,7 @@
                     type: 'POST',
                     data: dados
                 })
-                
+
                 // Caso der sucesso então adiciona a nova cidade no select e fecha o modal.
                 .done(function (result) {
                     result = JSON.parse(result); // Como o resultado volta em string então da parse pra JSON
@@ -816,7 +814,7 @@
                     // Fechando o modal
                     $('#addCidade').modal('hide');
                 })
-                
+
                 // Caso der erro então da um aviso.
                 .fail(function (err) {
                     console.log(err);
@@ -825,9 +823,9 @@
 
                 return false;
             });
-            
+
             $("#formAddArea").submit(function() {
-                    
+
                 // Pegando os dados do formulário e pegando o token que válida o request.
                 var area_nome = $("#area_nome_modal").val();
                 var _token = $("[name='_token']")[0].value;
@@ -845,11 +843,11 @@
                     type: 'POST',
                     data: dados
                 })
-                
+
                 // Caso der sucesso então adiciona a nova area no select e fecha o modal.
                 .done(function (result) {
                     result = JSON.parse(result); // Como o resultado volta em string então da parse pra JSON
-                    
+
                     // Setando a area no select.
                     $('[name=are_id]').map(function(_i, element) {
                         var option = document.createElement("option");
@@ -862,7 +860,7 @@
                     // Fechando o modal
                     $('#addArea').modal('hide');
                 })
-                
+
                 // Caso der erro então da um aviso.
                 .fail(function (err) {
                     console.log(err);
@@ -871,9 +869,9 @@
 
                 return false;
             });
-            
+
             $("#formAddDivulgador").submit(function() {
-                    
+
                 // Pegando os dados do formulário e pegando o token que válida o request.
                 var div_cnpj = $("#div_cnpj_modal").val();
                 var div_nome = $("#div_nome_modal").val();
@@ -907,7 +905,7 @@
                     type: 'POST',
                     data: dados
                 })
-                
+
                 // Caso der sucesso então adiciona o novo divulgador no select e fecha o modal.
                 .done(function (result) {
                     result = JSON.parse(result); // Como o resultado volta em string então da parse pra JSON
@@ -924,7 +922,7 @@
                     // Fechando o modal
                     $('#addDivulgador').modal('hide');
                 })
-                
+
                 // Caso der erro então da um aviso.
                 .fail(function (err) {
                     console.log(err);
@@ -935,7 +933,7 @@
             });
 
             $("#formAddTipoContracao").submit(function() {
-                    
+
                 // Pegando os dados do formulário e pegando o token que válida o request.
                 var tip_nome = $("#tip_nome_modal").val();
                 var _token = $("[name='_token']")[0].value;
@@ -953,11 +951,11 @@
                     type: 'POST',
                     data: dados
                 })
-                
+
                 // Caso der sucesso então adiciona o novo tipo de contração no select e fecha o modal.
                 .done(function (result) {
                     result = JSON.parse(result); // Como o resultado volta em string então da parse pra JSON
-                    
+
                     // Setando o tipo de contração no select.
                     $('[name=tip_id]').map(function(_i, element) {
                         var option = document.createElement("option");
@@ -970,7 +968,7 @@
                     // Fechando o modal
                     $('#addTipoContratacao').modal('hide');
                 })
-                
+
                 // Caso der erro então da um aviso.
                 .fail(function (err) {
                     console.log(err);
@@ -979,9 +977,9 @@
 
                 return false;
             });
-            
+
             $("#addFormatoTrabalho").submit(function() {
-                    
+
                 // Pegando os dados do formulário e pegando o token que válida o request.
                 var fdt_nome = $("#fdt_nome_modal").val();
                 var _token = $("[name='_token']")[0].value;
@@ -999,11 +997,11 @@
                     type: 'POST',
                     data: dados
                 })
-                
+
                 // Caso der sucesso então adiciona o novo formato de trabalho no select e fecha o modal.
                 .done(function (result) {
                     result = JSON.parse(result); // Como o resultado volta em string então da parse pra JSON
-                    
+
                     // Setando o formato de trabalho no select.
                     $('[name=fdt_id]').map(function(_i, element) {
                         var option = document.createElement("option");
@@ -1016,7 +1014,7 @@
                     // Fechando o modal
                     $('#addFormatoTrabalho').modal('hide');
                 })
-                
+
                 // Caso der erro então da um aviso.
                 .fail(function (err) {
                     console.log(err);

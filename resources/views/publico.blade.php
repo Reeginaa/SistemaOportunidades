@@ -24,25 +24,25 @@
                 @foreach ($vagas as $obj)
                 <div class="card col-md-6">
                     <div class="card" style="margin: 15px 0;">
-                        <div class="foto" style="height: 100px; 
-                            width: 100%; 
+                        <div class="foto" style="height: 100px;
+                            width: 100%;
                             background-image: url('https://www.woelfer.com.br/wp-content/uploads/2019/05/Aperto-de-m%C3%A3os-875x330.jpg');
                             background-size: cover;
                             background-position: center center;
                             opacity: 0.2;"
                         ></div>
-                        
+
                         <div class="card-body" style="text-align: left;">
                             <h5 class="card-title" style="text-align: center;">{{$obj->area_nome}}</h5>
                             <div class="card-text" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><strong>Divulgador:</strong> {{$obj->div_nome}}</div>
                             <div class="card-text" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><strong>Cidade:</strong> {{$obj->cid_nome}} - {{$obj->cid_uf}}</div>
                             <div class="card-text" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><strong>Tipo da contratação:</strong> {{$obj->tip_nome}}</div>
-                            
+
                             <div class="card-text" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><strong>Habilidades:</strong> {{$obj->vag_habilidades}}</div>
                             <br>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <a href="detalhes/{{ hash("sha256", md5($obj->id + 2.42)) }}" class="btn_crud btn btn-primary btn-sm details">Ver detalhes da vaga</a>
+                                    <a href="detalhes/{{ hash("sha256", md5($obj->id + 2.42)) }}" class="btn_crud btn btn-primary btn-sm details" target="_blank">Ver detalhes da vaga</a>
                                     <!--<button class="btn btn-sm btn-primary">Ver detalhes da vaga</button>-->
                                 </div>
                                 <div class="col-md-6">
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                 </div>
-                    
+
                 @endforeach
             </div>
         </div>
@@ -62,8 +62,6 @@
 
     @section('script_pages')
 
-        
-
-        <!-- Null -->
+    <!-- Null -->
 
     @endsection

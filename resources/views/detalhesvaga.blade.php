@@ -19,8 +19,8 @@
                 <div class="row">
                     <div class="col">
                         <div class="card">
-                            <div class="foto" style="height: 100px; 
-                                                        width: 100%; 
+                            <div class="foto" style="height: 100px;
+                                                        width: 100%;
                                                         background-image: url('https://www.woelfer.com.br/wp-content/uploads/2019/05/Aperto-de-m%C3%A3os-875x330.jpg');
                                                         background-size: cover;
                                                         background-position: center center;
@@ -84,7 +84,7 @@
                                     style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
                                     <strong> Outras Informações: </strong> {{ $vaga->vag_informacoes_adicionais ?? 'NÃO INFORMADO' }}
                                 </div>
-                                
+
                                 <br>
                                 <h5 class="card-title mb-2">ANUNCIANTE</h5>
                                 <div class="card-text mb-2"

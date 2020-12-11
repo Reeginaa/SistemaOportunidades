@@ -55,8 +55,8 @@ class PublicoController extends Controller
     {
         // Busca o maior id da tabela
         $maiorId = DB::select('SELECT * FROM vagas ORDER BY id DESC LIMIT 1')[0];
-        
-        // Busca 
+
+        // Busca
         for ($i = 1; $i <= $maiorId->id; $i++) {
             if (hash("sha256", md5($i + 2.42)) == $id) {
                 $vagas = $this->vaga::find($i);
@@ -78,7 +78,7 @@ class PublicoController extends Controller
             }
         }
 
-        $vagas = DB::select('SELECT vag.*,
+       /* $vagas = DB::select('SELECT vag.*,
                     divu.div_cnpj, divu.div_nome, divu.div_telefone, divu.div_email, divu.div_rua, divu.div_bairro, divu.div_numero, divu.div_complemento,
                     cid.cid_nome , cid.cid_uf,
                     are.area_nome,
@@ -91,9 +91,9 @@ class PublicoController extends Controller
             INNER JOIN tipo_contratacoes tip ON vag.tip_id = tip.id
             INNER JOIN formato_trabalhos fdt ON vag.fdt_id = fdt.id
             WHERE vag.vag_status = 1 AND vag.vag_data_publicacao >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
-            ORDER BY vag.id ASC');
+            ORDER BY vag.id ASC');*/
 
-        return view('home')->with('vagas', $vagas)->with('error', 'Vaga não encontrada!');
-        //return $this->index();
+        //return view('home')->with('vagas', $vagas)->with('error', 'Vaga não encontrada!');
+        return $this->index();
     }
 }
