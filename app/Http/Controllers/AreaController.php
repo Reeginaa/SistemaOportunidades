@@ -55,6 +55,10 @@ class AreaController extends Controller
 
         $areas->save();
 
+        if ($request->input('ajax')) {
+            return json_encode($areas);
+        }
+
         return redirect('area')
             ->with('success', 'Area salva com sucesso!');
     }

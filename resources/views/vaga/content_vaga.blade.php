@@ -570,24 +570,26 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ action('App\Http\Controllers\AreaController@store') }}" method="POST" id="addForm">
+                    <form action="{{ action('App\Http\Controllers\AreaController@store') }}" method="POST" id="formAddArea">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label class="text-danger float-right">Campo Obrigatório(*)</label>
                         </div>
                         <br>
                         <div class="form-group">
-                            <label class="mb-0" for="area_nome">Nome*</label>
-                            <input type="text" class="form-control" id="area_nome" name="area_nome" required>
-                            <span class="text-danger" id="area_nomeError"></span>
+                            <label class="mb-0" for="area_nome_modal">Nome*</label>
+                            <input type="text" class="form-control" id="area_nome_modal" name="area_nome_modal" required>
+                            <span class="text-danger" id="area_nome_modalError"></span>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer bg-light">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="tooltip"
-                        title="Cancelar"><i class="fas fa-undo-alt mr-1"></i>{{ __('Cancelar') }}</button>
-                    <button type="submit" form="addForm" class="btn btn-success" data-toggle="tooltip" title="Salvar"><i
-                            class="fas fa-save mr-1"></i>{{ __('Salvar') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="tooltip" title="Cancelar">
+                        <i class="fas fa-undo-alt mr-1"></i>{{ __('Cancelar') }}
+                    </button>
+                    <button type="submit" form="formAddArea" class="btn btn-success" data-toggle="tooltip" title="Salvar">
+                        <i class="fas fa-save mr-1"></i>{{ __('Salvar') }}
+                    </button>
                 </div>
             </div>
         </div>
@@ -775,6 +777,7 @@
 
 
     <script type="text/javascript">
+
         // Vagas
         $(document).ready(function() {
 
@@ -784,18 +787,6 @@
                 var cid_nome = $("#cid_nome_modal").val();
                 var cid_uf = $("#cid_uf_modal").val();
                 var _token = $("[name='_token']")[0].value;
-
-                // Validando o nome.
-                if (!cid_nome) {
-                    alert("Você deve informar o nome da cidade!")
-                    return;
-                }
-
-                // Validando a UF.
-                if (!cid_uf) {
-                    alert("Você deve informar a UF da cidade!")
-                    return;
-                }
 
                 // Montando o objeto que sera enviado na request.
                 var dados = {
@@ -830,9 +821,56 @@
                 })
                 
                 // Caso der erro então da um aviso.
-                .fail(function (result) {
-                    console.log(result);
+                .fail(function (err) {
+                    console.log(err);
                     alert("Erro ao tentar cadastrar a cidade.");
+                })
+
+                return false;
+            });
+
+
+            $("#formAddArea").submit(function() {
+                    
+                // Pegando os dados do formulário e pegando o token que válida o request.
+                var area_nome = $("#area_nome_modal").val();
+                var _token = $("[name='_token']")[0].value;
+
+                // Montando o objeto que sera enviado na request.
+                var dados = {
+                    area_nome: area_nome,
+                    _token: _token,
+                    ajax: true
+                }
+
+                // Executando o POST para a rota de cadastro de area
+                $.ajax({
+                    url: "/area",
+                    type: 'POST',
+                    data: dados
+                })
+                
+                // Caso der sucesso então adiciona a nova area no select e fecha o modal.
+                .done(function (result) {
+                    result = JSON.parse(result); // Como o resultado volta em string então da parse pra JSON
+                    
+                    // Setando a area no select.
+                    $('[name=are_id]').map(function(_i, element) {
+                        var option = document.createElement("option");
+                        option.text = result.area_nome;
+                        option.value = result.id;
+                        element.appendChild(option);
+                        element.value = result.id;
+                    });
+
+                    // Fechando o modal
+                    $('#addArea').modal('hide');
+                })
+                
+                // Caso der erro então da um aviso.
+                .fail(function (err) {
+                    console.log(err);
+                    alert("Erro ao tentar cadastrar a area.");
                 })
 
                 return false;
