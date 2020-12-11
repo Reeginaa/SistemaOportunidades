@@ -295,15 +295,15 @@
 
                         <li class="nav-item collapsed">
                             @guest
-                                @if (Route::has('login'))
-                                    <li class="nav-item">
-                                        <a class="nav-link text-danger" href="{{ route('login') }}">{{ __('Entrar') }}</a>
-                                    </li>
-                                @endif
-            
                                 @if (Route::has('register'))
                                     <li class="nav-item">
                                         <a class="nav-link text-danger" href="{{ route('register') }}">{{ __('Cadastrar-se') }}</a>
+                                    </li>
+                                @endif
+
+                                @if (Route::has('login'))
+                                    <li class="nav-item">
+                                        <a class="nav-link text-danger" href="{{ route('login') }}">{{ __('Entrar') }}</a>
                                     </li>
                                 @endif
                                 @else

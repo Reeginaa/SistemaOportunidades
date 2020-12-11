@@ -22,7 +22,7 @@
             <h5>Gestor de Oportunidades</h5>
                 <div class="row">
                 @foreach ($vagas as $obj)
-                <div class="col-md-6">
+                <div class="card col-md-6">
                     <div class="card" style="margin: 15px 0;">
                         <div class="foto" style="height: 100px; 
                             width: 100%; 
@@ -37,6 +37,7 @@
                             <div class="card-text" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><strong>Divulgador:</strong> {{$obj->div_nome}}</div>
                             <div class="card-text" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><strong>Cidade:</strong> {{$obj->cid_nome}} - {{$obj->cid_uf}}</div>
                             <div class="card-text" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><strong>Tipo da contratação:</strong> {{$obj->tip_nome}}</div>
+                            
                             <div class="card-text" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><strong>Habilidades:</strong> {{$obj->vag_habilidades}}</div>
                             <br>
                             <div class="row">
