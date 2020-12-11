@@ -1,4 +1,6 @@
 php artisan tinker
+ 
+echo "Iniciando Tinker!"
 
 App\Models\User::create(['name' => 'Usuário', 'email' => 'usuario@usuario.com.br', 'email_verified_at' => new DateTime, 'password' => Hash::make('12345678')]);
 
@@ -539,3 +541,7 @@ App\Models\Vaga::create(['vag_data_publicacao' => '2020-11-24', 'vag_data_altera
 App\Models\Vaga::create(['vag_data_publicacao' => '2020-12-06', 'vag_data_alteracao' => '2020-12-09', 'vag_status' => 1, 'vag_carga_horaria' => 20, 'vag_habilidades' => 'EXPERIÊNCIA COM LIMPEZA', 'vag_faixa_salarial' => 1300, 'vag_beneficios' => 'VALE-ALIMENTAÇÃO E VALE-TRANSPORTE E PLANO DE SAÚDE', 'vag_numero_de_vagas' => 2, 'vag_cep' => '99250000', 'cid_id' => 428, 'are_id' => 3, 'div_id' => 4, 'tip_id' => 2, 'fdt_id' => 3]);
 App\Models\Vaga::create(['vag_data_publicacao' => '2020-12-08', 'vag_data_alteracao' => '2020-12-08', 'vag_status' => 0, 'vag_carga_horaria' => 30, 'vag_habilidades' => 'CONHECIMENTO AVANÇADO EM C, C#, C++, JAVA, PHYTON, JS, ASSEMBLY, PHP,HTML, CSS, MYSQL, POSTGRESQL, MONGODB, RED E MARIADB', 'vag_diferenciais' => 'CONHECIMENTO BÁSICO EM GOOGLE GO, RUBY E XAMARIM E FRAMEWORKS DAS LINGUAGENS CITADAS', 'vag_faixa_salarial' => 1200, 'vag_beneficios' => 'VALE-ALIMENTAÇÃO E VALE-TRANSPORTE E PLANO DE SAÚDE', 'vag_informacoes_adicionais' => 'DISPONIBILIDADE PARA HORAS EXTRAS', 'vag_numero_de_vagas' => 3, 'vag_cep' => '97050800', 'cid_id' => 305, 'are_id' => 8, 'div_id' => 1, 'tip_id' => 9, 'fdt_id' => 2]);
 App\Models\Vaga::create(['vag_data_publicacao' => '2020-12-09', 'vag_data_alteracao' => '2020-12-09', 'vag_status' => 1, 'vag_carga_horaria' => 20, 'vag_habilidades' => 'TOLERÂNCIA E PACIÊNCIA, OTIMISMO, SABER OBSERVAR E ESCUTAR, QUALIDADES FÍSICAS, INTELECTUAIS E EMOCIONAIS, TER VALORES ÉTICOS E MORAIS, CAPACITAÇÃO PROFISSIONAL', 'vag_diferenciais' => 'EXPERIÊNCIA COMO CUIDADOR(A)', 'vag_faixa_salarial' => 0, 'vag_numero_de_vagas' => 1, 'vag_cep' => '97050800', 'cid_id' => 305, 'are_id' => 1, 'div_id' => 6, 'tip_id' => 12, 'fdt_id' => 3]);
+
+App\Models\User::create(['name' => 'Usuário', 'email' => 'usuario@usuario.com.br', 'email_verified_at' => new DateTime, 'password' => Hash::make('12345678')]);
+
+echo "Tinker Finalizado!"
