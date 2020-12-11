@@ -516,7 +516,7 @@
     <!-- MODAL CIDADE -->
 
     <!-- Start Add Modal -->
-    <div class="modal fade" id="addCidade" tabindex="-1" role="dialog" aria-labelledby="addCidadeLabel" aria-hidden="true">
+    <div class="modal fade" id="addCidade" tabindex="1600" role="dialog" aria-labelledby="addCidadeLabel" aria-hidden="true" style="z-index: 1600 !important;">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-info">
@@ -599,7 +599,7 @@
     <!-- MODAL ANUNCIANTES -->
 
     <!-- Start Add Modal -->
-    <div class="modal fade" id="addDivulgador" tabindex="-1" role="dialog" aria-labelledby="addDivulgadorLabel" aria-hidden="true">
+    <div class="modal fade" id="addDivulgador" tabindex="1400" role="dialog" aria-labelledby="addDivulgadorLabel" aria-hidden="true" style="z-index: 1400 !important;">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-info">
@@ -807,7 +807,7 @@
                     // Setando a cidade no select.
                     $('[name=cid_id]').map(function(_i, element) {
                         var option = document.createElement("option");
-                        option.text = result.cid_nome;
+                        option.text = result.cid_nome + "/" + result.cid_uf;
                         option.value = result.id;
                         element.appendChild(option);
                         element.value = result.id;
@@ -1127,7 +1127,7 @@
 
                 $('#select-cidade').html(
                     '<label class="mb-0" for="cid_id">Cidade/UF*</label>' +
-                    '<a href="#" class="btn_crud btn btn-sm text-success cidade"><i class="fas fa-plus" data-toggle="modal" data-target="#addCidade" ' +
+                    '<a href="#" class="btn_crud btn btn-sm text-success cidade" data-toggle="modal" data-target="#addCidade"><i class="fas fa-plus"' +
                     '    data-toggle="tooltip" title="Nova Cidade"></i></a>' +
                     '<select class="form-control selectpicker" data-live-search="true" id="cid_id" name="cid_id" required>' +
                     '   @foreach ($cidades as $cidade)' +
@@ -1139,7 +1139,7 @@
 
                 $('#select-area').html(
                     '<label class="mb-0" for="are_id">Area*</label>' +
-                    '<a href="#" class="btn_crud btn btn-sm text-success area"><i class="fas fa-plus" data-toggle="modal" data-target="#addArea" ' +
+                    '<a href="#" class="btn_crud btn btn-sm text-success area" data-toggle="modal" data-target="#addArea"><i class="fas fa-plus"' +
                     '    data-toggle="tooltip" title="Nova Área de Atuação"></i></a>' +
                     '<select class="form-control selectpicker" data-live-search="true" name="are_id" required>' +
                     '   @foreach ($areas as $area)' +
@@ -1151,7 +1151,7 @@
 
                 $('#select-divulgador').html(
                     '<label class="mb-0" for="div_id">Anunciante*</label>' +
-                    '<a href="#" class="btn_crud btn btn-sm text-success divulgador"><i class="fas fa-plus" data-toggle="modal" data-target="#addDivulgador" ' +
+                    '<a href="#" class="btn_crud btn btn-sm text-success divulgador" data-toggle="modal" data-target="#addDivulgador"><i class="fas fa-plus"' +
                     '    data-toggle="tooltip" title="Novo Anunciante"></i></a>' +
                     '<select class="form-control selectpicker" data-live-search="true" name="div_id" required>' +
                     '   @foreach ($divulgadores as $divulgador)' +
@@ -1163,7 +1163,7 @@
 
                 $('#select-tiposContratacao').html(
                     '<label class="mb-0" for="tip_id">Tipos de Contratacao*</label>' +
-                    '<a href="#" class="btn_crud btn btn-sm text-success tipocontratacao"><i class="fas fa-plus" data-toggle="modal" data-target="#addTipoContratacao" ' +
+                    '<a href="#" class="btn_crud btn btn-sm text-success tipocontratacao" data-toggle="modal" data-target="#addTipoContratacao"><i class="fas fa-plus"' +
                     '    data-toggle="tooltip" title="Novo Tipo de Contratação"></i></a>' +
                     '<select class="form-control selectpicker" data-live-search="true" name="tip_id" required>' +
                     '   @foreach ($tiposContratacao as $tipo)' +
@@ -1175,7 +1175,7 @@
 
                 $('#select-formatosTrabalho').html(
                     '<label class="mb-0" for="fdt_id">Formato de Trabalho*</label>' +
-                    '<a href="#" class="btn_crud btn btn-sm text-success formatotrabalho"><i class="fas fa-plus" data-toggle="modal" data-target="#addFormatoTrabalho" ' +
+                    '<a href="#" class="btn_crud btn btn-sm text-success formatotrabalho" data-toggle="modal" data-target="#addFormatoTrabalho"><i class="fas fa-plus"' +
                     '    data-toggle="tooltip" title="Novo Formato de Trabalho"></i></a>' +
                     '<select class="form-control selectpicker" data-live-search="true" name="fdt_id" required>' +
                     '   @foreach ($formatosTrabalho as $formatoTrabalho)' +
