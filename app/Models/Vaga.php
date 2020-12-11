@@ -10,6 +10,8 @@ class Vaga extends Model
     use HasFactory;
 
     protected $fillable = [
+        'vag_data_publicacao',
+        'vag_data_alteracao',
         'vag_status',
         'vag_carga_horaria',
         'vag_habilidades',

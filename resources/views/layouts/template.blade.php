@@ -60,10 +60,14 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item collapsed">
-                <a class="nav-link" href={{ route('home') }}>
+                <a class="nav-link" href={{ route('publico') }}>
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>{{ __('Painel de Controle') }}</span></a>
             </li>
+            
+            {{-- <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+            
             <li class="nav-item collapsed">
                 @guest
                     @if (Route::has('login'))
@@ -95,7 +99,7 @@
                             </div>
                         </li>
                 @endguest
-            </li>
+            </li> --}}
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -166,14 +170,14 @@
 
 
             <!-- Divider -->
-            {{--
-            <hr class="sidebar-divider"> --}}
+            
+            <hr class="sidebar-divider">
 
             {{--
-            <!-- Heading -->
+            Heading -->
             <div class="sidebar-heading">
                 {{ __('Outros') }}
-            </div> --}}
+            </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
             {{-- <li class="nav-item">
@@ -219,10 +223,10 @@
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-bar"></i>
                     <span>{{ __('Gráficos') }}</span></a>
-            </li> --}}
+            </li> 
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            <hr class="sidebar-divider d-none d-md-block">--}}
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -252,41 +256,75 @@
                         </h1>
 
                     </div>
+                    
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - User Information -->
-                        {{-- <li class="nav-item dropdown no-arrow">
+                        <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600">Roger</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600"></span>
 
                             </a>
 
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="{{ route('perfil') }}">
+                                <a class="dropdown-item" href="">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     {{ __('Perfil') }}
                                 </a>
-                                {{-- <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="#">
                                     <!--<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>-->
                                     <i class="fas fa-cogs fa-sm fa-key mr-2 text-gray-400"></i>
                                     {{ __('Alterar Senha') }}
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    {{ __('Registro de Atividades') }}--}}
-                                    {{-- </a>
+                                    {{ __('Registro de Atividades') }}
+                                    </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     {{ __('Sair') }}
                                 </a>
                             </div>
-                        </li> --}}
+                        </li> 
+
+                        <li class="nav-item collapsed">
+                            @guest
+                                @if (Route::has('login'))
+                                    <li class="nav-item">
+                                        <a class="nav-link text-danger" href="{{ route('login') }}">{{ __('Entrar') }}</a>
+                                    </li>
+                                @endif
+            
+                                @if (Route::has('register'))
+                                    <li class="nav-item">
+                                        <a class="nav-link text-danger" href="{{ route('register') }}">{{ __('Cadastrar-se') }}</a>
+                                    </li>
+                                @endif
+                                @else
+                                    <li class="nav-item dropdown">
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle text-primary" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                            {{ Auth::user()->name }}
+                                        </a>
+            
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                        </div>
+                                    </li>
+                            @endguest
+                        </li>
                     </ul>
                 </nav>
 
@@ -433,8 +471,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     --}}
-
-
 
 
     <script type="text/javascript">
