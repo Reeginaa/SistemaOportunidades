@@ -119,8 +119,9 @@
                                 </div>
 
                                <br>
+                               <br>
                                 <div class="card-text mb-2"><small class="text-muted">Aberto desde
-                                        {{ date('d/m/Y', strtotime($vaga->vag_data_publicacao)) }}. Última atualização:
+                                        {{ date('d/m/Y', strtotime($vaga->vag_data_publicacao)) }}. Última atualização
                                         {{ date('d/m/Y', strtotime($vaga->vag_data_alteracao)) }}</small></div>
                             </div>
                         </div>
