@@ -170,9 +170,9 @@
                         </div>
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="cid_id">Cidade/UF*</label>
-                            <a href="#" class="btn_crud btn btn-sm text-success cidade"><i class="fas fa-plus"
-                                data-toggle="modal" data-target="#addCidade" data-toggle="tooltip"
-                                title="Nova Cidade"></i></a>
+                            <a href="#" class="btn_crud btn btn-sm text-success cidade" data-toggle="modal" data-target="#addCidade">
+                                <i class="fas fa-plus" data-toggle="tooltip" title="Nova Cidade"></i>
+                            </a>
                             <select class="form-control selectpicker" data-live-search="true" name="cid_id" required>
                                 <option value="">Selecione...</option>
                                 @foreach ($cidades as $cidade)
@@ -390,30 +390,31 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ action('App\Http\Controllers\CidadeController@store') }}" method="POST" id="addForm">
+                    <form action="{{ action('App\Http\Controllers\CidadeController@store') }}" method="POST" id="formAddCidade">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label class="text-danger float-right">Campo Obrigatório(*)</label>
                         </div>
                         <br>
                         <div class="form-group">
-                            <label class="mb-0" for="cid_nome">Nome*</label>
-                            <input type="text" class="form-control" id="cid_nome" name="cid_nome" required>
-                            <span class="text-danger" id="cid_nomeError"></span>
+                            <label class="mb-0" for="cid_nome_modal">Nome*</label>
+                            <input type="text" class="form-control" id="cid_nome_modal" name="cid_nome_modal" required>
+                            <span class="text-danger" id="cid_nome_modalError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="cid_uf">UF*</label>
-                            <input type="text" class="form-control" maxlength="2"
-                                style="text-transform: uppercase; width: 60px" id="cid_uf" name="cid_uf" required>
-                            <span class="text-danger" id="cid_ufError"></span>
+                            <label class="mb-0" for="cid_uf_modal">UF*</label>
+                            <input type="text" class="form-control" maxlength="2" style="text-transform: uppercase; width: 60px" id="cid_uf_modal" name="cid_uf_modal" required>
+                            <span class="text-danger" id="cid_uf_modalError"></span>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer bg-light">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="tooltip"
-                        title="Cancelar"><i class="fas fa-undo-alt mr-1"></i>{{ __('Cancelar') }}</button>
-                    <button type="submit" form="addForm" class="btn btn-success" data-toggle="tooltip" title="Salvar"><i
-                            class="fas fa-save mr-1"></i>{{ __('Salvar') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="tooltip" title="Cancelar">
+                        <i class="fas fa-undo-alt mr-1"></i>{{ __('Cancelar') }}
+                    </button>
+                    <button type="submit" form="formAddCidade" class="btn btn-success" data-toggle="tooltip" title="Salvar">
+                        <i class="fas fa-save mr-1"></i>{{ __('Salvar') }}
+                    </button>
                 </div>
             </div>
         </div>
@@ -427,6 +428,54 @@
     <script type="text/javascript">
         // Anunciante
         $(document).ready(function() {
+
+            $("#formAddCidade").submit(function() {
+                    
+                // Pegando os dados do formulário e pegando o token que válida o request.
+                var cid_nome = $("#cid_nome_modal").val();
+                var cid_uf = $("#cid_uf_modal").val();
+                var _token = $("[name='_token']")[0].value;
+
+                // Montando o objeto que sera enviado na request.
+                var dados = {
+                    cid_nome: cid_nome,
+                    cid_uf: cid_uf,
+                    _token: _token,
+                    ajax: true
+                }
+
+                // Executando o POST para a rota de cadastro de cidade
+                $.ajax({
+                    url: "/cidade",
+                    type: 'POST',
+                    data: dados
+                })
+                
+                // Caso der sucesso então adiciona a nova cidade no select e fecha o modal.
+                .done(function (result) {
+                    result = JSON.parse(result); // Como o resultado volta em string então da parse pra JSON
+
+                    // Setando a cidade no select.
+                    $('[name=cid_id]').map(function(_i, element) {
+                        var option = document.createElement("option");
+                        option.text = result.cid_nome + "/" + result.cid_uf;
+                        option.value = result.id;
+                        element.appendChild(option);
+                        element.value = result.id;
+                    });
+
+                    // Fechando o modal
+                    $('#addCidade').modal('hide');
+                })
+                
+                // Caso der erro então da um aviso.
+                .fail(function (err) {
+                    console.log(err);
+                    alert("Erro ao tentar cadastrar a cidade.");
+                })
+
+                return false;
+            });
 
             var table = $('#datatableDivulgadores').DataTable();
 
@@ -451,7 +500,7 @@
 
                 $('#select-cidade').html(
                     '<label class="mb-0" for="cid_id">Cidade/UF*</label>' +
-                    '<a href="#" class="btn_crud btn btn-sm text-success cidade"><i class="fas fa-plus" data-toggle="modal" data-target="#addCidade" ' +
+                    '<a href="#" class="btn_crud btn btn-sm text-success cidade" data-toggle="modal" data-target="#addCidade"><i class="fas fa-plus"' +
                     '    data-toggle="tooltip" title="Nova Cidade"></i></a>' +
                     '<select class="form-control selectpicker" data-live-search="true" name="cid_id" required>' +
                     '   @foreach ($cidades as $cidade)' +
