@@ -609,65 +609,58 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ action('App\Http\Controllers\DivulgadoresController@store') }}" method="POST"
-                        id="addForm">
+                    <form action="{{ action('App\Http\Controllers\DivulgadoresController@store') }}" method="POST" id="formAddDivulgador">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label class="text-danger float-right">Campo Obrigatório(*)</label>
                         </div>
                         <br>
-                        <div id="div_cnpj" class="form-group">
-                            <label class="mb-0" for="div_cnpj">CNPJ*</label>
-                            <input type="text" name="div_cnpj" value="" id="div_cnpj" class="form-control"
-                                style="width: 185px;" maxlength="18" vk_1bc56="subscribed">
-                            <span class="text-danger" id="div_cnpjError"></span>
+                        <div class="form-group">
+                            <label class="mb-0" for="div_cnpj_modal">CNPJ*</label>
+                            <input type="text" name="div_cnpj_modal" value="" id="div_cnpj_modal" class="form-control" style="width: 185px;" maxlength="18" vk_1bc56="subscribed">
+                            <span class="text-danger" id="div_cnpj_modalError"></span>
                         </div>
                         <div class="form-group">
-                            <label class="mb-0" for="div_nome">Nome*</label>
-                            <input type="text" class="form-control" maxlength="100" id="div_nome" name="div_nome" required>
-                            <span class="text-danger" id="div_nomeError"></span>
+                            <label class="mb-0" for="div_nome_modal">Nome*</label>
+                            <input type="text" class="form-control" maxlength="100" id="div_nome_modal" name="div_nome_modal" required>
+                            <span class="text-danger" id="div_nome_modalError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="div_telefone">Telefone*</label>
-                            <input type="text" class="form-control" maxlength="15" style="width: 200px" id="div_telefone"
-                                name="div_telefone" required>
-                            <span class="text-danger" id="div_telefoneError"></span>
+                            <label class="mb-0" for="div_telefone_modal">Telefone*</label>
+                            <input type="text" class="form-control" maxlength="15" style="width: 200px" id="div_telefone_modal" name="div_telefone_modal" required>
+                            <span class="text-danger" id="div_telefone_modalError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="div_email">E-mail*</label>
-                            <input type="text" class="form-control" maxlength="100" style="width: 280px" id="div_email"
-                                name="div_email" required>
-                            <span class="text-danger" id="div_emailError"></span>
+                            <label class="mb-0" for="div_email_modal">E-mail*</label>
+                            <input type="text" class="form-control" maxlength="100" style="width: 280px" id="div_email_modal" name="div_email_modal" required>
+                            <span class="text-danger" id="div_email_modalError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="div_rua">Endereço (Rua, Avenida, ...)*</label>
-                            <input type="text" class="form-control" maxlength="100" id="div_rua" name="div_rua" required>
-                            <span class="text-danger" id="div_ruaError"></span>
+                            <label class="mb-0" for="div_rua_modal">Endereço (Rua, Avenida, ...)*</label>
+                            <input type="text" class="form-control" maxlength="100" id="div_rua_modal" name="div_rua_modal" required>
+                            <span class="text-danger" id="div_rua_modalError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="div_numero">Número*</label>
-                            <input type="text" class="form-control" maxlength="10"
-                                style="text-transform: uppercase; width: 180px" id="div_numero" name="div_numero" required>
-                            <span class="text-danger" id="div_numeroError"></span>
+                            <label class="mb-0" for="div_numero_modal">Número*</label>
+                            <input type="text" class="form-control" maxlength="10" style="text-transform: uppercase; width: 180px" id="div_numero_modal" name="div_numero_modal" required>
+                            <span class="text-danger" id="div_numero_modalError"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="div_complemento">Complemento</label>
-                            <input type="text" class="form-control" maxlength="15"
-                                style="text-transform: uppercase; width: 230px" id="div_complemento" name="div_complemento">
-                            <span class="text-danger" id="div_complemento"></span>
+                            <label class="mb-0" for="div_complemento_modal">Complemento</label>
+                            <input type="text" class="form-control" maxlength="15" style="text-transform: uppercase; width: 230px" id="div_complemento_modal" name="div_complemento_modal">
+                            <span class="text-danger" id="div_complemento_modal"></span>
                         </div>
                         <div class="form-group col-xs-2">
-                            <label class="mb-0" for="div_bairro">Bairro*</label>
-                            <input type="text" class="form-control" maxlength="30" style="width: 300px" id="div_bairro"
-                                name="div_bairro" required>
-                            <span class="text-danger" id="div_bairroError"></span>
+                            <label class="mb-0" for="div_bairro_modal">Bairro*</label>
+                            <input type="text" class="form-control" maxlength="30" style="width: 300px" id="div_bairro_modal" name="div_bairro_modal" required>
+                            <span class="text-danger" id="div_bairro_modalError"></span>
                         </div>
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="cid_id">Cidade/UF*</label>
-                            <a href="#" class="btn_crud btn btn-sm text-success cidade"><i class="fas fa-plus"
-                                    data-toggle="modal" data-target="#addCidade" data-toggle="tooltip"
-                                    title="Nova Cidade"></i></a>
-                            <select class="form-control selectpicker" data-live-search="true" name="cid_id" required>
+                            <a href="#" class="btn_crud btn btn-sm text-success cidade"  data-toggle="modal" data-target="#addCidade">
+                                <i class="fas fa-plus" data-toggle="tooltip" title="Nova Cidade"></i>
+                            </a>
+                            <select class="form-control selectpicker" data-live-search="true" name="cid_id" id="cid_id_div_modal" required>
                                 <option value="">Selecione...</option>
                                 @foreach ($cidades as $cidade)
                                     <option value={{ $cidade->id }}> {{ $cidade->cid_nome }}/{{ $cidade->cid_uf }} </option>
@@ -678,10 +671,12 @@
                     </form>
                 </div>
                 <div class="modal-footer bg-light">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="tooltip"
-                        title="Cancelar"><i class="fas fa-undo-alt mr-1"></i>{{ __('Cancelar') }}</button>
-                    <button type="submit" form="addForm" class="btn btn-success" data-toggle="tooltip" title="Salvar"><i
-                            class="fas fa-save mr-1"></i>{{ __('Salvar') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="tooltip" title="Cancelar">
+                        <i class="fas fa-undo-alt mr-1"></i>{{ __('Cancelar') }}
+                    </button>
+                    <button type="submit" form="formAddDivulgador" class="btn btn-success" data-toggle="tooltip" title="Salvar">
+                        <i class="fas fa-save mr-1"></i>{{ __('Salvar') }}
+                    </button>
                 </div>
             </div>
         </div>
@@ -828,8 +823,7 @@
 
                 return false;
             });
-
-
+            
             $("#formAddArea").submit(function() {
                     
                 // Pegando os dados do formulário e pegando o token que válida o request.
@@ -871,6 +865,69 @@
                 .fail(function (err) {
                     console.log(err);
                     alert("Erro ao tentar cadastrar a area.");
+                })
+
+                return false;
+            });
+
+            
+            $("#formAddDivulgador").submit(function() {
+                    
+                // Pegando os dados do formulário e pegando o token que válida o request.
+                var div_cnpj = $("#div_cnpj_modal").val();
+                var div_nome = $("#div_nome_modal").val();
+                var div_telefone = $("#div_telefone_modal").val();
+                var div_email = $("#div_email_modal").val();
+                var div_rua = $("#div_rua_modal").val();
+                var div_numero = $("#div_numero_modal").val();
+                var div_complemento = $("#div_complemento_modal").val();
+                var div_bairro = $("#div_bairro_modal").val();
+                var cid_id = $("#cid_id_div_modal").val();
+                var _token = $("[name='_token']")[0].value;
+
+                // Montando o objeto que sera enviado na request.
+                var dados = {
+                    div_cnpj: div_cnpj,
+                    div_nome: div_nome,
+                    div_telefone: div_telefone,
+                    div_email: div_email,
+                    div_rua: div_rua,
+                    div_numero: div_numero,
+                    div_complemento: div_complemento,
+                    div_bairro: div_bairro,
+                    cid_id: cid_id,
+                    _token: _token,
+                    ajax: true
+                }
+
+                // Executando o POST para a rota de cadastro de divulgador
+                $.ajax({
+                    url: "/divulgadores",
+                    type: 'POST',
+                    data: dados
+                })
+                
+                // Caso der sucesso então adiciona o novo divulgador no select e fecha o modal.
+                .done(function (result) {
+                    result = JSON.parse(result); // Como o resultado volta em string então da parse pra JSON
+                    console.log(result);
+                    // Setando o divulgador no select.
+                    $('[name=div_id]').map(function(_i, element) {
+                        var option = document.createElement("option");
+                        option.text = result.div_nome;
+                        option.value = result.id;
+                        element.appendChild(option);
+                        element.value = result.id;
+                    });
+
+                    // Fechando o modal
+                    $('#addDivulgador').modal('hide');
+                })
+                
+                // Caso der erro então da um aviso.
+                .fail(function (err) {
+                    console.log(err);
+                    alert("Erro ao tentar cadastrar o divulgador.");
                 })
 
                 return false;

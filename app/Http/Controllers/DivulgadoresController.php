@@ -75,6 +75,10 @@ class DivulgadoresController extends Controller
 
         $divulgadores->save();
 
+        if ($request->input('ajax')) {
+            return json_encode($divulgadores);
+        }
+
         return redirect('divulgadores')
             ->with('success', 'Anunciante salvo com sucesso!');
     }
