@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('divulgadores', 'App\Http\Controllers\DivulgadoresController');
     Route::get('divulgadores/{id}/destroy', 'App\Http\Controllers\DivulgadoresController@destroy');
+    Route::get('divulgadores/CNPJ/{id}', 'App\Http\Controllers\DivulgadoresController@getCNPJ');
 
     Route::resource('vagas', 'App\Http\Controllers\VagaController');
     Route::get('vaga/{id}/destroy', 'App\Http\Controllers\VagaController@destroy');
@@ -52,4 +53,3 @@ Auth::routes();
 
 Route::resource('publico', 'App\Http\Controllers\PublicoController');
 Route::get('detalhes/{id}', 'App\Http\Controllers\PublicoController@detalhes')->name('detalhes');
-

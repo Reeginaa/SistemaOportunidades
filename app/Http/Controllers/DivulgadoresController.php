@@ -41,6 +41,21 @@ class DivulgadoresController extends Controller
         //
     }
 
+    public function getCNPJ($id)
+    {
+        $cnpj = $id;
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://www.receitaws.com.br/v1/cnpj/$cnpj");
+        curl_setopt($ch, CURLOPT_HTTPGET, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $output = curl_exec($ch);
+        $data = json_decode($output);
+        curl_close($ch);
+
+        return json_encode($data);
+    }
     /**
      * Store a newly created resource in storage.
      *

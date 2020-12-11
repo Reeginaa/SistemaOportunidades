@@ -428,6 +428,28 @@
     <script type="text/javascript">
         // Anunciante
         $(document).ready(function() {
+            $( "#addModal #div_cnpj" ).keyup(function() {
+                console.log($(this).val())
+                $CNPJ = $(this).val();
+
+                if($(this).val().length == 14){
+                    $.get('divulgadores/CNPJ/' + $CNPJ, function(dados) {
+                       if(dados) {
+                        let response = JSON.parse(dados);
+                        $('#addModal #div_nome').val(response.nome) ;
+                        $('#addModal #div_telefone').val(response.telefone) ;
+                        $('#addModal #div_rua').val(response.logradouro);
+                        $('#addModal #div_numero').val(response.numero);
+                        $('#addModal #div_complemento').val(response.complemento);
+                        $('#addModal #div_bairro').val(response.bairro);
+                       }
+                    });
+                }
+            });
+
+
+           
+
 
             $("#formAddCidade").submit(function() {
                     
@@ -568,7 +590,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
 
-            $('#addModal #div_cnpj').mask('00.000.000/0000-00', options);
+            $('#addModal #div_cnpj').mask('00.000.000/0000-00',options);
 
             var PhoneMaskBehavior = function(val) {
                     let len = val.replace(/\D/g, '').length;
