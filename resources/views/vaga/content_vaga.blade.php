@@ -132,15 +132,18 @@
     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
+            
                 <div class="modal-header bg-success">
                     <h5 class="modal-title text-white font-weight-bold" id="addModalLabel">{{ __('Nova Vaga') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <div class="modal-body">
                     <form action="{{ action('App\Http\Controllers\VagaController@store') }}" method="POST" id="addForm">
                         {{ csrf_field() }}
+                       
                         <div class="form-group">
                             <label class="text-danger float-right">Campo Obrigatório(*)</label>
                         </div>
@@ -203,9 +206,9 @@
 
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="cid_id">Cidade/UF*</label>
-                            <a href="#" class="btn_crud btn btn-sm text-success cidade"><i class="fas fa-plus"
-                                    data-toggle="modal" data-target="#addCidade" data-toggle="tooltip"
-                                    title="Nova Cidade"></i></a>
+                            <a href="#" class="btn_crud btn btn-sm text-success cidade" data-toggle="modal" data-target="#addCidade">
+                                <i class="fas fa-plus" data-toggle="tooltip" title="Nova Cidade"></i>
+                            </a>
                             <select class="form-control selectpicker" data-live-search="true" id="cid_id" name="cid_id"
                                 required>
                                 <option value="">Selecione...</option>
@@ -215,10 +218,12 @@
                             </select>
                             <span class="text-danger" id="cid_idError"></span>
                         </div>
+
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="are_id">Area de Atuação*</label>
-                            <a href="#" class="btn_crud btn btn-sm text-success area"><i class="fas fa-plus" data-toggle="modal" data-target="#addArea"
-                                    data-toggle="tooltip" title="Nova Área de Atuação"></i></a>
+                            <a href="#" class="btn_crud btn btn-sm text-success area" data-toggle="modal" data-target="#addArea">
+                                <i class="fas fa-plus" data-toggle="tooltip" title="Nova Área de Atuação"></i>
+                            </a>
                             <select class="form-control selectpicker" data-live-search="true" name="are_id" required>
                                 <option value="">Selecione...</option>
                                 @foreach ($areas as $area)
@@ -227,10 +232,12 @@
                             </select>
                             <span class="text-danger" id="cid_idError"></span>
                         </div>
+
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="div_id">Anunciantes*</label>
-                            <a href="#" class="btn_crud btn btn-sm text-success divulgador"><i class="fas fa-plus" data-toggle="modal" data-target="#addDivulgador"
-                                    data-toggle="tooltip" title="Novo Anunciante"></i></a>
+                            <a href="#" class="btn_crud btn btn-sm text-success divulgador" data-toggle="modal" data-target="#addDivulgador">
+                                <i class="fas fa-plus" data-toggle="tooltip" title="Novo Anunciante"></i>
+                            </a>
                             <select class="form-control selectpicker" data-live-search="true" name="div_id" required>
                                 <option value="">Selecione...</option>
                                 @foreach ($divulgadores as $divulgador)
@@ -239,10 +246,12 @@
                             </select>
                             <span class="text-danger" id="cid_idError"></span>
                         </div>
+
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="tip_id">Tipos de Contratação*</label>
-                            <a href="#" class="btn_crud btn btn-sm text-success tipocontratacao"><i class="fas fa-plus" data-toggle="modal" data-target="#addTipoContratacao"
-                                    data-toggle="tooltip" title="Novo Tipo de Contratação"></i></a>
+                            <a href="#" class="btn_crud btn btn-sm text-success tipocontratacao" data-toggle="modal" data-target="#addTipoContratacao" >
+                                <i class="fas fa-plus" data-toggle="tooltip" title="Novo Tipo de Contratação"></i>
+                            </a>
                             <select class="form-control selectpicker" data-live-search="true" name="tip_id" required>
                                 <option value="">Selecione...</option>
                                 @foreach ($tiposContratacao as $tipo)
@@ -251,10 +260,12 @@
                             </select>
                             <span class="text-danger" id="cid_idError"></span>
                         </div>
+
                         <div class="form-group col-xs-2">
                             <label class="mb-0" for="fdt_id">Formatos de Trabalho*</label>
-                            <a href="#" class="btn_crud btn btn-sm text-success formatotrabalho"><i class="fas fa-plus" data-toggle="modal" data-target="#addFormatoTrabalho"
-                                    data-toggle="tooltip" title="Novo Formato de Trabalho"></i></a>
+                            <a href="#" class="btn_crud btn btn-sm text-success formatotrabalho" data-toggle="modal" data-target="#addFormatoTrabalho">
+                                <i class="fas fa-plus" data-toggle="tooltip" title="Novo Formato de Trabalho"></i>
+                            </a>
                             <select class="form-control selectpicker" data-live-search="true" name="fdt_id" required>
                                 <option value="">Selecione...</option>
                                 @foreach ($formatosTrabalho as $formatoTrabalho)
@@ -265,12 +276,16 @@
                         </div>
                     </form>
                 </div>
+
                 <div class="modal-footer bg-light">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="tooltip"
-                        title="Cancelar"><i class="fas fa-undo-alt mr-1"></i>{{ __('Cancelar') }}</button>
-                    <button type="submit" form="addForm" class="btn btn-success" data-toggle="tooltip" title="Salvar"><i
-                            class="fas fa-save mr-1"></i>{{ __('Salvar') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="tooltip" title="Cancelar">
+                        <i class="fas fa-undo-alt mr-1"></i>{{ __('Cancelar') }}
+                    </button>
+                    <button type="submit" form="addForm" class="btn btn-success" data-toggle="tooltip" title="Salvar">
+                        <i class="fas fa-save mr-1"></i>{{ __('Salvar') }}
+                    </button>
                 </div>
+
             </div>
         </div>
     </div>
