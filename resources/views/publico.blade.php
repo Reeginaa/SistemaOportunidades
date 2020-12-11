@@ -16,13 +16,13 @@
         <!-- Content -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Público</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Área Pública</h6>
             </div>
             <div class="card-body" align="center">
             <h5>Gestor de Oportunidades</h5>
                 <div class="row">
                 @foreach ($vagas as $obj)
-                <div class="col-md-6">
+                <div class="card col-md-6">
                     <div class="card" style="margin: 15px 0;">
                         <div class="foto" style="height: 100px; 
                             width: 100%; 
@@ -37,11 +37,12 @@
                             <div class="card-text" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><strong>Divulgador:</strong> {{$obj->div_nome}}</div>
                             <div class="card-text" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><strong>Cidade:</strong> {{$obj->cid_nome}} - {{$obj->cid_uf}}</div>
                             <div class="card-text" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><strong>Tipo da contratação:</strong> {{$obj->tip_nome}}</div>
+                            
                             <div class="card-text" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><strong>Habilidades:</strong> {{$obj->vag_habilidades}}</div>
                             <br>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <a href="detalhes/{{$obj->id}}" class="btn_crud btn btn-primary btn-sm details">Ver detalhes da vaga</a>
+                                    <a href="detalhes/{{ hash("sha256", md5($obj->id + 2.42)) }}" class="btn_crud btn btn-primary btn-sm details">Ver detalhes da vaga</a>
                                     <!--<button class="btn btn-sm btn-primary">Ver detalhes da vaga</button>-->
                                 </div>
                                 <div class="col-md-6">
