@@ -32,7 +32,8 @@ class VagaController extends Controller
      */
     public function index()
     {
-        $vagas = $this->vaga::all()->where('vag_status', '=', 1);
+        //$vagas = $this->vaga::all()->where('vag_status', '=', 1);
+        $vagas = $this->vaga::all();
         $cidades = $this->cidade::all()->sortBy('cid_nome');
         $areas = $this->area::all()->sortBy('area_nome');
         $divulgadores = $this->divulgador::all()->sortBy('div_nome');

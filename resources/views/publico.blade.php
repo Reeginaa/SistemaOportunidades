@@ -41,7 +41,8 @@
                             <br>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <button class="btn btn-sm btn-primary">Ver detalhes da vaga</button>
+                                    <a href="detalhes/{{$obj->id}}" class="btn_crud btn btn-primary btn-sm details">Ver detalhes da vaga</a>
+                                    <!--<button class="btn btn-sm btn-primary">Ver detalhes da vaga</button>-->
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card-text"><small class="text-muted" style="float: right; margin-top: 15px;">Última atualização {{date('d/m/Y', strtotime($obj->vag_data_alteracao))}}</small></div>
@@ -59,6 +60,8 @@
     @endsection
 
     @section('script_pages')
+
+        
 
         <!-- Null -->
 

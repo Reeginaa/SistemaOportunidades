@@ -14,9 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('publico');
-// });
 Route::get('/', [App\Http\Controllers\PublicoController::class, 'index'])->name('publico');
 
 Auth::routes();
@@ -50,3 +47,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::resource('publico', 'App\Http\Controllers\PublicoController');
+Route::get('detalhes/{id}', 'App\Http\Controllers\PublicoController@detalhes')->name('detalhes');
+
