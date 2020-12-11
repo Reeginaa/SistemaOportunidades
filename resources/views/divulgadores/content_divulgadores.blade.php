@@ -56,7 +56,13 @@
                                     <td class="align-middle border-left">{{ $obj->div_telefone }}</td>
                                     <td style="display: none;">{{ $obj->div_email }}</td>
                                     <td class="align-middle border-left">{{ $obj->div_rua }}, {{ $obj->div_numero }}
-                                        {{ $obj->div_complemento ?? '' }}
+                                        @php
+                                        if ($obj->div_complemento) {
+                                            echo " - " .$obj->div_complemento;
+                                        } else {
+                                            echo "";
+                                        } 
+                                        @endphp
                                     </td>
                                     <td style="display: none;">{{ $obj->div_rua }}</td>
                                     <td style="display: none;">{{ $obj->div_numero }}</td>

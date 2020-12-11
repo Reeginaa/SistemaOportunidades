@@ -54,7 +54,7 @@
                                     <img alt="Ícone de localização" src={{ URL::to('img/cifrao.svg') }} />
                                     @php
                                         if ($vaga->vag_faixa_salarial) {
-                                            echo $vaga->vag_faixa_salarial;
+                                            echo "R$ " . number_format($vaga->vag_faixa_salarial, 2, ',', '.') . "/mês";
                                         } else {
                                             echo "";
                                         }
@@ -72,7 +72,6 @@
                                 </div>
 
                                 <br>
-                                <h5 class="card-title mb-2">INFORMAÇÕES ADICIONAIS</h5>
                                 <div class="card-text mb-2"
                                     style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">
                                     <strong> Habilidades Necessárias: </strong> {{ $vaga->vag_habilidades ?? 'NÃO INFORMADO' }}
