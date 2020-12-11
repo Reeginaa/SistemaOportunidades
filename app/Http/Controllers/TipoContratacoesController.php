@@ -54,6 +54,10 @@ class TipoContratacoesController extends Controller
 
         $tipocontratacoes->save();
 
+        if ($request->input('ajax')) {
+            return json_encode($tipocontratacoes);
+        }
+
         return redirect('tipocontratacoes')
             ->with('success', 'Tipo de Contratação salvo com sucesso!');
     }
