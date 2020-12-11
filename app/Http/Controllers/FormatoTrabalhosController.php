@@ -54,6 +54,10 @@ class FormatoTrabalhosController extends Controller
 
         $formatotrabalhos->save();
 
+        if ($request->input('ajax')) {
+            return json_encode($formatotrabalhos);
+        }
+
         return redirect('formatotrabalhos')
             ->with('success', 'Formato de Trabalho salvo com sucesso!');
     }

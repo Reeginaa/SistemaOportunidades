@@ -739,25 +739,26 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ action('App\Http\Controllers\FormatoTrabalhosController@store') }}" method="POST"
-                        id="addForm">
+                    <form action="{{ action('App\Http\Controllers\FormatoTrabalhosController@store') }}" method="POST" id="formAddFormatoTrabalho">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label class="text-danger float-right">Campo Obrigatório(*)</label>
                         </div>
                         <br>
                         <div class="form-group">
-                            <label class="mb-0" for="fdt_nome">Nome*</label>
-                            <input type="text" class="form-control" id="fdt_nome" name="fdt_nome" required>
-                            <span class="text-danger" id="fdt_nomeError"></span>
+                            <label class="mb-0" for="fdt_nome_modal">Nome*</label>
+                            <input type="text" class="form-control" id="fdt_nome_modal" name="fdt_nome_modal" required>
+                            <span class="text-danger" id="fdt_nome_modalError"></span>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer bg-light">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="tooltip"
-                        title="Cancelar"><i class="fas fa-undo-alt mr-1"></i>{{ __('Cancelar') }}</button>
-                    <button type="submit" form="addForm" class="btn btn-success" data-toggle="tooltip" title="Salvar"><i
-                            class="fas fa-save mr-1"></i>{{ __('Salvar') }}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="tooltip" title="Cancelar">
+                        <i class="fas fa-undo-alt mr-1"></i>{{ __('Cancelar') }}
+                    </button>
+                    <button type="submit" form="formAddFormatoTrabalho" class="btn btn-success" data-toggle="tooltip" title="Salvar">
+                        <i  class="fas fa-save mr-1"></i>{{ __('Salvar') }}
+                    </button>
                 </div>
             </div>
         </div>
@@ -932,7 +933,7 @@
 
                 return false;
             });
-            
+
             $("#formAddTipoContracao").submit(function() {
                     
                 // Pegando os dados do formulário e pegando o token que válida o request.
@@ -974,6 +975,52 @@
                 .fail(function (err) {
                     console.log(err);
                     alert("Erro ao tentar cadastrar o tipo de contração.");
+                })
+
+                return false;
+            });
+            
+            $("#addFormatoTrabalho").submit(function() {
+                    
+                // Pegando os dados do formulário e pegando o token que válida o request.
+                var fdt_nome = $("#fdt_nome_modal").val();
+                var _token = $("[name='_token']")[0].value;
+
+                // Montando o objeto que sera enviado na request.
+                var dados = {
+                    fdt_nome: fdt_nome,
+                    _token: _token,
+                    ajax: true
+                }
+
+                // Executando o POST para a rota de cadastro de formato de trabalho
+                $.ajax({
+                    url: "/formatotrabalhos",
+                    type: 'POST',
+                    data: dados
+                })
+                
+                // Caso der sucesso então adiciona o novo formato de trabalho no select e fecha o modal.
+                .done(function (result) {
+                    result = JSON.parse(result); // Como o resultado volta em string então da parse pra JSON
+                    
+                    // Setando o formato de trabalho no select.
+                    $('[name=fdt_id]').map(function(_i, element) {
+                        var option = document.createElement("option");
+                        option.text = result.fdt_nome;
+                        option.value = result.id;
+                        element.appendChild(option);
+                        element.value = result.id;
+                    });
+
+                    // Fechando o modal
+                    $('#addFormatoTrabalho').modal('hide');
+                })
+                
+                // Caso der erro então da um aviso.
+                .fail(function (err) {
+                    console.log(err);
+                    alert("Erro ao tentar cadastrar o formato de trabalho.");
                 })
 
                 return false;
